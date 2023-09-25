@@ -10,7 +10,7 @@ const app = express();
 const DB =
 "mongodb+srv://leviettinh1001:123@mangaapp.pwj7c3n.mongodb.net/?retryWrites=true&w=majority";
 
-// middleware
+// Middleware
 app.use(express.json());
 
 
