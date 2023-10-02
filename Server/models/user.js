@@ -20,6 +20,19 @@ const userSchema = mongoose.Schema({
       message: "Please enter a valid email address",
     },
   },
+  password: {
+    required: true,
+    type: String,
+    trim: true,
+    // validate: {
+    //   validator: (value) => {
+    //     const re =
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    //     return value.match(re);
+    //   },
+    //   message: "Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 số",
+    // },
+  },
   address: {
     type: String,
     default: "",
