@@ -4,7 +4,7 @@ const chapterSchema = mongoose.Schema({
   name: String,
   title: String,
   chap: Number,
-  image: String,
+  image: [String],
   content: String,
   report: [{
     type: mongoose.Schema.Types.Mixed,
@@ -13,4 +13,6 @@ const chapterSchema = mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Chapter", chapterSchema);
+const Chapter = mongoose.model('Chapter', chapterSchema);
+
+module.exports = Chapter;
