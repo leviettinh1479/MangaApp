@@ -50,6 +50,14 @@ const userSchema = mongoose.Schema({
 
     },
   ],
+  role: {
+    type: Number,
+    default: 1,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const User = mongoose.model("User", userSchema);
