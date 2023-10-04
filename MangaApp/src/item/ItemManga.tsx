@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
         width: 130,
         height: 245,
         borderWidth: 1,
-        borderRadius: 10
+        borderRadius: 10,
+        marginLeft:5
     },
     viewImage: {
         marginBottom: 8,
