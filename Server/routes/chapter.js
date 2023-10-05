@@ -8,7 +8,10 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
     const { name, title, chap, image, content, report, createdAt } = req.body;
 
     const manga = await Manga.findById(mangaId);
-
+    const existingChapter = manga.chapters.find(chapter => chapter.chap === chap);
+    if (existingChapter) {
+      return res.status(400).json({ message: "Chương đã tồn tại" });
+    }
     if (!manga) {
       return res.status(404).json({ message: "Truyện không tồn tại" });
     }
@@ -35,7 +38,7 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
 //Get by id
 mangaRouter.get('/api/manga/:mangaId/chapter/:chap', async (req, res) => {
   const mangaId = req.params.mangaId;
-  const chapNumber = parseInt(req.params.chap, 10); // Chuyển chap từ string sang number
+  const chapNumber = parseInt(req.params.chap, 10); 
 
   try {
     const manga = await Manga.findById(mangaId);
