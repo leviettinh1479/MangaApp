@@ -5,7 +5,7 @@ const Manga = require("../models/manga");
 mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
   try {
     const mangaId = req.params.mangaId;
-    const { name, title, chap, image, content, report, createdAt } = req.body;
+    const { name, title, chap, image, content, createdAt } = req.body;
 
     const manga = await Manga.findById(mangaId);
     const existingChapter = manga.chapters.find(
@@ -24,7 +24,6 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
       chap,
       image,
       content,
-      report,
       createdAt,
     };
 
