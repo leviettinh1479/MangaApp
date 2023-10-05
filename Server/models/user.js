@@ -37,6 +37,10 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "",
   },
+  image: {
+    type: String,
+    default: "",
+  },
   date:{
     type: Date,
     default: new Date,
