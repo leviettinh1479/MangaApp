@@ -1,6 +1,6 @@
 const express = require("express");
 const mangaRouter = express.Router();
-const Manga = require('../models/manga');
+const Manga = require("../models/manga");
 //Add chapter
 mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
   try {
@@ -8,7 +8,9 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
     const { name, title, chap, image, content, report, createdAt } = req.body;
 
     const manga = await Manga.findById(mangaId);
-    const existingChapter = manga.chapters.find(chapter => chapter.chap === chap);
+    const existingChapter = manga.chapters.find(
+      (chapter) => chapter.chap === chap
+    );
     if (existingChapter) {
       return res.status(400).json({ message: "Chương đã tồn tại" });
     }
@@ -23,7 +25,7 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
       image,
       content,
       report,
-      createdAt
+      createdAt,
     };
 
     manga.chapters.push(newChapter);
@@ -36,21 +38,25 @@ mangaRouter.post("/:mangaId/addchapter", async (req, res, next) => {
   }
 });
 //Get by id
-mangaRouter.get('/api/manga/:mangaId/chapter/:chap', async (req, res) => {
+mangaRouter.get("/api/manga/:mangaId/chapter/:chap", async (req, res) => {
   const mangaId = req.params.mangaId;
-  const chapNumber = parseInt(req.params.chap, 10); 
+  const chapNumber = parseInt(req.params.chap, 10);
 
   try {
     const manga = await Manga.findById(mangaId);
 
     if (!manga) {
-      return res.status(404).json({ message: 'Không tìm thấy truyện với id đã cho' });
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy truyện với id đã cho" });
     }
 
-    const chapter = manga.chapters.find(chap => chap.chap === chapNumber);
+    const chapter = manga.chapters.find((chap) => chap.chap === chapNumber);
 
     if (!chapter) {
-      return res.status(404).json({ message: `Không tìm thấy chương ${chapNumber}` });
+      return res
+        .status(404)
+        .json({ message: `Không tìm thấy chương ${chapNumber}` });
     }
 
     res.json(chapter);
@@ -59,14 +65,16 @@ mangaRouter.get('/api/manga/:mangaId/chapter/:chap', async (req, res) => {
   }
 });
 //Get all chapters
-mangaRouter.get('/api/manga/:mangaId/chapters', async (req, res) => {
+mangaRouter.get("/api/manga/:mangaId/chapters", async (req, res) => {
   const mangaId = req.params.mangaId;
 
   try {
     const manga = await Manga.findById(mangaId);
 
     if (!manga) {
-      return res.status(404).json({ message: 'Không tìm thấy truyện với id đã cho' });
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy truyện với id đã cho" });
     }
 
     const chapters = manga.chapters;
