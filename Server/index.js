@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 // IMPORTS FROM OTHER FILES
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
+var userRoute = require('./routes/auth');
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,10 @@ app.use(express.json());
 app.use(mangaRouter);
 app.use(mangaRouter2);
 
+// Middleware
+app.use(express.json());
+// http://localhost:3000/api/user
+app.use("/api/user", userRoute);
 
 // Connections
 mongoose
