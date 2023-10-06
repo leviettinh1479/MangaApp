@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   name: {
-    required: true,
     type: String,
     trim: true,
   },
@@ -24,14 +23,6 @@ const userSchema = mongoose.Schema({
     required: true,
     type: String,
     trim: true,
-    // validate: {
-    //   validator: (value) => {
-    //     const re =
-    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    //     return value.match(re);
-    //   },
-    //   message: "Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 số",
-    // },
   },
   address: {
     type: String,
@@ -43,7 +34,7 @@ const userSchema = mongoose.Schema({
   },
   date:{
     type: Date,
-    default: new Date,
+    default: Date.now(),
   },
   status: {
     type: Number,
@@ -54,14 +45,6 @@ const userSchema = mongoose.Schema({
 
     },
   ],
-  role: {
-    type: Number,
-    default: 1,
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  }
 });
 
 const User = mongoose.model("User", userSchema);
