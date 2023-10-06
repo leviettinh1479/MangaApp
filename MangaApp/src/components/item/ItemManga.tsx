@@ -50,9 +50,8 @@ const styles = StyleSheet.create({
         
     },
     viewImage: {
-        width: 128,
-        height: 184,
-        shadowColor: "#00FF00",
+        
+        shadowColor: "#000000",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -63,8 +62,8 @@ const styles = StyleSheet.create({
         
     },
     image: {
-        width: '100%',
-        height: '100%',
+        width: 128,
+        height: 184,
     },
     viewNameManga: {
         justifyContent: 'center',
