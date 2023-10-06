@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     txtNameManga: {
         color: '#000000',
-        fontSize: 15,
+        fontSize: 16,
         fontFamily: 'Quicksand-Regular',
     },
     viewNameAuthor: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     txtNameAuthor: {
         color: '#000000',
-        fontSize: 12,
+        fontSize: 14,
         fontFamily: 'Quicksand-Regular',
     },
     viewView: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     },
     txtView: {
         color: '#000000',
-        fontSize: 12,
+        fontSize: 14,
         fontFamily: 'Quicksand-Regular',
         marginLeft: 4
     }
