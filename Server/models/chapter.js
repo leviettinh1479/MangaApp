@@ -6,10 +6,6 @@ const chapterSchema = mongoose.Schema({
   chap: Number,
   image: [String],
   content: String,
-  report: [{
-    type: mongoose.Schema.Types.Mixed,
-    ref: 'Report'
-  }],
   createdAt: { type: Date, default: Date.now }
 });
 

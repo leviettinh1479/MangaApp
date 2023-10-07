@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const ratingSchema = require("./rating");
 const mangaSchema = mongoose.Schema({
   name: {
     type: String,
@@ -18,10 +18,13 @@ const mangaSchema = mongoose.Schema({
     default: "Đang tiến hành",
   },
   genre: [String],
-  chapters: [{
-    type: mongoose.Schema.Types.Mixed,
-    ref: 'Chapter'
-  }],
+  rating: [ratingSchema],
+  chapters: [
+    {
+      type: mongoose.Schema.Types.Mixed,
+      ref: "Chapter",
+    },
+  ],
 });
 
 const Manga = mongoose.model("Manga", mangaSchema);

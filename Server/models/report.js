@@ -5,11 +5,11 @@ const reportSchema = mongoose.Schema({
   description: String,
   manga: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Manga' // 'Manga' là tên mô hình truyện
+    ref: 'Manga' 
   },
-  chapter: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Chapter' // 'Chapter' là tên mô hình chương
+    ref: 'User' 
   }
 
 });
