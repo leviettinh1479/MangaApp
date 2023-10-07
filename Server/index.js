@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
 var userRoute = require('./routes/auth');
+const favoriteRouter = require('./routes/favorite');
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,8 @@ app.use(mangaRouter2);
 app.use(express.json());
 // http://localhost:3000/api/user
 app.use("/api/user", userRoute);
+// http://localhost:3000/api/favorite
+app.use("/api/favorite",favoriteRouter);
 
 // Connections
 mongoose
