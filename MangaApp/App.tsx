@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomNavigations from './src/navigators/BottomNavigations';
 import Genre from './src/screens/Genre';
 
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
