@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 // IMPORTS FROM OTHER FILES
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
+const genreRouter = require("./routes/genre");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ const DB =
 app.use(express.json());
 app.use(mangaRouter);
 app.use(mangaRouter2);
+app.use(genreRouter);
 
 
 // Connections
