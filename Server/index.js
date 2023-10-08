@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 var userRoute = require('./routes/auth');
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
+const genreRouter = require("./routes/genre");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(mangaRouter);
 app.use(mangaRouter2);
 app.use("/api/user", userRoute);
+app.use(genreRouter);
 
 // Connections
 mongoose
