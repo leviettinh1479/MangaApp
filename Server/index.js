@@ -6,6 +6,7 @@ var userRoute = require('./routes/auth');
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
+const reportRouter = require("./routes/report");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -19,10 +20,11 @@ app.use(mangaRouter);
 app.use(mangaRouter2);
 app.use("/api/user", userRoute);
 app.use(genreRouter);
+app.use(reportRouter);
 
 // Connections
 mongoose
-  .connect(DB)
+  .connect(DB,{ useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connection Successful");
   })
