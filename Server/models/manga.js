@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const ratingSchema = require("./rating");
+const reportSchema = require("./report");
 const mangaSchema = mongoose.Schema({
   name: {
     type: String,
@@ -23,6 +24,7 @@ const mangaSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.Mixed,
       ref: "Chapter",
+      report: [reportSchema],
     },
   ],
 });

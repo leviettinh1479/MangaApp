@@ -94,5 +94,41 @@ mangaRouter.get("/api/manga/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+//add report
+mangaRouter.post('/api/manga/reports/:mangaId/chapters/:chapterIndex', async (req, res) => {
+  const { mangaId, chapterIndex } = req.params;
+  const { name, description, userId } = req.body;
+
+  try {
+    const manga = await Manga.findById(mangaId);
+
+    if (!manga) {
+      return res.status(404).json({ message: 'Không tìm thấy manga' });
+    }
+
+    if (chapterIndex < 0 || chapterIndex >= manga.chapters.length) {
+      return res.status(404).json({ message: 'Chương không hợp lệ' });
+    }
+
+    // Kiểm tra nếu chapters[chapterIndex] là một mảng
+    if (!Array.isArray(manga.chapters[chapterIndex].report)) {
+      manga.chapters[chapterIndex].report = []; // Khởi tạo mảng report nếu không tồn tại
+    }
+
+    const newReport = {
+      name,
+      description,
+      user: userId
+    };
+
+    manga.chapters[chapterIndex].report.push(newReport);
+    const updatedManga = await manga.save();
+
+    res.status(201).json(updatedManga);
+  } catch (error) {
+    res.status(500).json({ message: 'Đã xảy ra lỗi', error: error.message });
+  }
+});
+
 
 module.exports = mangaRouter;

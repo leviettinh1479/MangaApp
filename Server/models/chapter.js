@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const reportSchema = require("./report");
 
 const chapterSchema = mongoose.Schema({
   name: String,
