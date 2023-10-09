@@ -18,13 +18,13 @@ router.post("/add-favorite", async (req, res, next) => {
 // http://localhost:3000/api/favorite/get-all-favorite
 router.get("/get-all-favorite", async (req, res) => {
     try {
-        const favorites = await favoriteModel.find().sort({createdAt: -1});
+        const favorites = await favoriteModel.find().populate('manga').sort({createdAt: -1});
         if (favorites) {
             return res.status(200).json({ results: true, manga: favorites });
         }
         return res.status(400).json({ results: false, favorites: null });
     } catch (error) {
-        return res.status(400).json({ results: false, message: error.getMessage() });
+        return res.status(400).json({ results: false, message: error.message });
     }
 });
 
