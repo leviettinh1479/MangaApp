@@ -1,8 +1,11 @@
 // IMPORTS FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const { engine } = require ('express-handlebars');
+const path = require("path");
 // IMPORTS FROM OTHER FILES
-var userRoute = require('./routes/auth');
+var userRoute = require("./routes/auth");
 const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
@@ -14,6 +17,14 @@ const app = express();
 const DB =
   "mongodb+srv://leviettinh1001:123@mangaapp.pwj7c3n.mongodb.net/?retryWrites=true&w=majority";
 
+//HTTP logger
+app.use(morgan("combined"));
+//Templates engine
+app.engine('handlebars', engine());
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
+
+
 // Middleware
 app.use(express.json());
 app.use(mangaRouter);
@@ -22,9 +33,13 @@ app.use("/api/user", userRoute);
 app.use(genreRouter);
 app.use(reportRouter);
 
+app.get("/", (req, res) => {
+  return res.render("home");
+});
+
 // Connections
 mongoose
-  .connect(DB,{ useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connection Successful");
   })
