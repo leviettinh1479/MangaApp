@@ -3,9 +3,8 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import ItemManga from '../item/ItemManga';
-import {data_ItemExample} from '../item/Data'
-import ItemProductList from '../item/ItemProductList';
+import {data_ItemExample} from '../components/item/Data'
+import ItemProductList from '../components/item/ItemProductList';
 
 
 interface ScreenAProps {
