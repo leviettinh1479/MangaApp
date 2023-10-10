@@ -71,11 +71,11 @@ interface FontFamily {
 }
 
 export const FONT_FAMILY : FontFamily = {
-    quicksands_bold: 'Quicksands-Bold',
-    quicksands_light: 'Quicksands-Light',
-    quicksands_medium: 'Quicksands-Medium',
-    quicksands_regular: 'Quicksands-Regular',
-    quicksands_semibold: 'Quicksands-Semibold',
+    quicksands_bold: 'Quicksand-Bold',
+    quicksands_light: 'Quicksand-Light',
+    quicksands_medium: 'Quicksand-Medium',
+    quicksands_regular: 'Quicksand-Regular',
+    quicksands_semibold: 'Quicksand-Semibold',
 }
 
 interface FontSize {

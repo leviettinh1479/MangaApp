@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     Text_DangNhap: {
         fontSize: 25,
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
         color: 'white',
     },
     View_Container: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 16,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
     View_DangNhap: {
         borderRadius: 10,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 16,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
         justifyContent: 'center'
     },
     View_QuenPass: {
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
     },
     Text_DangKy1: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
 })

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     Text_VerifyCode: {
         fontSize: 25,
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
         color: 'white',
     },
     View_MXT: {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 16,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
     View_SendTo: {
         flexDirection: 'row',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     },
     Text_Resend: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
     Icon_Resend: {
         color: 'white',

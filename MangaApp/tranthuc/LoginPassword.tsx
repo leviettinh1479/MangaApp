@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   Text_DangNhap: {
     fontSize: 25,
-    fontWeight: 'bold',
+    fontFamily: 'Quicksand-Bold',
     color: 'white',
   },
   View_Container: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 16,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontFamily: 'Quicksand-Bold',
   },
   ViewForgot: {
     flexDirection: 'row',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   Text_Name: {
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: 'Quicksand-Bold',
   },
   Text_Email: {
     color: 'white',

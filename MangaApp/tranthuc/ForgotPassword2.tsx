@@ -1,6 +1,7 @@
 import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
+import { FONT_FAMILY } from '../src/theme/theme';
 
 
 const ForgotPassword2 = () => {
@@ -58,16 +59,16 @@ const styles = StyleSheet.create({
     },
     View_Header: {
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
     },
     View_RecoverPassword: {
         paddingTop: 150,
-        // paddingLeft: 30,
+        paddingLeft: 30,
     },
     Text_RecoverPassword: {
         fontSize: 25,
-        fontWeight: 'bold',
         color: 'white',
+        fontFamily: 'Quicksand-Bold',
     },
     View_Email: {
         backgroundColor: '#313333',
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         padding: 16,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
     View_Account: {
         flexDirection: 'row',
@@ -113,6 +114,6 @@ const styles = StyleSheet.create({
     },
     Text_DangKy: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand-Bold',
     },
 })
