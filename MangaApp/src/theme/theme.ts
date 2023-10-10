@@ -62,20 +62,20 @@ export const COLORS : Color = {
 }
 
 interface FontFamily {
-    quicksands_bold: string;
-    quicksands_light: string;
-    quicksands_medium: string;
-    quicksands_regular: string;
-    quicksands_semibold: string;
+    quicksand_bold: string;
+    quicksand_light: string;
+    quicksand_medium: string;
+    quicksand_regular: string;
+    quicksand_semibold: string;
 
 }
 
 export const FONT_FAMILY : FontFamily = {
-    quicksands_bold: 'Quicksands-Bold',
-    quicksands_light: 'Quicksands-Light',
-    quicksands_medium: 'Quicksands-Medium',
-    quicksands_regular: 'Quicksands-Regular',
-    quicksands_semibold: 'Quicksands-Semibold',
+    quicksand_bold: 'Quicksand-Bold',
+    quicksand_light: 'Quicksand-Light',
+    quicksand_medium: 'Quicksand-Medium',
+    quicksand_regular: 'Quicksand-Regular',
+    quicksand_semibold: 'Quicksand-Semibold',
 }
 
 interface FontSize {
