@@ -6,11 +6,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 const LoginEmail = () => {
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor={'transparent'}
-                translucent
-            />
             <View style={styles.DangNhap}>
                 <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
             </View>

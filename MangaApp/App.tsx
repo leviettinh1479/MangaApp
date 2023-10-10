@@ -20,8 +20,8 @@ const App = () => {
       // </NavigationContainer>
       //<VerifyCode/>
       //<LoginPassword/>
-      //<LoginEmail/>
-      <ForgotPassword2/>
+      <LoginEmail/>
+      //<ForgotPassword2/>
     )
 }
 export default  App;

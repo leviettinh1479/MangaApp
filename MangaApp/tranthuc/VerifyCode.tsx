@@ -6,11 +6,6 @@ import { COLORS } from '../src/theme/theme';
 const VerifyCode = () => {
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor={'transparent'}
-                translucent
-            />
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View> 

@@ -13,11 +13,6 @@ const LoginPassword = () => {
 
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={'transparent'}
-        translucent
-      />
       <View style={styles.Container1}>
         <View style={styles.View_DangNhap}>
           <Text style={styles.Text_DangNhap}>Log in</Text>

@@ -7,11 +7,6 @@ import { COLORS, FONT_FAMILY } from '../src/theme/theme';
 const ForgotPassword2 = () => {
     return (
         <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor={'transparent'}
-                translucent
-            />
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View> 
