@@ -18,10 +18,10 @@ const App = () => {
       //     <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
       //   </Stack.Navigator>
       // </NavigationContainer>
-      <VerifyCode/>
+      //<VerifyCode/>
       //<LoginPassword/>
       //<LoginEmail/>
-      //<ForgotPassword2/>
+      <ForgotPassword2/>
     )
 }
 export default  App;

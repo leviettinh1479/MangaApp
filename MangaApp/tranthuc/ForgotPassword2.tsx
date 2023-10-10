@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar} from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { FONT_FAMILY } from '../src/theme/theme';
+import { COLORS, FONT_FAMILY } from '../src/theme/theme';
 
 
 const ForgotPassword2 = () => {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Quicksand-Bold',
     },
     View_Email: {
-        backgroundColor: '#313333',
+        backgroundColor: COLORS.GRAY_BG,
         borderRadius: 20,
         padding: 20,
         margin: 20,

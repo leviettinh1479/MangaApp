@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
+import { COLORS } from '../src/theme/theme'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 const LoginEmail = () => {
   return (
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     View_Container: {
-        backgroundColor: '#313333',
+        backgroundColor: COLORS.GRAY_BG,
         borderRadius: 20,
         padding: 20,
         margin: 20,

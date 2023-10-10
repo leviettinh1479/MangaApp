@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
+import { COLORS } from '../src/theme/theme';
 
 const VerifyCode = () => {
   return (
@@ -69,11 +70,10 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     View_MXT: {
-        backgroundColor: '#313333',
+        backgroundColor: COLORS.GRAY_BG,
         borderRadius: 20,
         padding: 20,
         margin: 20,
-
     },
     Text_MXT: {
         color: 'white',
