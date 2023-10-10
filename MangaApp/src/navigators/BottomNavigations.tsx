@@ -9,7 +9,9 @@ import ExploreScreen from '../screens/ExploreScreen';
 import UserAccountScreen from '../screens/UserAccountScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import ExploreNavigationScreen from './ExploreNavigations';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigations = () => {
@@ -36,9 +38,9 @@ const BottomNavigations = () => {
                 focused ? {backgroundColor: COLORS.Orange} : {},
               ]}></View>
               <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-                  <Ionicons
-                name="home-outline"
-                color="FFFFFF"
+                  <Feather
+                name="home"
+                color="#000000"
                 size={24}
                 style={{backgroundColor: 'transparent',}}
               />
@@ -51,7 +53,7 @@ const BottomNavigations = () => {
       />
       <Tab.Screen
         name="Tìm kiếm"
-        component={ExploreScreen}
+        component={ExploreNavigationScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
@@ -62,8 +64,8 @@ const BottomNavigations = () => {
                 ]}></View>
                 <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                     <Ionicons
-                  name="search-outline"
-                  color="FFFFFF"
+                  name="search"
+                  color="#000000"
                   size={24}
                   style={{backgroundColor: 'transparent',}}
                 />
@@ -86,9 +88,9 @@ const BottomNavigations = () => {
                 focused ? {backgroundColor: COLORS.Orange} : {},
               ]}></View>
               <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-                  <Ionicons
-                name="bookmark-outline"
-                color="FFFFFF"
+                  <Feather
+                name="heart"
+                color="#000000"
                 size={24}
                 style={{backgroundColor: 'transparent',}}
               />
@@ -112,8 +114,8 @@ const BottomNavigations = () => {
                 ]}></View>
                 <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                     <Ionicons
-                  name="person-outline"
-                  color="FFFFFF"
+                  name="compass-outline"
+                  color="#000000"
                   size={24}
                   style={{backgroundColor: 'transparent',}}
                 />
