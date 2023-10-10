@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     View_Back1: {
-        flexDirection: 'row',
+        flexDirection: 'row',  
     },
     Text_Back: {
         fontSize: 16,

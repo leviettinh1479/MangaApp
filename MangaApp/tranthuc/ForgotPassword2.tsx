@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
+import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 
@@ -7,8 +7,8 @@ const ForgotPassword2 = () => {
     return (
         <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back}>
-                    <View >
+                <TouchableOpacity style={styles.View_Back1}>
+                    <View> 
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
                     <View >
@@ -16,20 +16,22 @@ const ForgotPassword2 = () => {
                     </View>
                 </TouchableOpacity>
             </View>
-            <View style={styles.View_RecoverPassword}>
-                <Text style={styles.Text_RecoverPassword}>Recover Password</Text>
-            </View>
-            <View style={styles.View_Email}>
-                <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
-                <TextInput placeholder='Email' style={styles.TextInput_Email}></TextInput>
-                <TouchableOpacity style={styles.View_Submit}>
-                    <Text style={styles.Text_Submit}>Sumbit</Text>
-                </TouchableOpacity>
-                <View style={styles.View_Account}>
-                    <Text style={styles.Text_NotAccount}>Don’t have an account? </Text>
-                    <TouchableOpacity>
-                        <Text style={styles.Text_DangKy}>Sign up</Text>
+            <View style={styles.View_Header}>
+                <View style={styles.View_RecoverPassword}>
+                    <Text style={styles.Text_RecoverPassword}>Recover Password</Text>
+                </View>
+                <View style={styles.View_Email}>
+                    <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
+                    <TextInput placeholder='Email' style={styles.TextInput_Email}></TextInput>
+                    <TouchableOpacity style={styles.View_Submit}>
+                        <Text style={styles.Text_Submit}>Sumbit</Text>
                     </TouchableOpacity>
+                    <View style={styles.View_Account}>
+                        <Text style={styles.Text_NotAccount}>Don’t have an account? </Text>
+                        <TouchableOpacity>
+                            <Text style={styles.Text_DangKy}>Sign up</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </ImageBackground>
@@ -41,22 +43,26 @@ export default ForgotPassword2
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
-        backgroundColor: '#FF97A3',
+        backgroundColor:'#FF97A3',
     },
     View_Back: {
         padding: 16,
     },
     View_Back1: {
-        flexDirection: 'row',
+        flexDirection: 'row',  
     },
     Text_Back: {
         fontSize: 16,
         color: 'white',
         paddingLeft: 16,
     },
+    View_Header: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     View_RecoverPassword: {
         paddingTop: 150,
-        paddingLeft: 30,
+        // paddingLeft: 30,
     },
     Text_RecoverPassword: {
         fontSize: 25,
