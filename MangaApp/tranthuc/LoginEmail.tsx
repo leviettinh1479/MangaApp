@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 
 const LoginEmail = () => {
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor={'transparent'}
+                translucent
+            />
             <View style={styles.DangNhap}>
                 <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
             </View>

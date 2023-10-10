@@ -1,10 +1,15 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 
 const VerifyCode = () => {
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor={'transparent'}
+                translucent
+            />
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View> 
@@ -68,6 +73,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         margin: 20,
+
     },
     Text_MXT: {
         color: 'white',

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground} from 'react-native'
+import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar} from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 import { FONT_FAMILY } from '../src/theme/theme';
@@ -7,6 +7,11 @@ import { FONT_FAMILY } from '../src/theme/theme';
 const ForgotPassword2 = () => {
     return (
         <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor={'transparent'}
+                translucent
+            />
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View> 

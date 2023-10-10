@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 
@@ -12,6 +12,11 @@ const LoginPassword = () => {
 
   return (
     <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+      <StatusBar
+                barStyle="light-content"
+                backgroundColor={'transparent'}
+                translucent
+            />
       <View style={styles.View_DangNhap}>
         <Text style={styles.Text_DangNhap }>Log in</Text>
       </View>
