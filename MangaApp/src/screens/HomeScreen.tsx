@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
-import ItemManga from '../item/ItemManga';
+import ItemManga from '../components/item/ItemManga';
 
 type ItemProps = {
   image: string

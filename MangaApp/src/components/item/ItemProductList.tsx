@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-type ItemProps = {
+
+interface Item {
     image: string;
     nameManga: string;
     nameAuthor: string;
@@ -9,7 +10,7 @@ type ItemProps = {
     view: number;
 }
 
-const ItemProductList = ({image, nameManga, nameAuthor,descrption, view}:ItemProps) => {
+const ItemProductList = ({image, nameManga, nameAuthor,descrption, view}:Item) => {
   return (
         <TouchableOpacity style={styles.container}>
             <View style={styles.viewImage}>
@@ -25,7 +26,7 @@ const ItemProductList = ({image, nameManga, nameAuthor,descrption, view}:ItemPro
                 <Text numberOfLines={1} style={styles.txtdescrption}>{descrption}</Text>
             </View>
             <View style={styles.viewView}>
-                <Image style={styles.imageview} resizeMode='contain' source={require('../assets/images/ViewImage.png')}/>
+                <Image style={styles.imageview} resizeMode='contain' source={require('../../assets/images/ViewImage.png')}/>
                 <Text numberOfLines={1} style={styles.txtView}>{view}</Text>
             </View>
         </TouchableOpacity>
