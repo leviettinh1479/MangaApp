@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   name: {
-    required: true,
     type: String,
     trim: true,
+    default:"",
   },
   email: {
     required: true,
@@ -20,13 +20,22 @@ const userSchema = mongoose.Schema({
       message: "Please enter a valid email address",
     },
   },
+  password: {
+    required: true,
+    type: String,
+    trim: true,
+  },
   address: {
+    type: String,
+    default: "",
+  },
+  image: {
     type: String,
     default: "",
   },
   date:{
     type: Date,
-    default: new Date,
+    default: Date.now(),
   },
   status: {
     type: Number,
