@@ -10,6 +10,7 @@ const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
+const favoriteRouter = require('./routes/favorite');
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -28,10 +29,15 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(mangaRouter);
 app.use(mangaRouter2);
+
+// Middleware
+app.use(express.json());
+// http://localhost:3000/api/user
 app.use("/api/user", userRoute);
+// http://localhost:3000/api/favorite
+app.use("/api/favorite",favoriteRouter);
 app.use(genreRouter);
 app.use(reportRouter);
-
 app.get("/", (req, res) => {
   return res.render("home");
 });
