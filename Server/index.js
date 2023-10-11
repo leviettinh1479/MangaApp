@@ -34,7 +34,7 @@ app.use(genreRouter);
 app.use(reportRouter);
 
 app.get("/", (req, res) => {
-  return res.render("home");
+  return res.render("forgot-password");
 });
 
 // Connections
