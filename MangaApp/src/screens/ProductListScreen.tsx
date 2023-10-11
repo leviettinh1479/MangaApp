@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {data_ItemExample} from '../components/item/Data'
 import ItemProductList from '../components/item/ItemProductList';
+import { FONT_FAMILY } from '../theme/theme';
 
 
 interface ScreenAProps {
@@ -15,7 +16,7 @@ const ProductListScreen = ({ navigation}:ScreenAProps) => {
       <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:7,flex:1,paddingBottom:10}}>
         <View style={{flexDirection:'row',alignItems:'center'}}>
             <Ionicons name="chevron-back" color={'#000000'}  size={24} style={{paddingTop:2}} onPress={()=> navigation.goBack()}/>
-            <Text style={{fontSize:22 , fontWeight:'400', color:'#000000',marginLeft:5}}>Fiction</Text>
+            <Text style={{fontSize:22 , fontFamily:FONT_FAMILY.quicksands_medium, color:'#000000',marginLeft:5}}>Fiction</Text>
         </View>
       {/* fiction */}
         <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
@@ -25,6 +26,7 @@ const ProductListScreen = ({ navigation}:ScreenAProps) => {
                 renderItem={({item}) => <ItemProductList image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} descrption={item.descrption}  />}
                 numColumns={2}
                 contentContainerStyle={{paddingBottom: 10, paddingTop: 8}}
+                showsVerticalScrollIndicator = {false}
                 
               />
       </View>

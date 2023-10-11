@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
         width: 128,
         height: 'auto',
         borderRadius: 10
-        
     },
     viewImage: {
         

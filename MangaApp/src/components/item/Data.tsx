@@ -28,4 +28,13 @@ export const data_ItemExample: ItemExample[] = [{
     "nameAuthor": "Skibidi",
     "descrption":"A story about a guy who was very good until the very end when every",
     "view": 823
-  }]
+  },
+  {
+    "id": "4",
+    "image": "https://cdn-icons-png.flaticon.com/128/2079/2079291.png",
+    "nameManga": "Apple Pen",
+    "nameAuthor": "Skibidi",
+    "descrption":"A story about a guy who was very good until the very end when every",
+    "view": 823
+  },
+]

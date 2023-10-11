@@ -1,10 +1,12 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native'
+import {  StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { FlatList } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ItemManga from '../components/item/ItemManga';
 import {data_ItemExample} from '../components/item/Data'
+import { FONT_FAMILY } from '../theme/theme';
 
 type ItemProps = {
   title: string
@@ -16,107 +18,114 @@ const ItemTopics = ({title}:ItemProps) => {
   return (
     <TouchableOpacity  style={{backgroundColor:'#FF97A3', paddingHorizontal:16, paddingVertical:8,alignItems:'center',
       marginTop:16,justifyContent:'center',marginHorizontal:5,borderRadius:8}}>
-      <Text style={{fontSize:14, fontWeight:'400', color:'#000000'}}>{title}</Text>
+      <Text style={{fontSize:14, fontFamily:FONT_FAMILY.quicksands_semibold, color:'#000000'}}>{title}</Text>
     </TouchableOpacity>
   )
   }
 const ExploreScreen = ({ navigation}:ScreenAProps) => {
   return (
-   <ScrollView >
-      <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:7,flex:1,paddingBottom:10}}>
-      <View style={{flexDirection:'column'}}>
-        <Text style={{fontSize:26 , fontWeight:'700', color:'#000000'}}>Explore</Text>
-        <View style={{width:86, borderBottomWidth:2, borderBlockColor:'#FF97A3',padding:2}}></View>
-      </View>
-      {/* Search */}
-      <View style={[{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',marginTop:24},styles.borderSearch]}>
-      <Ionicons name="search" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
-        <TextInput style={{fontSize:16, color:'#000000',paddingLeft:10}}
-            placeholder="Tìm kiếm..."
-          />
-      </View>
-      <Text style={{marginTop:38,fontSize:22,fontWeight:'700',color:'#000000'}}>
-        Topics
-      </Text>
-      {/* topics */}
-      <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
-        <FlatList   style={{ flex:1}}
-                data={data_ItemTopics}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <ItemTopics title={item.title}  />}
-                showsVerticalScrollIndicator
-                numColumns={3}
+   
+      <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:8}}>
+        <ScrollView showsVerticalScrollIndicator = {false}>
+          <View style={{flexDirection:'column'}}>
+            <Text style={{fontSize:26 , fontFamily:FONT_FAMILY.quicksands_bold, color:'#000000'}}>Explore</Text>
+            <View style={{width:86, borderBottomWidth:2, borderBlockColor:'#FF97A3',padding:2}}></View>
+          </View>
+          {/* Search */}
+          <View style={[{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',marginTop:24,marginHorizontal:5},styles.borderSearch]}>
+            <Ionicons name="search" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
+            <TextInput style={{fontSize:16, color:'#000000',paddingLeft:10,fontFamily:FONT_FAMILY.quicksands_semibold}}
+                placeholder="Tìm kiếm..."
               />
-      </View>
-      {/* fiction */}
-      <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
-              <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:32,marginBottom:16}}>
-                <Text style={{fontSize:20,fontWeight:'700',color:'#000000'}}>
-                  Fiction
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen')}>
-                  <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                    <Text style={{marginRight:5,fontSize:12,color:'#000000',fontWeight:'700'}}>
-                      Show all
+          </View>
+          <Text style={{marginTop:38,fontSize:22,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+            Topics
+          </Text>
+          {/* topics */}
+          <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
+                    <FlatList   style={{ flex: 1}}
+                      data={data_ItemTopics}
+                      keyExtractor={item => item.id}
+                      renderItem={({item}) => <ItemTopics title={item.title}  />}
+                      numColumns={3}
+                      nestedScrollEnabled={true}
+                      scrollEnabled={false}
+                    />
+              
+                  
+          </View>
+          {/* fiction */}
+          <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
+                  <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                      Fiction
                     </Text>
-                      <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen')}>
+                      <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                          Show all
+                        </Text>
+                          <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                      </View>
+                    </TouchableOpacity>
                   </View>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={data_ItemExample}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
-                horizontal
-              />
-      </View>
-       {/* Culture & Society */}
-       <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
-              <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:32,marginBottom:16}}>
-                <Text style={{fontSize:20,fontWeight:'700',color:'#000000'}}>
-                  Culture & Society
-                </Text>
-                <TouchableOpacity>
-                  <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                    <Text style={{marginRight:5,fontSize:12,color:'#000000',fontWeight:'700'}}>
-                      Show all
+                  <FlatList style={{ flex: 1}}
+                    data={data_ItemExample}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    horizontal
+                    showsHorizontalScrollIndicator = {false}
+                  />
+          </View>
+          {/* Culture & Society */}
+          <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
+                  <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                      Culture & Society
                     </Text>
-                      <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                    <TouchableOpacity>
+                      <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                          Show all
+                        </Text>
+                          <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                      </View>
+                    </TouchableOpacity>
                   </View>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={data_ItemExample}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
-                horizontal
-              />
-      </View>
-      {/* Life style */}
-      <View style={{flexDirection:'column',justifyContent:'flex-start',marginBottom:30}}>
-              <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:32,marginBottom:16}}>
-                <Text style={{fontSize:20,fontWeight:'700',color:'#000000'}}>
-                Life style
-                </Text>
-                <TouchableOpacity>
-                  <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                    <Text style={{marginRight:5,fontSize:12,color:'#000000',fontWeight:'700'}}>
-                      Show all
+                  <FlatList style={{ flex: 1}}
+                    data={data_ItemExample}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    horizontal
+                    showsHorizontalScrollIndicator = {false}
+                  />
+          </View>
+          {/* Life style */}
+          <View style={{flexDirection:'column',justifyContent:'flex-start',marginBottom:30}}>
+                  <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                    Life style
                     </Text>
-                      <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                    <TouchableOpacity>
+                      <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                          Show all
+                        </Text>
+                          <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
+                      </View>
+                    </TouchableOpacity>
                   </View>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={data_ItemExample}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
-                horizontal
-              />
-      </View>
-      
+                  <FlatList style={{ flex: 1}}
+                    data={data_ItemExample}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    horizontal
+                    showsHorizontalScrollIndicator = {false}
+                  />
+          </View>
+      </ScrollView>
     </SafeAreaView>
-   </ScrollView>
+   
   )
 }
 
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.20,
     shadowRadius: 1.41,
-    elevation: 2,
+    elevation: 4,
       }
 
   
