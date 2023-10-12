@@ -61,6 +61,7 @@ mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+//get element by name and author
 mangaRouter.get("/api/manga/search", async (req, res) => {
   try {
     const { keyword } = req.query;
@@ -94,5 +95,6 @@ mangaRouter.get("/api/manga/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 module.exports = mangaRouter;
