@@ -19,9 +19,9 @@ const App = () => {
       //   </Stack.Navigator>
       // </NavigationContainer>
       //<VerifyCode/>
-      //<LoginPassword/>
-      <LoginEmail/>
-      //<ForgotPassword2/>
+      <LoginPassword/>
+        // <LoginEmail/>
+      // <ForgotPassword2/>
     )
 }
 export default  App;

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React, { useState } from 'react'
-import Icon_1 from 'react-native-vector-icons/Ionicons';
+import Icon_1 from 'react-native-vector-icons/Feather';
 import { COLORS } from '../src/theme/theme';
 
 const LoginPassword = () => {
@@ -37,7 +37,7 @@ const LoginPassword = () => {
             <TextInput placeholder='Password' style={styles.Text_Password} secureTextEntry={!showPassword}
               value={password} onChangeText={setPassword}></TextInput>
             <TouchableOpacity style={styles.Icon_Password} onPress={togglePasswordVisibility}>
-              <Icon_1 name={showPassword ? 'eye-off' : 'eye'} size={22} color="black" />
+              <Icon_1 name={showPassword ? 'eye' : 'eye-off'} size={22} color="black" />
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.View_TiepTuc}>
