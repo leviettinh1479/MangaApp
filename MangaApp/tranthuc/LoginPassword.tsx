@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Feather';
-import { COLORS } from '../src/theme/theme';
+import { COLORS, FONT_FAMILY } from '../src/theme/theme';
 
 const LoginPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,12 +32,12 @@ const LoginPassword = () => {
               <Icon_1 name="checkmark-circle-outline" size={24} color="white" />
             </View>
           </View>
-          <Text style={styles.Text_Detail}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
+          {/* <Text style={styles.Text_Detail}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text> */}
           <View style={styles.View_Password}>
             <TextInput placeholder='Password' style={styles.Text_Password} secureTextEntry={!showPassword}
               value={password} onChangeText={setPassword}></TextInput>
             <TouchableOpacity style={styles.Icon_Password} onPress={togglePasswordVisibility}>
-              <Icon_1 name={showPassword ? 'eye' : 'eye-off'} size={22} color="black" />
+              <Icon_1 name={showPassword ? 'eye' : 'eye-off'} size={22} color={COLORS.GRAY_BG} />
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.View_TiepTuc}>
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
   },
   Text_DangNhap: {
-    fontSize: 25,
-    fontFamily: 'Quicksand-Bold',
+    fontSize: 32,
+    fontFamily: FONT_FAMILY.quicksands_bold,
     color: 'white',
   },
   View_Container: {
@@ -77,13 +77,16 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   Text_Detail: {
-    color: 'white',
+    fontFamily: FONT_FAMILY.quicksands_medium,
+    color: COLORS.White,
     fontSize: 14,
     padding: 10
   },
-  Text_Password: {
+    Text_Password: {
     fontSize: 16,
-    paddingLeft: 10,
+    fontFamily: FONT_FAMILY.quicksands_regular,
+    color: COLORS.Grey,
+    paddingHorizontal: 16,
   },
   Icon_Password: {
     backgroundColor: 'white',
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 16,
     textAlign: 'center',
-    fontFamily: 'Quicksand-Bold',
+    fontFamily: FONT_FAMILY.quicksands_bold,
   },
   ViewForgot: {
     flexDirection: 'row',
@@ -116,13 +119,15 @@ const styles = StyleSheet.create({
   View_Password: {
     flexDirection: 'row',
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.White,
     fontSize: 14,
     marginTop: 16,
     padding: 3,
     justifyContent: 'space-between'
   },
   Text_Forgot: {
+    fontFamily: FONT_FAMILY.quicksands_bold,
+    fontSize: 14,
     color: 'white',
   },
   View_ThongTin: {
@@ -135,10 +140,13 @@ const styles = StyleSheet.create({
     height: 70,
   },
   Text_Name: {
-    color: 'white',
-    fontFamily: 'Quicksand-Bold',
+    fontSize: 16,
+    color: COLORS.White,
+    fontFamily: FONT_FAMILY.quicksands_bold,
   },
   Text_Email: {
+    fontSize: 14,
+    fontFamily: FONT_FAMILY.quicksands_medium,
     color: 'white',
   },
   Container1: {

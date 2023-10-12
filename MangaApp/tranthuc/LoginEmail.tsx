@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, Pressable, StatusBar } from 'react-native'
 import React from 'react'
-import { COLORS } from '../src/theme/theme'
+import { COLORS, FONT_FAMILY } from '../src/theme/theme'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 const LoginEmail = () => {
-  return (
-    <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+    return (
+        <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.DangNhap}>
                 <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
             </View>
@@ -23,7 +23,7 @@ const LoginEmail = () => {
                 </View>
                 <View style={styles.View_Vien}>
                     <View style={styles.line} />
-                        <Text style={styles.text}>Hoặc</Text>
+                    <Text style={styles.text}>Hoặc</Text>
                     <View style={styles.line} />
                 </View>
                 <View style={styles.View_DangNhap}>
@@ -46,7 +46,7 @@ const LoginEmail = () => {
                 </View>
             </View>
         </ImageBackground>
-  )
+    )
 }
 
 export default LoginEmail
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
     },
     Text_DangNhap: {
-        fontSize: 25,
+        fontSize: 32,
         fontFamily: 'Quicksand-Bold',
         color: 'white',
     },
@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     Text_Input_Email: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
+        color: COLORS.Black,
         fontSize: 16,
         paddingLeft: 10,
     },
@@ -86,7 +88,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black',
         fontSize: 14,
-        padding: 16,
+        paddingHorizontal: 16,
+        paddingVertical: 14,
         textAlign: 'center',
         fontFamily: 'Quicksand-Bold',
     },
@@ -102,17 +105,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     Image_DangNhap: {
-        marginLeft: 10,
+        marginLeft: 16,
     },
     Text_DangNhap1: {
-        marginLeft: 35,
+        flex: 1,
+        textAlign: 'center',
         borderRadius: 10,
         color: 'black',
         fontSize: 14,
-        padding: 16,
-        textAlign: 'center',
-        fontFamily: 'Quicksand-Bold',
-        justifyContent: 'center'
+        paddingHorizontal: 16,
+        paddingVertical: 14,
+        fontFamily: FONT_FAMILY.quicksands_bold,
     },
     View_QuenPass: {
         flexDirection: 'row',
@@ -129,6 +132,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     Text_QuenPass: {
+        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontSize: 14,
         color: 'white',
     },
     View_Vien: {
@@ -142,6 +147,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     text: {
+        fontFamily: FONT_FAMILY.quicksands_medium,
         marginHorizontal: 10,
         fontSize: 14,
         padding: 18,
@@ -153,10 +159,11 @@ const styles = StyleSheet.create({
         paddingTop: 16,
     },
     Text_DangKy: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         color: 'white',
     },
     Text_DangKy1: {
         color: 'white',
-        fontFamily: 'Quicksand-Bold',
+        fontFamily: FONT_FAMILY.quicksands_bold,
     },
 })

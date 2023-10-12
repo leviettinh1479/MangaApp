@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS } from '../src/theme/theme';
+import { COLORS, FONT_FAMILY } from '../src/theme/theme';
 
 const VerifyCode = () => {
-  return (
-    <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+    return (
+        <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
-                    <View> 
+                    <View>
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
                     <View >
@@ -34,7 +34,7 @@ const VerifyCode = () => {
                 </View>
             </View>
         </ImageBackground>
-  )
+    )
 }
 
 export default VerifyCode
@@ -42,27 +42,28 @@ export default VerifyCode
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
-        backgroundColor:'#FF97A3'
+        backgroundColor: '#FF97A3'
     },
     View_Back: {
         padding: 16,
     },
     View_Back1: {
-        flexDirection: 'row',  
+        flexDirection: 'row',
     },
     Text_Back: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         fontSize: 16,
         color: 'white',
-        paddingLeft: 16,
+        marginLeft: 8,
     },
     View_VerifyCode: {
         paddingTop: 150,
         paddingLeft: 30,
     },
     Text_VerifyCode: {
-        fontSize: 25,
-        fontFamily: 'Quicksand-Bold',
-        color: 'white',
+        fontSize: 32,
+        fontFamily: FONT_FAMILY.quicksands_bold,
+        color: COLORS.White,
     },
     View_MXT: {
         backgroundColor: COLORS.GRAY_BG,
@@ -71,13 +72,15 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     Text_MXT: {
-        color: 'white',
+        fontFamily: FONT_FAMILY.quicksands_regular,
+        color: COLORS.White,
         fontSize: 14,
     },
     TextInput_MXT: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         backgroundColor: 'white',
         borderRadius: 10,
-        color: 'black',
+        color: COLORS.DarkGrey,
         fontSize: 14,
         marginTop: 16,
         padding: 12,
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black',
         fontSize: 14,
-        marginTop:16,
+        marginTop: 16,
     },
     Text_Verify: {
         backgroundColor: 'white',
@@ -104,6 +107,8 @@ const styles = StyleSheet.create({
         paddingTop: 16,
     },
     Text_SendTo: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontSize: 14,
         color: 'white',
     },
     Text_Resend: {

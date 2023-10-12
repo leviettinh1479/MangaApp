@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar} from 'react-native'
+import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONT_FAMILY } from '../src/theme/theme';
@@ -9,7 +9,7 @@ const ForgotPassword2 = () => {
         <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
-                    <View> 
+                    <View>
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
                     <View >
@@ -44,46 +44,51 @@ export default ForgotPassword2
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
-        backgroundColor:'#FF97A3',
+        backgroundColor: '#FF97A3',
     },
     View_Back: {
         padding: 16,
     },
     View_Back1: {
-        flexDirection: 'row',  
+        flexDirection: 'row',
     },
     Text_Back: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         fontSize: 16,
         color: 'white',
-        paddingLeft: 16,
+        marginLeft: 8,
     },
     View_Header: {
         justifyContent: 'center',
         // alignItems: 'center',
     },
     View_RecoverPassword: {
+        marginBottom: 14,
         paddingTop: 150,
         paddingLeft: 30,
     },
     Text_RecoverPassword: {
-        fontSize: 25,
+        fontSize: 32,
         color: 'white',
         fontFamily: 'Quicksand-Bold',
     },
     View_Email: {
         backgroundColor: COLORS.GRAY_BG,
         borderRadius: 20,
-        padding: 20,
-        margin: 20,
+        paddingHorizontal: 16,
+        paddingVertical: 24,
+        margin: 16,
     },
     Text_Email: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         color: 'white',
         fontSize: 14,
     },
     TextInput_Email: {
+        fontFamily: FONT_FAMILY.quicksands_regular,
         backgroundColor: 'white',
         borderRadius: 10,
-        color: 'black',
+        color: COLORS.DarkGrey,
         fontSize: 14,
         marginTop: 16,
         padding: 12,
@@ -100,7 +105,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'black',
         fontSize: 14,
-        padding: 16,
+        paddingVertical: 14,
+        paddingHorizontal: 16,
         textAlign: 'center',
         fontFamily: 'Quicksand-Bold',
     },
@@ -111,6 +117,7 @@ const styles = StyleSheet.create({
     },
     Text_NotAccount: {
         color: 'white',
+        fontFamily: FONT_FAMILY.quicksands_regular,
     },
     Text_DangKy: {
         color: 'white',

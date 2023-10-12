@@ -13,22 +13,22 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
     return (
-      // <NavigationContainer>
-      //   <Stack.Navigator screenOptions={{headerShown: false}}>
-      //     <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
-      //   </Stack.Navigator>
-      // </NavigationContainer>
-      //<VerifyCode/>
-      <LoginPassword/>
+        // <NavigationContainer>
+        //   <Stack.Navigator screenOptions={{headerShown: false}}>
+        //     <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
+        //   </Stack.Navigator>
+        // </NavigationContainer>
+        // <VerifyCode/>
+        // <LoginPassword />
         // <LoginEmail/>
-      // <ForgotPassword2/>
+        <ForgotPassword2/>
     )
 }
-export default  App;
+export default App;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    container: {
+        flex: 1,
+    },
 
 })
