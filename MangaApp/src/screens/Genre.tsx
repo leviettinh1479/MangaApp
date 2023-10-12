@@ -303,7 +303,7 @@ const Genre: React.FC<GenreProps> = (props) => {
                                 )}
                             </Pressable>
                         </View>
-                        <Text style={[styles.titlemini, { fontWeight: 'bold', textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
+                        <Text style={[styles.titlemini, {marginTop: 8, fontFamily: FONT_FAMILY.quicksand_bold, textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
                     </View>
                     <View style={{ width: '100%' }}>
                         <Pressable
@@ -331,9 +331,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontFamily: FONT_FAMILY.quicksand_bold,
         position: 'absolute',
         top: 77,
         left: 13,
@@ -369,9 +368,8 @@ const styles = StyleSheet.create({
     },
     titlemini: {
         fontSize: 14,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksands',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch'
     },
     styleView: {
@@ -384,9 +382,8 @@ const styles = StyleSheet.create({
     },
     titleEnd: {
         fontSize: 12,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch',
         marginTop: 12,
         textAlign: 'center',
@@ -411,14 +408,10 @@ const styles = StyleSheet.create({
     },
     styleText1: {
         fontSize: 14,
-        fontWeight: '500',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch',
         marginLeft: 8,
-    },
-    txtSelect: {
-        color: COLORS.Black
     },
     styleImage: {
         marginStart: 4,
@@ -438,9 +431,8 @@ const styles = StyleSheet.create({
     },
     styleText3: {
         fontSize: 14,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         textAlign: 'center',
     },
 });

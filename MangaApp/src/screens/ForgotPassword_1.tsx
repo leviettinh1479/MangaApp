@@ -1,7 +1,7 @@
 import { Dimensions, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_FGPASS, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
-import { COLORS } from '../theme/theme'
+import { BG_GENRE, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
+import { COLORS, FONT_FAMILY } from '../theme/theme'
 
 
 const ForgotPassword_1 = () => {
@@ -28,7 +28,7 @@ const ForgotPassword_1 = () => {
         console.log('PasswordNew:', valuePasswordNew);
     }
     return (
-        <ImageBackground source={BG_FGPASS} style={styles.container}>
+        <ImageBackground source={BG_GENRE} style={styles.container}>
             <StatusBar
                 barStyle="light-content"
                 backgroundColor={'transparent'}
@@ -115,9 +115,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         position: 'absolute',
         top: Dimensions.get('window').height / 2 - 180,
         left: 29,
@@ -139,9 +138,8 @@ const styles = StyleSheet.create({
     titlemini: {
         letterSpacing: 0.5,
         fontSize: 16,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_medium,
         textAlign: 'center',
     },
     styleView: {
@@ -185,6 +183,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: COLORS.WHITE_TEXT,
         backgroundColor: COLORS.WHITE_TEXT,
+        fontFamily: FONT_FAMILY.quicksand_medium,
     },
     container3: {
         height: 48,
@@ -199,9 +198,8 @@ const styles = StyleSheet.create({
     },
     styleText3: {
         fontSize: 14,
-        fontWeight: 'bold',
         color: COLORS.Black,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         textAlign: 'center',
     },
 })

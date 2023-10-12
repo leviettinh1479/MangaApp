@@ -1,7 +1,7 @@
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
-import { COLORS } from '../theme/theme'
+import { COLORS, FONT_FAMILY, FONT_SIZE } from '../theme/theme'
 
 const SignUp = () => {
     const [valueName, setValueName] = useState("");
@@ -132,9 +132,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         position: 'absolute',
         top: 90,
         left: 13,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.GRAY_BG,
         borderRadius: 12,
         position: 'absolute',
-        top: 150,
+        top: 170,
         left: 13,
         paddingHorizontal: 16,
         paddingVertical: 24,
@@ -156,9 +155,8 @@ const styles = StyleSheet.create({
     titlemini: {
         letterSpacing: 0.5,
         fontSize: 14,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch'
     },
     styleView: {
@@ -185,13 +183,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.BLACK_ACCENT,
+        backgroundColor: COLORS.White,
     },
     styleText3: {
         fontSize: 14,
-        fontWeight: 'bold',
-        color: COLORS.White,
-        fontFamily: 'Quicksand',
+        color: COLORS.Black,
+        fontFamily: FONT_FAMILY.quicksand_bold,
         textAlign: 'center',
     },
 
@@ -209,6 +206,7 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     styleTextInput: {
+        fontFamily: FONT_FAMILY.quicksand_regular,
         display: 'flex',
         width: '100%',
         height: 48,
