@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     Text_Back: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         fontSize: 16,
         color: 'white',
         marginLeft: 8,
@@ -80,12 +80,12 @@ const styles = StyleSheet.create({
         margin: 16,
     },
     Text_Email: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         color: 'white',
         fontSize: 14,
     },
     TextInput_Email: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         backgroundColor: 'white',
         borderRadius: 10,
         color: COLORS.DarkGrey,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
     Text_NotAccount: {
         color: 'white',
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
     },
     Text_DangKy: {
         color: 'white',

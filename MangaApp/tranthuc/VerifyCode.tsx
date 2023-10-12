@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     Text_Back: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         fontSize: 16,
         color: 'white',
         marginLeft: 8,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     Text_VerifyCode: {
         fontSize: 32,
-        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontFamily: FONT_FAMILY.quicksand_bold,
         color: COLORS.White,
     },
     View_MXT: {
@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     Text_MXT: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         color: COLORS.White,
         fontSize: 14,
     },
     TextInput_MXT: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         backgroundColor: 'white',
         borderRadius: 10,
         color: COLORS.DarkGrey,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         paddingTop: 16,
     },
     Text_SendTo: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         fontSize: 14,
         color: 'white',
     },

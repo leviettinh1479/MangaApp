@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     Text_Input_Email: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         color: COLORS.Black,
         fontSize: 16,
         paddingLeft: 10,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         paddingHorizontal: 16,
         paddingVertical: 14,
-        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontFamily: FONT_FAMILY.quicksand_bold,
     },
     View_QuenPass: {
         flexDirection: 'row',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     Text_QuenPass: {
-        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontFamily: FONT_FAMILY.quicksand_bold,
         fontSize: 14,
         color: 'white',
     },
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     text: {
-        fontFamily: FONT_FAMILY.quicksands_medium,
+        fontFamily: FONT_FAMILY.quicksand_medium,
         marginHorizontal: 10,
         fontSize: 14,
         padding: 18,
@@ -159,11 +159,11 @@ const styles = StyleSheet.create({
         paddingTop: 16,
     },
     Text_DangKy: {
-        fontFamily: FONT_FAMILY.quicksands_regular,
+        fontFamily: FONT_FAMILY.quicksand_regular,
         color: 'white',
     },
     Text_DangKy1: {
         color: 'white',
-        fontFamily: FONT_FAMILY.quicksands_bold,
+        fontFamily: FONT_FAMILY.quicksand_bold,
     },
 })
