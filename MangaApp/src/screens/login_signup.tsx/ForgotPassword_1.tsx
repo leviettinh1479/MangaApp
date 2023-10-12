@@ -1,7 +1,7 @@
 import { Dimensions, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_FGPASS, ICON_CHECKED, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
-import { COLORS } from '../theme/theme'
+import { BG_FGPASS, ICON_CHECKED, ICON_EYE, ICON_EYECANCEL } from '../../assets/image'
+import { COLORS } from '../../theme/theme'
 
 
 const ForgotPassword_1 = () => {

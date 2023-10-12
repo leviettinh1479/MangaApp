@@ -1,9 +1,13 @@
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
-import { COLORS } from '../theme/theme'
+import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../../assets/image'
+import { COLORS } from '../../theme/theme'
 
-const SignUp = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const SignUp =  ({ navigation}:ScreenAProps) => {
     const [valueName, setValueName] = useState("");
     const [valueEmail, setValueEmail] = useState("");
     const [valuePassword, setValuePassword] = useState("");
@@ -45,9 +49,11 @@ const SignUp = () => {
         console.log('Name:', valueName);
         console.log('Email:', valueEmail);
         console.log('Password:', valuePassword);
+        navigation.navigate('VerifyCode')
     }
     const goLogin = () => {
         console.log('goLogin')
+        navigation.navigate('LoginEmail')
     }
     return (
         <ImageBackground source={BG_GENRE} style={styles.container}>

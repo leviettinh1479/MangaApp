@@ -1,14 +1,16 @@
 import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar} from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS, FONT_FAMILY } from '../src/theme/theme';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-
-const ForgotPassword2 = () => {
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const ForgotPassword2 = ({ navigation}:ScreenAProps) => {
     return (
-        <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+        <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1}>
+                <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.goback()}>
                     <View> 
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
@@ -24,7 +26,7 @@ const ForgotPassword2 = () => {
                 <View style={styles.View_Email}>
                     <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
                     <TextInput placeholder='Email' style={styles.TextInput_Email}></TextInput>
-                    <TouchableOpacity style={styles.View_Submit}>
+                    <TouchableOpacity style={styles.View_Submit} onPress={() => navigation.navigate('ForgotPassword_1')} >
                         <Text style={styles.Text_Submit}>Sumbit</Text>
                     </TouchableOpacity>
                     <View style={styles.View_Account}>

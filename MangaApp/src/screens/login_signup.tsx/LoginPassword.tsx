@@ -1,9 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS } from '../src/theme/theme';
+import { COLORS } from '../../theme/theme';
 
-const LoginPassword = () => {
+
+interface ScreenAProps {
+  navigation: any; // or use the correct navigation type from @types/react-navigation
+}
+const LoginPassword = ({ navigation}:ScreenAProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
 
@@ -12,7 +16,7 @@ const LoginPassword = () => {
   };
 
   return (
-    <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
       <View style={styles.Container1}>
         <View style={styles.View_DangNhap}>
           <Text style={styles.Text_DangNhap}>Log in</Text>
@@ -20,7 +24,7 @@ const LoginPassword = () => {
         <View style={styles.View_Container}>
           <View style={styles.View_ThongTin}>
             <View>
-              <Image style={styles.Image_avt} source={require('../tranthuc/image/Ellipse.png')} />
+              <Image style={styles.Image_avt} source={require('../../assets/images/Ellipse.png')} />
             </View>
             <View>
               <View>
@@ -40,11 +44,11 @@ const LoginPassword = () => {
               <Icon_1 name={showPassword ? 'eye-off' : 'eye'} size={22} color="black" />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.View_TiepTuc}>
+          <TouchableOpacity style={styles.View_TiepTuc}  onPress={() => navigation.navigate('Bottom')}>
             <Text style={styles.TextTiepTuc}>Continue</Text>
           </TouchableOpacity>
           <View style={styles.ViewForgot}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword2')}>
               <Text style={styles.Text_Forgot}>Forgot password?</Text>
             </TouchableOpacity>
           </View>

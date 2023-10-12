@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
-import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../assets/image'
-import { COLORS } from '../theme/theme'
+import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../../assets/image'
+import { COLORS } from '../../theme/theme'
 
 export interface GenreProps {
+    navigation: any;
     onPress?: () => void;
 }
 
@@ -115,6 +116,7 @@ const Genre: React.FC<GenreProps> = (props) => {
 
     const goSignUp = () => {
         console.log('goSignUp');
+        props.navigation.navigate('SignUp');
     }
     const goShowMore = () => {
         console.log('goShowMore')

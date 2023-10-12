@@ -1,13 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS } from '../src/theme/theme';
+import { COLORS } from '../../theme/theme';
 
-const VerifyCode = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const VerifyCode = ({ navigation}:ScreenAProps) => {
   return (
-    <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1}>
+                <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.navigate('LoginEmail')}>
                     <View> 
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
