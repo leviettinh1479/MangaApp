@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
 import { BlurView } from '@react-native-community/blur';
-import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../assets/image'
+import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../assets/images'
 import { COLORS, FONT_FAMILY } from '../theme/theme'
 
 export interface GenreProps {
@@ -32,7 +32,7 @@ const Genre: React.FC<GenreProps> = (props) => {
     const onPressX = () => {
         if (txtSelect == '#ffffff') {
             setTxtSelect('#0000000');
-        }else{
+        } else {
             setTxtSelect('#ffffff');
         };
     };
@@ -303,7 +303,7 @@ const Genre: React.FC<GenreProps> = (props) => {
                                 )}
                             </Pressable>
                         </View>
-                        <Text style={[styles.titlemini, {marginTop: 8, fontFamily: FONT_FAMILY.quicksand_bold, textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
+                        <Text style={[styles.titlemini, { marginTop: 8, fontFamily: FONT_FAMILY.quicksand_bold, textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
                     </View>
                     <View style={{ width: '100%' }}>
                         <Pressable

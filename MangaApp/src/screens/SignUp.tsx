@@ -1,6 +1,6 @@
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
+import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../assets/images'
 import { COLORS, FONT_FAMILY, FONT_SIZE } from '../theme/theme'
 
 const SignUp = () => {
