@@ -1,6 +1,6 @@
 import { Dimensions, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_FGPASS, ICON_CHECKED, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
+import { BG_FGPASS, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../assets/image'
 import { COLORS } from '../theme/theme'
 
 
@@ -41,7 +41,7 @@ const ForgotPassword_1 = () => {
                 <View style={styles.backdrop}>
                     <View style={{ width: '100%' }}>
                         <Image
-                            source={ICON_CHECKED}
+                            source={ICON_CHECK}
                             style={{ width: 64, height: 64, alignSelf: 'center' }}
                         />
                         <Text style={styles.titlemini}>
@@ -81,6 +81,7 @@ const ForgotPassword_1 = () => {
                             style={[
                                 styles.titlemini,
                                 {
+                                    color: '#A6A6A6',
                                     textAlign: 'left',
                                     fontSize: 12,
                                     marginBottom: 16
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.5,
         fontSize: 16,
         fontWeight: '400',
-        color: COLORS.Black,
+        color: COLORS.White,
         fontFamily: 'Quicksand',
         textAlign: 'center',
     },
@@ -194,12 +195,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.BLACK_ACCENT,
+        backgroundColor: COLORS.White,
     },
     styleText3: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: COLORS.GRAY_4,
+        color: COLORS.Black,
         fontFamily: 'Quicksand',
         textAlign: 'center',
     },

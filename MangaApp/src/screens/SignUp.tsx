@@ -69,14 +69,14 @@ const SignUp = () => {
                             <TextInput
                                 style={styles.styleTextInput}
                                 placeholder={'Name'}
-                                placeholderTextColor={COLORS.White}
+                                placeholderTextColor={COLORS.Grey}
                                 onChangeText={(valueName) => handleInputChangeName(valueName)}
                                 value={valueName}
                             />
                             <TextInput
                                 style={styles.styleTextInput}
                                 placeholder={'Email'}
-                                placeholderTextColor={COLORS.White}
+                                placeholderTextColor={COLORS.Grey}
                                 onChangeText={(valueEmail) => handleInputChangeEmail(valueEmail)}
                                 value={valueEmail}
                             />
@@ -84,7 +84,7 @@ const SignUp = () => {
                                 <TextInput
                                     style={styles.styleTextInput}
                                     placeholder={'Password'}
-                                    placeholderTextColor={COLORS.White}
+                                    placeholderTextColor={COLORS.Grey}
                                     onChangeText={(valuePassword) => handleInputChangePassword(valuePassword)}
                                     value={valuePassword}
                                     secureTextEntry={!isIconActive} // khi isIconActive = true hiện thị password, ngược lại hiện thị text
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     styleText3: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: COLORS.GRAY_4,
+        color: COLORS.White,
         fontFamily: 'Quicksand',
         textAlign: 'center',
     },
