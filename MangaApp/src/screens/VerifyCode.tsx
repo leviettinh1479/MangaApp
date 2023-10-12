@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS, FONT_FAMILY } from '../src/theme/theme';
+import { COLORS, FONT_FAMILY } from '../theme/theme';
 
 const VerifyCode = () => {
-    return (
-        <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+  return (
+    <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View>
@@ -21,7 +21,7 @@ const VerifyCode = () => {
             </View>
             <View style={styles.View_MXT}>
                 <Text style={styles.Text_MXT}>An authentication code has been sent to your email.</Text>
-                <TextInput placeholder='Enter Code' style={styles.TextInput_MXT}></TextInput>
+                <TextInput placeholder='Enter Code' placeholderTextColor='black' style={styles.TextInput_MXT}></TextInput>
                 <TouchableOpacity style={styles.View_Verify}>
                     <Text style={styles.Text_Verify}>Verify</Text>
                 </TouchableOpacity>
@@ -34,7 +34,7 @@ const VerifyCode = () => {
                 </View>
             </View>
         </ImageBackground>
-    )
+  )
 }
 
 export default VerifyCode

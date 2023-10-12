@@ -1,17 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, Pressable, StatusBar } from 'react-native'
 import React from 'react'
-import { COLORS, FONT_FAMILY } from '../src/theme/theme'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { COLORS, FONT_FAMILY } from '../theme/theme'
 
 const LoginEmail = () => {
     return (
-        <ImageBackground source={require('../tranthuc/image/Backgound_1.jpg')} style={styles.Container}>
+        <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.DangNhap}>
                 <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
             </View>
             <View style={styles.View_Container}>
                 <View style={styles.View_Input}>
-                    <TextInput placeholder='Email' style={styles.Text_Input_Email}></TextInput>
+                    <TextInput placeholder='Email' placeholderTextColor='black' style={styles.Text_Input_Email}></TextInput>
                 </View>
                 <TouchableOpacity style={styles.View_Tieptuc}>
                     <Text style={styles.Text_Tieptuc}>Tiếp tục</Text>
@@ -28,13 +27,13 @@ const LoginEmail = () => {
                 </View>
                 <View style={styles.View_DangNhap}>
                     <TouchableOpacity style={styles.View_DangNhap1}>
-                        <Image style={styles.Image_DangNhap} source={require('../tranthuc/image/Logo_Facebook.png')} />
+                        <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Facebook.png')} />
                         <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.View_DangNhap}>
                     <TouchableOpacity style={styles.View_DangNhap1}>
-                        <Image style={styles.Image_DangNhap} source={require('../tranthuc/image/Logo_Google.png')} />
+                        <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Google.png')} />
                         <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
                     </TouchableOpacity>
                 </View>
