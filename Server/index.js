@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const { engine } = require ('express-handlebars');
+const { engine } = require("express-handlebars");
 const path = require("path");
 // IMPORTS FROM OTHER FILES
 var userRoute = require("./routes/auth");
@@ -10,6 +10,7 @@ const mangaRouter = require("./routes/manga");
 const mangaRouter2 = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
+const favoriteRouter = require("./routes/favorite");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -20,21 +21,41 @@ const DB =
 //HTTP logger
 app.use(morgan("combined"));
 //Templates engine
-app.engine('handlebars', engine());
-app.set("view engine", "handlebars");
+app.engine("hbs", engine({ extname: ".hbs" }));
+app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
-
 
 // Middleware
 app.use(express.json());
 app.use(mangaRouter);
 app.use(mangaRouter2);
+
+// Middleware
+app.use(express.json());
+// http://localhost:3000/api/user
 app.use("/api/user", userRoute);
+// http://localhost:3000/api/favorite
+app.use("/api/favorite", favoriteRouter);
 app.use(genreRouter);
 app.use(reportRouter);
-
 app.get("/", (req, res) => {
   return res.render("home");
+});
+//View Engine
+app.get("/login", (req, res) => {
+  return res.render("login");
+});
+app.get("/register", (req, res) => {
+  return res.render("register");
+});
+app.get("/resetpassword", (req, res) => {
+  return res.render("resetpassword");
+});
+app.get("/addmanga", (req, res) => {
+  return res.render("addmanga");
+});
+app.get("/updatemanga", (req, res) => {
+  return res.render("updatemanga");
 });
 
 // Connections

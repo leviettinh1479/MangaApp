@@ -18,7 +18,7 @@ const ItemTopics = ({title}:ItemProps) => {
   return (
     <TouchableOpacity  style={{backgroundColor:'#FF97A3', paddingHorizontal:16, paddingVertical:8,alignItems:'center',
       marginTop:16,justifyContent:'center',marginHorizontal:5,borderRadius:8}}>
-      <Text style={{fontSize:14, fontFamily:FONT_FAMILY.quicksands_semibold, color:'#000000'}}>{title}</Text>
+      <Text style={{fontSize:14, fontFamily:FONT_FAMILY.quicksand_semibold, color:'#000000'}}>{title}</Text>
     </TouchableOpacity>
   )
   }
@@ -28,17 +28,17 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
       <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:8}}>
         <ScrollView showsVerticalScrollIndicator = {false}>
           <View style={{flexDirection:'column'}}>
-            <Text style={{fontSize:26 , fontFamily:FONT_FAMILY.quicksands_bold, color:'#000000'}}>Explore</Text>
+            <Text style={{fontSize:26 , fontFamily:FONT_FAMILY.quicksand_bold, color:'#000000'}}>Explore</Text>
             <View style={{width:86, borderBottomWidth:2, borderBlockColor:'#FF97A3',padding:2}}></View>
           </View>
           {/* Search */}
           <View style={[{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',marginTop:24,marginHorizontal:5},styles.borderSearch]}>
             <Ionicons name="search" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
-            <TextInput style={{fontSize:16, color:'#000000',paddingLeft:10,fontFamily:FONT_FAMILY.quicksands_semibold}}
+            <TextInput style={{fontSize:16, color:'#000000',paddingLeft:10,fontFamily:FONT_FAMILY.quicksand_semibold}}
                 placeholder="Tìm kiếm..."
               />
           </View>
-          <Text style={{marginTop:38,fontSize:22,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+          <Text style={{marginTop:38,fontSize:22,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
             Topics
           </Text>
           {/* topics */}
@@ -57,12 +57,12 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
           {/* fiction */}
           <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
                   <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
-                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                       Fiction
                     </Text>
                     <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen')}>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all
                         </Text>
                           <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
@@ -80,12 +80,12 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
           {/* Culture & Society */}
           <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
                   <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
-                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                       Culture & Society
                     </Text>
                     <TouchableOpacity>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all
                         </Text>
                           <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
@@ -103,12 +103,12 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
           {/* Life style */}
           <View style={{flexDirection:'column',justifyContent:'flex-start',marginBottom:30}}>
                   <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:32,marginBottom:16}}>
-                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+                    <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                     Life style
                     </Text>
                     <TouchableOpacity>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                        <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all
                         </Text>
                           <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
