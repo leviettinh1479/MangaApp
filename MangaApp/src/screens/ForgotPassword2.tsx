@@ -1,19 +1,6 @@
 import { StyleSheet, Text, Animated, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/ForgotPassword2.tsx
-import { COLORS, FONT_FAMILY } from '../../theme/theme';
-
-interface ScreenAProps {
-    navigation: any; // or use the correct navigation type from @types/react-navigation
-  }
-const ForgotPassword2 = ({ navigation}:ScreenAProps) => {
-    return (
-        <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
-            <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.goback()}>
-                    <View> 
-=======
 import { COLORS, FONT_FAMILY } from '../theme/theme'
 
 
@@ -23,7 +10,6 @@ const ForgotPassword2 = () => {
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View>
->>>>>>> origin/tranthuc:MangaApp/src/screens/ForgotPassword2.tsx
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
                     <View >
@@ -37,13 +23,8 @@ const ForgotPassword2 = () => {
                 </View>
                 <View style={styles.View_Email}>
                     <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/ForgotPassword2.tsx
-                    <TextInput placeholder='Email' style={styles.TextInput_Email}></TextInput>
-                    <TouchableOpacity style={styles.View_Submit} onPress={() => navigation.navigate('ForgotPassword_1')} >
-=======
                     <TextInput placeholder='Email' placeholderTextColor='black' style={styles.TextInput_Email}></TextInput>
                     <TouchableOpacity style={styles.View_Submit}>
->>>>>>> origin/tranthuc:MangaApp/src/screens/ForgotPassword2.tsx
                         <Text style={styles.Text_Submit}>Sumbit</Text>
                     </TouchableOpacity>
                     <View style={styles.View_Account}>

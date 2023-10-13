@@ -1,22 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, Pressable, StatusBar } from 'react-native'
 import React from 'react'
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/LoginEmail.tsx
-import { COLORS } from '../../theme/theme'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { COLORS, FONT_FAMILY } from '../theme/theme'
+
 
 interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
   }
 const LoginEmail = ({ navigation}:ScreenAProps) => {
-  return (
-    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
-=======
-import { COLORS, FONT_FAMILY } from '../theme/theme'
-
-const LoginEmail = () => {
     return (
         <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
->>>>>>> origin/tranthuc:MangaApp/src/screens/LoginEmail.tsx
             <View style={styles.DangNhap}>
                 <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
             </View>
@@ -39,22 +31,13 @@ const LoginEmail = () => {
                 </View>
                 <View style={styles.View_DangNhap}>
                     <TouchableOpacity style={styles.View_DangNhap1}>
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/LoginEmail.tsx
-                        <Image style={styles.Image_DangNhap} source={require('../../assets/images/Logo_Facebook.png')} />
-=======
                         <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Facebook.png')} />
->>>>>>> origin/tranthuc:MangaApp/src/screens/LoginEmail.tsx
                         <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.View_DangNhap}>
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/LoginEmail.tsx
-                    <TouchableOpacity style={styles.View_DangNhap1} onPress={() => navigation.navigate('Bottom')}>
-                        <Image style={styles.Image_DangNhap} source={require('../../assets/images/Logo_Google.png')} />
-=======
                     <TouchableOpacity style={styles.View_DangNhap1}>
                         <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Google.png')} />
->>>>>>> origin/tranthuc:MangaApp/src/screens/LoginEmail.tsx
                         <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
                     </TouchableOpacity>
                 </View>

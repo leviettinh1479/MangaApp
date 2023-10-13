@@ -1,11 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/VerifyCode.tsx
-import { COLORS } from '../../theme/theme';
-=======
 import { COLORS, FONT_FAMILY } from '../theme/theme';
->>>>>>> origin/tranthuc:MangaApp/src/screens/VerifyCode.tsx
 
 
 interface ScreenAProps {
@@ -13,17 +9,10 @@ interface ScreenAProps {
   }
 const VerifyCode = ({ navigation}:ScreenAProps) => {
   return (
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/VerifyCode.tsx
-    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
-            <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.navigate('LoginEmail')}>
-                    <View> 
-=======
     <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.View_Back}>
                 <TouchableOpacity style={styles.View_Back1}>
                     <View>
->>>>>>> origin/tranthuc:MangaApp/src/screens/VerifyCode.tsx
                         <Icon_1 name="chevron-back" size={24} color="white" />
                     </View>
                     <View >
