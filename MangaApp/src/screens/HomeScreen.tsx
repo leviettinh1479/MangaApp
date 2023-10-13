@@ -17,7 +17,7 @@ return (
       <TouchableOpacity>
         <View style={{flexDirection:'column', justifyContent:'center',paddingHorizontal:20}}>
           <Image resizeMode='contain'style={{width:64, height:64,borderRadius:50}} source={{uri: image}}/>
-          <Text style={{fontSize:12,fontFamily:FONT_FAMILY.quicksands_semibold,color:'#000000',textAlign:'center',marginTop:8}}>{nameManga}</Text>
+          <Text style={{fontSize:12,fontFamily:FONT_FAMILY.quicksand_semibold,color:'#000000',textAlign:'center',marginTop:8}}>{nameManga}</Text>
       </View>
       </TouchableOpacity>
 )
@@ -29,7 +29,7 @@ const HomeScreen = () => {
      <ScrollView showsVerticalScrollIndicator = {false}> 
           <View style={{flexDirection:'row', justifyContent:'space-between'}}>
             <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
-              <Text style={{fontSize:24, color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>Good Afternoon</Text>
+              <Text style={{fontSize:24, color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>Good Afternoon</Text>
               <Image style={{width:60, height:3}} resizeMode='contain' source={require('../assets/images/Vector1.png')}/>
             </View>
             <Image resizeMode='contain' source={require('../assets/images/avatar.png')}/>
@@ -49,7 +49,7 @@ const HomeScreen = () => {
               
             <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',paddingHorizontal:16,paddingVertical:12}}>
                 <FontAwesome5 name="hotjar" color="#000000" size={24}/>
-                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksands_bold,color:'#313333',paddingLeft:5}}>
+                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksand_bold,color:'#313333',paddingLeft:5}}>
                   Trending
                 </Text>
               
@@ -58,7 +58,7 @@ const HomeScreen = () => {
                 paddingHorizontal:16,paddingVertical:12,borderRadius:20,borderWidth:1,
                 borderColor:'#313333'}}>
                 <Feather name="book-open" color="#000000" size={24}/>
-                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000',paddingLeft:5}}>
+                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000',paddingLeft:5}}>
                   5-Minutes Read
                 </Text>
                   
@@ -67,7 +67,7 @@ const HomeScreen = () => {
                 paddingHorizontal:16,paddingVertical:12,borderRadius:20,borderWidth:1,
                 borderColor:'#313333',marginLeft:5}}>
                 <Feather name="book-open" color="#000000" size={24}/>
-                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000',paddingLeft:5}}>
+                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000',paddingLeft:5}}>
                   Quick Listen
                 </Text>
                   
@@ -78,15 +78,15 @@ const HomeScreen = () => {
           {/* boot to */}
           <TouchableOpacity>
             <View style={{backgroundColor:'#2D3047', width:'100%',height:201, marginTop:48,borderRadius:8}}>
-              <Text style={{color:'#EAF4F4',fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,width:266,height:48,marginTop:16,marginLeft:16}}>
+              <Text style={{color:'#EAF4F4',fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,width:266,height:48,marginTop:16,marginLeft:16}}>
               Get unlimited access to books in just 
               </Text>
               <View style={{flexDirection:'row'}}>
                 <View style={{flexDirection:'column',marginTop:14,marginLeft:16}}>
-                  <Text style={{color:'#EAF4F4',fontSize:36,fontFamily:FONT_FAMILY.quicksands_bold}}>
+                  <Text style={{color:'#EAF4F4',fontSize:36,fontFamily:FONT_FAMILY.quicksand_bold}}>
                     $10.0
                   </Text>
-                  <Text style={{color:'#EAF4F4',fontSize:12,marginTop:30,fontFamily:FONT_FAMILY.quicksands_medium}}>
+                  <Text style={{color:'#EAF4F4',fontSize:12,marginTop:30,fontFamily:FONT_FAMILY.quicksand_medium}}>
                     *Terms & conditions apply
                   </Text>
                 </View>
@@ -99,12 +99,12 @@ const HomeScreen = () => {
           {/* for you */}
           <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:32}}>
-              <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+              <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                 For you
               </Text>
               <TouchableOpacity>
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                  <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                  <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                     Show all
                   </Text>
                     <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>
@@ -123,12 +123,12 @@ const HomeScreen = () => {
           {/* trending */}
           <View style={{flexDirection:'column',justifyContent:'flex-start',marginBottom:10}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:32}}>
-              <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksands_bold,color:'#000000'}}>
+              <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                 Trending
               </Text>
               <TouchableOpacity>
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
-                  <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksands_bold}}>
+                  <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                     Show all
                   </Text>
                     <FontAwesome5 name="chevron-circle-right" color={'#000000'}  size={24}/>

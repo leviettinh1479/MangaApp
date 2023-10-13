@@ -16,7 +16,7 @@ const ProductListScreen = ({ navigation}:ScreenAProps) => {
       <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:7,flex:1,paddingBottom:10}}>
         <View style={{flexDirection:'row',alignItems:'center'}}>
             <Ionicons name="chevron-back" color={'#000000'}  size={24} style={{paddingTop:2}} onPress={()=> navigation.goBack()}/>
-            <Text style={{fontSize:22 , fontFamily:FONT_FAMILY.quicksands_medium, color:'#000000',marginLeft:5}}>Fiction</Text>
+            <Text style={{fontSize:22 , fontFamily:FONT_FAMILY.quicksand_medium, color:'#000000',marginLeft:5}}>Fiction</Text>
         </View>
       {/* fiction */}
         <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
