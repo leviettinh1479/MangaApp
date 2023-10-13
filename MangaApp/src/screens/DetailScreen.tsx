@@ -8,10 +8,6 @@ const UserAccountScreen = () => {
             <ImageBackground  style={{flex:1}} blurRadius={5}  source={require('../assets/images/testimage.jpg')}>
               <Image  style={{position:'absolute',height:100,width:100}}  resizeMode='contain' source={require('../assets/images/testimage.jpg')}/>
             </ImageBackground>
-           
-          
-          
-         
     </SafeAreaView>
   )
 }
