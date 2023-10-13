@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
+<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/Genre.tsx
 import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../../assets/image'
 import { COLORS } from '../../theme/theme'
+=======
+import { BlurView } from '@react-native-community/blur';
+import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../assets/images'
+import { COLORS, FONT_FAMILY } from '../theme/theme'
+>>>>>>> origin/baongoc:MangaApp/src/screens/Genre.tsx
 
 export interface GenreProps {
     navigation: any;
@@ -10,6 +16,7 @@ export interface GenreProps {
 
 const Genre: React.FC<GenreProps> = (props) => {
     const { onPress } = props;
+    const [txtSelect, setTxtSelect] = useState('#ffffff');
     const [isCheck, setIsCheck] = useState(false);
     const [isCheck1, setIsCheck1] = useState(false);
     const [isCheck2, setIsCheck2] = useState(false);
@@ -27,6 +34,14 @@ const Genre: React.FC<GenreProps> = (props) => {
     const [isCheck14, setIsCheck14] = useState(false);
     const [isCheck15, setIsCheck15] = useState(false);
     const [isCheck16, setIsCheck16] = useState(false);
+
+    const onPressX = () => {
+        if (txtSelect == '#ffffff') {
+            setTxtSelect('#0000000');
+        } else {
+            setTxtSelect('#ffffff');
+        };
+    };
 
     const handlePress = () => {
         setIsCheck((prevState) => !prevState);
@@ -131,8 +146,11 @@ const Genre: React.FC<GenreProps> = (props) => {
             />
             <View style={styles.container1}>
                 <Text style={styles.title}>Select Genres</Text>
+                {/* <BlurView style={styles.blur}
+                    blurType="light"
+                    blurAmount={19}> */}
                 <View style={styles.backdrop}>
-                    <Text style={styles.titlemini}>Select the type of book you enjoy reading.</Text>
+                    <Text style={[styles.titlemini]}>Select the type of book you enjoy reading.</Text>
                     <View style={{ width: '100%' }}>
                         <View style={styles.styleView}>
                             <Pressable onPress={handlePress} style={[styles.container2, isCheck && styles.containerChecked]}>
@@ -283,7 +301,7 @@ const Genre: React.FC<GenreProps> = (props) => {
                                 )}
                             </Pressable>
                             <Pressable onPress={handlePress16} style={[styles.container2, isCheck16 && styles.containerChecked]}>
-                                <Text style={styles.styleText1}>Cookbook</Text>
+                                <Text style={[styles.styleText1]}>Cookbook</Text>
                                 {isCheck16 ? (
                                     <Image style={styles.styleImage} source={ICON_CHECK} />
                                 ) : (
@@ -292,7 +310,7 @@ const Genre: React.FC<GenreProps> = (props) => {
                                 )}
                             </Pressable>
                         </View>
-                        <Text style={[styles.titlemini, { fontWeight: 'bold', textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
+                        <Text style={[styles.titlemini, { marginTop: 8, fontFamily: FONT_FAMILY.quicksand_bold, textAlign: 'center' }]} onPress={goShowMore} >Show more</Text>
                     </View>
                     <View style={{ width: '100%' }}>
                         <Pressable
@@ -303,8 +321,9 @@ const Genre: React.FC<GenreProps> = (props) => {
                         <Text style={styles.titleEnd}>Select 3 or more genres to continue</Text>
                     </View>
                 </View>
+                {/* </BlurView> */}
             </View>
-        </ImageBackground>
+        </ImageBackground >
     );
 }
 
@@ -319,12 +338,26 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         position: 'absolute',
         top: 77,
         left: 13,
+    },
+    blur: {
+        width: '94%',
+        display: 'flex',
+        flex: 1,
+        // backgroundColor: COLORS.GRAY_BG,
+        borderRadius: 12,
+        position: 'absolute',
+        top: 140,
+        left: 13,
+        paddingHorizontal: 16,
+        paddingVertical: 24,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: 24,
     },
     backdrop: {
         width: '94%',
@@ -342,9 +375,8 @@ const styles = StyleSheet.create({
     },
     titlemini: {
         fontSize: 14,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch'
     },
     styleView: {
@@ -357,9 +389,8 @@ const styles = StyleSheet.create({
     },
     titleEnd: {
         fontSize: 12,
-        fontWeight: '400',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch',
         marginTop: 12,
         textAlign: 'center',
@@ -378,13 +409,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     containerChecked: {
-        backgroundColor: COLORS.White,
+        color: COLORS.Black,
+        borderColor: COLORS.White,
+        backgroundColor: COLORS.Black,
     },
     styleText1: {
         fontSize: 14,
-        fontWeight: '500',
         color: COLORS.White,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch',
         marginLeft: 8,
     },
@@ -393,7 +425,6 @@ const styles = StyleSheet.create({
         height: 24,
         width: 24,
     },
-
     container3: {
         height: 48,
         width: '100%',
@@ -407,9 +438,8 @@ const styles = StyleSheet.create({
     },
     styleText3: {
         fontSize: 14,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         textAlign: 'center',
     },
 });

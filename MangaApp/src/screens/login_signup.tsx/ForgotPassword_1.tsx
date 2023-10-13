@@ -1,7 +1,12 @@
 import { Dimensions, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/ForgotPassword_1.tsx
 import { BG_FGPASS, ICON_CHECKED, ICON_EYE, ICON_EYECANCEL } from '../../assets/image'
 import { COLORS } from '../../theme/theme'
+=======
+import { BG_GENRE, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../assets/images'
+import { COLORS, FONT_FAMILY } from '../theme/theme'
+>>>>>>> origin/baongoc:MangaApp/src/screens/ForgotPassword_1.tsx
 
 
 const ForgotPassword_1 = () => {
@@ -28,7 +33,7 @@ const ForgotPassword_1 = () => {
         console.log('PasswordNew:', valuePasswordNew);
     }
     return (
-        <ImageBackground source={BG_FGPASS} style={styles.container}>
+        <ImageBackground source={BG_GENRE} style={styles.container}>
             <StatusBar
                 barStyle="light-content"
                 backgroundColor={'transparent'}
@@ -41,7 +46,7 @@ const ForgotPassword_1 = () => {
                 <View style={styles.backdrop}>
                     <View style={{ width: '100%' }}>
                         <Image
-                            source={ICON_CHECKED}
+                            source={ICON_CHECK}
                             style={{ width: 64, height: 64, alignSelf: 'center' }}
                         />
                         <Text style={styles.titlemini}>
@@ -81,6 +86,7 @@ const ForgotPassword_1 = () => {
                             style={[
                                 styles.titlemini,
                                 {
+                                    color: '#A6A6A6',
                                     textAlign: 'left',
                                     fontSize: 12,
                                     marginBottom: 16
@@ -114,9 +120,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
         color: COLORS.WHITE_TEXT,
-        fontFamily: 'Quicksand',
+        fontFamily: FONT_FAMILY.quicksand_bold,
         position: 'absolute',
         top: Dimensions.get('window').height / 2 - 180,
         left: 29,
@@ -138,9 +143,8 @@ const styles = StyleSheet.create({
     titlemini: {
         letterSpacing: 0.5,
         fontSize: 16,
-        fontWeight: '400',
-        color: COLORS.Black,
-        fontFamily: 'Quicksand',
+        color: COLORS.White,
+        fontFamily: FONT_FAMILY.quicksand_medium,
         textAlign: 'center',
     },
     styleView: {
@@ -184,6 +188,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: COLORS.WHITE_TEXT,
         backgroundColor: COLORS.WHITE_TEXT,
+        fontFamily: FONT_FAMILY.quicksand_medium,
     },
     container3: {
         height: 48,
@@ -194,13 +199,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.BLACK_ACCENT,
+        backgroundColor: COLORS.White,
     },
     styleText3: {
         fontSize: 14,
-        fontWeight: 'bold',
-        color: COLORS.GRAY_4,
-        fontFamily: 'Quicksand',
+        color: COLORS.Black,
+        fontFamily: FONT_FAMILY.quicksand_bold,
         textAlign: 'center',
     },
 })
