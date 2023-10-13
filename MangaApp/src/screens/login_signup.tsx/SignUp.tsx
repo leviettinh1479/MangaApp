@@ -225,6 +225,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: COLORS.WHITE_TEXT,
-        backgroundColor: COLORS.WHITE_TEXT,
+        backgroundColor: COLORS.White,
     },
 })

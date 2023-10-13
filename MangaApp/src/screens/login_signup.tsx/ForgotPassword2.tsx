@@ -4,38 +4,41 @@ import Icon_1 from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
 
-const ForgotPassword2 = () => {
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const ForgotPassword2 = ({ navigation}:ScreenAProps) => {
   return (
-    <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
-            <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1}>
-                    <View>
-                        <Icon_1 name="chevron-back" size={24} color="white" />
-                    </View>
-                    <View >
-                        <Text style={styles.Text_Back}>Back to Log in</Text>
-                    </View>
+    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
+    <View style={styles.View_Back}>
+        <TouchableOpacity style={styles.View_Back1}>
+            <View>
+                <Icon_1 name="chevron-back" size={24} color="white" />
+            </View>
+            <View >
+                <Text style={styles.Text_Back}>Back to Log in</Text>
+            </View>
+        </TouchableOpacity>
+    </View>
+    <View style={styles.View_Header}>
+        <View style={styles.View_RecoverPassword}>
+            <Text style={styles.Text_RecoverPassword}>Recover Password</Text>
+        </View>
+        <View style={styles.View_Email}>
+            <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
+            <TextInput placeholder='Email' placeholderTextColor='black' style={styles.TextInput_Email}></TextInput>
+            <TouchableOpacity style={styles.View_Submit}>
+                <Text style={styles.Text_Submit}>Sumbit</Text>
+            </TouchableOpacity>
+            <View style={styles.View_Account}>
+                <Text style={styles.Text_NotAccount}>Don’t have an account? </Text>
+                <TouchableOpacity>
+                    <Text style={styles.Text_DangKy}>Sign up</Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.View_Header}>
-                <View style={styles.View_RecoverPassword}>
-                    <Text style={styles.Text_RecoverPassword}>Recover Password</Text>
-                </View>
-                <View style={styles.View_Email}>
-                    <Text style={styles.Text_Email}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text>
-                    <TextInput placeholder='Email' placeholderTextColor='black' style={styles.TextInput_Email}></TextInput>
-                    <TouchableOpacity style={styles.View_Submit}>
-                        <Text style={styles.Text_Submit}>Sumbit</Text>
-                    </TouchableOpacity>
-                    <View style={styles.View_Account}>
-                        <Text style={styles.Text_NotAccount}>Don’t have an account? </Text>
-                        <TouchableOpacity>
-                            <Text style={styles.Text_DangKy}>Sign up</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-        </ImageBackground>
+        </View>
+    </View>
+</ImageBackground>
   )
 }
 

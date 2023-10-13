@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
-<<<<<<< HEAD:MangaApp/src/screens/login_signup.tsx/Genre.tsx
-import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../../assets/image'
-import { COLORS } from '../../theme/theme'
-=======
 import { BlurView } from '@react-native-community/blur';
-import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../assets/images'
-import { COLORS, FONT_FAMILY } from '../theme/theme'
->>>>>>> origin/baongoc:MangaApp/src/screens/Genre.tsx
-
+import { BG_GENRE, ICON_CHECK, ICON_PLUSCIRCLE } from '../../assets/images';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 export interface GenreProps {
     navigation: any;
     onPress?: () => void;

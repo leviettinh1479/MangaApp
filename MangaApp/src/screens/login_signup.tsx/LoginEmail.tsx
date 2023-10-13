@@ -7,47 +7,47 @@ interface ScreenAProps {
   }
 const LoginEmail =  ({ navigation}:ScreenAProps) => {
     return (
-        <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
-            <View style={styles.DangNhap}>
-                <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
+        <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
+        <View style={styles.DangNhap}>
+            <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
+        </View>
+        <View style={styles.View_Container}>
+            <View style={styles.View_Input}>
+                <TextInput placeholder='Email' placeholderTextColor='black' style={styles.Text_Input_Email}></TextInput>
             </View>
-            <View style={styles.View_Container}>
-                <View style={styles.View_Input}>
-                    <TextInput placeholder='Email' placeholderTextColor='black' style={styles.Text_Input_Email}></TextInput>
-                </View>
-                <TouchableOpacity style={styles.View_Tieptuc} onPress={() => navigation.navigate('LoginPassword')}>
-                    <Text style={styles.Text_Tieptuc}>Tiếp tục</Text>
+            <TouchableOpacity style={styles.View_Tieptuc} onPress={() => navigation.navigate('LoginPassword')}>
+                <Text style={styles.Text_Tieptuc}>Tiếp tục</Text>
+            </TouchableOpacity>
+            <View style={styles.View_QuenPass}>
+                <TouchableOpacity>
+                    <Text style={styles.Text_QuenPass}>Quên mật khẩu</Text>
                 </TouchableOpacity>
-                <View style={styles.View_QuenPass}>
-                    <TouchableOpacity>
-                        <Text style={styles.Text_QuenPass}>Quên mật khẩu</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.View_Vien}>
-                    <View style={styles.line} />
-                    <Text style={styles.text}>Hoặc</Text>
-                    <View style={styles.line} />
-                </View>
-                <View style={styles.View_DangNhap}>
-                    <TouchableOpacity style={styles.View_DangNhap1}>
-                        <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Facebook.png')} />
-                        <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.View_DangNhap}>
-                    <TouchableOpacity style={styles.View_DangNhap1}>
-                        <Image style={styles.Image_DangNhap} source={require('../assets/images/Logo_Google.png')} />
-                        <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.View_DangKy}>
-                    <Text style={styles.Text_DangKy}>Chưa có tài khoản? </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                        <Text style={styles.Text_DangKy1}>Đăng kí</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
-        </ImageBackground>
+            <View style={styles.View_Vien}>
+                <View style={styles.line} />
+                <Text style={styles.text}>Hoặc</Text>
+                <View style={styles.line} />
+            </View>
+            <View style={styles.View_DangNhap}>
+                <TouchableOpacity style={styles.View_DangNhap1}>
+                    <Image style={styles.Image_DangNhap} source={require('../../assets/images/Logo_Facebook.png')} />
+                    <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.View_DangNhap}>
+                <TouchableOpacity style={styles.View_DangNhap1}>
+                    <Image style={styles.Image_DangNhap} source={require('../../assets/images/Logo_Google.png')} />
+                    <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.View_DangKy}>
+                <Text style={styles.Text_DangKy}>Chưa có tài khoản? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                    <Text style={styles.Text_DangKy1}>Đăng kí</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    </ImageBackground>
     )
 }
 
