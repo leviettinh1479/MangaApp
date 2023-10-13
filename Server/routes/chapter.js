@@ -82,7 +82,79 @@ mangaRouter.get("/api/manga/:mangaId/chapters", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+//Delete chapters
+mangaRouter.delete("/api/manga/:mangaId/chapter/:chap", async (req, res) => {
+  const mangaId = req.params.mangaId;
+  const chapNumber = parseInt(req.params.chap, 10);
 
+  try {
+    const manga = await Manga.findById(mangaId);
 
+    if (!manga) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy truyện với id đã cho" });
+    }
+
+    const chapterIndex = manga.chapters.findIndex(
+      (chap) => chap.chap === chapNumber
+    );
+
+    if (chapterIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: `Không tìm thấy chương ${chapNumber}` });
+    }
+
+    manga.chapters.splice(chapterIndex, 1);
+    await manga.save();
+
+    res.json({ message: `Chương ${chapNumber} đã bị xóa` });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update chapter by ID
+mangaRouter.put("/api/manga/:mangaId/chapter/:chap", async (req, res) => {
+  const mangaId = req.params.mangaId;
+  const chapNumber = parseInt(req.params.chap, 10);
+
+  try {
+    const manga = await Manga.findById(mangaId);
+
+    if (!manga) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy truyện với id đã cho" });
+    }
+
+    const chapterIndex = manga.chapters.findIndex(
+      (chap) => chap.chap === chapNumber
+    );
+
+    if (chapterIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: `Không tìm thấy chương ${chapNumber}` });
+    }
+
+    const chapter = manga.chapters[chapterIndex];
+
+    const { name, title, image, content, createdAt } = req.body;
+
+    chapter.name = name || chapter.name;
+    chapter.title = title || chapter.title;
+    chapter.image = image || chapter.image;
+    chapter.content = content || chapter.content;
+    chapter.createdAt = createdAt || chapter.createdAt;
+
+    await manga.save();
+
+    res.json({ message: `Chương ${chapNumber} đã được cập nhật` });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 module.exports = mangaRouter;
