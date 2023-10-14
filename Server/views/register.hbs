@@ -1,1 +1,34 @@
-<h1>REGISTER</h1>
+<div style="max-width: 100%; height: 100%; background-image: url('https://cdn.pixabay.com/photo/2022/12/01/04/40/backpacker-7628303_1280.jpg'); background-repeat: no-repeat;
+  background-attachment: fixed; background-size: 100% 100%; padding-top: 40px; box-shadow: 0 0 15px white;">
+    <form method="post" action="/register"
+        style="width: 400px; margin: 0 auto; background-color: rgba(225, 225, 225, 0.8); padding: 10px; border-radius: 10px;">
+        <div>
+            <p style="text-align: center; font-size: 32px; font-weight: bold; color: blue">Create Account</p>
+        </div>
+
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Name</label>
+            <input type="text" name="name" id="form2Example1" class="form-control" />
+        </div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example1">Email address</label>
+            <input type="email" name="email" id="form2Example1" class="form-control" />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example2">Password</label>
+            <input type="password" name="password" id="form2Example2" class="form-control" />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+        <div class="text-center">
+            <p>I have an account! <a href="/login">Go back</a></p>
+            
+        </div>
+    </form>
+</div>

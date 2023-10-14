@@ -6,8 +6,8 @@ var mangaModel = require('../models/manga');
 // http://localhost:3000/api/favorite/add-favorite
 router.post("/add-favorite", async (req, res, next) => {
     try {
-        const { manga } = req.body;
-        const favorites = { manga };
+        const { manga, user } = req.body;
+        const favorites = { manga, user };
         await favoriteModel.create(favorites);
         return res.status(200).json({ results: true, message: "Add favorite successful" });
     } catch (error) {
@@ -18,7 +18,8 @@ router.post("/add-favorite", async (req, res, next) => {
 // http://localhost:3000/api/favorite/get-all-favorite
 router.get("/get-all-favorite", async (req, res) => {
     try {
-        const favorites = await favoriteModel.find().populate('manga').sort({ createdAt: -1 });
+        // const favorites = await favoriteModel.find().populate('manga').sort({ createdAt: -1 });
+        const favorites = await favoriteModel.find().sort({ createdAt: -1 });
         if (favorites) {
             return res.status(200).json({ results: true, favorites: favorites });
         }
@@ -35,7 +36,7 @@ router.post("/:id/delete-favorite", async (req, res) => {
         await favoriteModel.findByIdAndDelete(id);
         return res.status(200).json({ results: true, message: "Delete successful" });
     } catch (error) {
-        return res.status(400).json({ results: false, message: error.getMessage() });
+        return res.status(400).json({ results: false, message: error.getMessage });
     }
 });
 
