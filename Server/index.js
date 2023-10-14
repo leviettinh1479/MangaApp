@@ -7,7 +7,7 @@ const path = require("path");
 // IMPORTS FROM OTHER FILES
 var userRoute = require("./routes/auth");
 const mangaRouter = require("./routes/manga");
-const mangaRouter2 = require("./routes/chapter");
+const chapterRouter = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
 const favoriteRouter = require("./routes/favorite");
@@ -28,7 +28,7 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(express.json());
 app.use(mangaRouter);
-app.use(mangaRouter2);
+app.use(chapterRouter);
 
 // Middleware
 app.use(express.json());
