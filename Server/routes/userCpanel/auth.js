@@ -47,9 +47,8 @@ router.post('/login', async (req, res, next) => {
             let check = bcrypt.compareSync(password, user.password);
             if (check) {
                 const token = jwt.sign({ user }, "secret");
-                req.session.token = token;
                 console.log("Chuyen", token);
-                return res.redirect('login');
+                return res.redirect('register');
             }
             return res.redirect('login');
         }
@@ -104,7 +103,7 @@ router.post('/register', async (req, res, next) => {
                     console.log('Email sent successfully');
                 }
             });
-            return res.status(200).json({ user: newUser });
+            return res.redirect('login');
         } else {
             return res.status(400).json({ result: false, message: 'Email đã tồn tại' });
         }
