@@ -3,10 +3,8 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomNavigations from './src/navigators/BottomNavigations';
-import LoginEmail from './src/screens/LoginEmail';
-import ForgotPassword2 from './src/screens/ForgotPassword2';
-import LoginPassword from './src/screens/LoginPassword';
-import VerifyCode from './src/screens/VerifyCode';
+import Account from './src/screens/tranthuc/Account';
+import ProfileDetail from './src/screens/tranthuc/ProfileDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,10 +15,8 @@ const App = () => {
         //     <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
         //   </Stack.Navigator>
         // </NavigationContainer>
-        // <LoginPassword/>
-        <LoginEmail/>
-        // <ForgotPassword2/>
-        // <VerifyCode/>
+        <Account/>
+        // <ProfileDetail/>
     )
 }
 export default App;
