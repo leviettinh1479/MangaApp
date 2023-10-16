@@ -210,5 +210,8 @@ type ItemChap = {
 }
 
 const dataaa:ItemChap[]=[{
-    id: "1", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg"
-}]
+    id: "1", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg",
+},{
+    id: "2", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg",
+},
+]
