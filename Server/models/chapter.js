@@ -6,6 +6,7 @@ const chapterSchema = mongoose.Schema({
   chap: Number,
   image: [String],
   content: String,
+  mangaId: { type: mongoose.Schema.Types.ObjectId, ref: 'Manga' }, 
   createdAt: { type: Date, default: Date.now }
 });
 
