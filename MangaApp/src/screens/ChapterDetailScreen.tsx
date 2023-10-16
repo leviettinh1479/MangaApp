@@ -4,6 +4,7 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import Ionicons from 'react-native-vector-icons/MaterialIcons';
 import { FONT_FAMILY } from '../theme/theme';
 import ItemChapImage from '../components/item/ItemChapImage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChapterDetailScreen = () => {
 
@@ -16,72 +17,66 @@ const ChapterDetailScreen = () => {
         { key: '4', value: 'Chap 4' },
         { key: '5', value: 'Chap 5' }
     ]
-    const ex = [
-        { id: 1, image: require('../assets/images/testimage.jpg') },
-        { id: 2, image: require('../assets/images/testimage.jpg') },
-        { id: 3, image: require('../assets/images/testimage.jpg') },
-        { id: 4, image: require('../assets/images/testimage.jpg') },
-        { id: 5, image: require('../assets/images/testimage.jpg') },
-        { id: 6, image: require('../assets/images/testimage.jpg') },
-    ]
 
     return (
-        <View style={styles.container}>
-            <View style={styles.viewHead}>
-                <Ionicons
-                    name="arrow-back-ios"
-                    size={20}
-                    color={'black'}
-                />
-                <Text style={styles.txtNameManga}>Đại Chiến người khổng lồ - Chapter 139</Text>
-            </View>
-            <View style={styles.viewUpDay}>
-                <Text style={styles.txtUpDay}>Cập nhật ngày abcd</Text>
-            </View>
-            <View style={styles.viewErr}>
-                <TouchableOpacity style={styles.btnErr}>
-                    <Ionicons
-                        style={{ marginStart: 4, marginEnd: 4 }}
-                        name="error-outline"
-                        size={24}
-                        color={'white'}
-                    />
-                    <Text style={styles.txtErr}>Báo lỗi chương</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.viewControll}>
-                <TouchableOpacity style={styles.btnControll}>
+        <SafeAreaView style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.viewHead}>
                     <Ionicons
                         name="arrow-back-ios"
                         size={20}
-                        color={'white'}
+                        color={'black'}
                     />
-                    <Text style={styles.txtControll}>Chương trước</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnControll}>
-                    <Text style={styles.txtControll}>Chương sau</Text>
-                    <Ionicons
-                        name="arrow-forward-ios"
-                        size={20}
-                        color={'white'}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnControllMenu}>
-                    <Ionicons
-                        name="menu"
-                        size={35}
-                        color={'#FF97A3'}
-                    />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.viewFlat}>
-                <FlatList
-                    data={ex}
-                    renderItem={({ item }) => <ItemChapImage image={(item)} />}
-                    keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
+                    <Text style={styles.txtNameManga}>Đại Chiến người khổng lồ - Chapter 139</Text>
+                </View>
+                <View style={styles.viewUpDay}>
+                    <Text style={styles.txtUpDay}>Cập nhật ngày abcd</Text>
+                </View>
+                <View style={styles.viewErr}>
+                    <TouchableOpacity style={styles.btnErr}>
+                        <Ionicons
+                            style={{ marginStart: 4, marginEnd: 4 }}
+                            name="error-outline"
+                            size={24}
+                            color={'white'}
+                        />
+                        <Text style={styles.txtErr}>Báo lỗi chương</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.viewControll}>
+                    <TouchableOpacity style={styles.btnControll}>
+                        <Ionicons
+                            name="arrow-back-ios"
+                            size={20}
+                            color={'white'}
+                        />
+                        <Text style={styles.txtControll}>Chương trước</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnControll}>
+                        <Text style={styles.txtControll}>Chương sau</Text>
+                        <Ionicons
+                            name="arrow-forward-ios"
+                            size={20}
+                            color={'white'}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnControllMenu}>
+                        <Ionicons
+                            name="menu"
+                            size={35}
+                            color={'#FF97A3'}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.viewFlat}>
+                    <FlatList
+                    style={{width: '98%', alignSelf: 'center'}}
+                    data={dataaa}
+                    scrollEnabled={false}
+                    keyExtractor={item=>item.id}
+                    renderItem={({item}) => <ItemChapImage image={item.image}/>}/>
+                </View>
+            </ScrollView>
             <View style={styles.viewBottomBtn}>
                 <TouchableOpacity style={styles.btnBottomBtn}>
                     <Ionicons
@@ -110,7 +105,7 @@ const ChapterDetailScreen = () => {
                     />
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -121,7 +116,8 @@ const styles = StyleSheet.create({
         flex: 1,
         position: 'relative',
         marginStart: 5,
-        marginEnd: 5
+        marginEnd: 5,
+        paddingTop: 5
     },
     viewHead: {
         flexDirection: 'row',
@@ -180,7 +176,7 @@ const styles = StyleSheet.create({
 
     },
     viewFlat: {
-        marginTop: 10
+        marginTop: 15,
     },
     viewBottomBtn: {
         width: 350,
@@ -207,3 +203,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     }
 })
+
+type ItemChap = {
+    id: string,
+    image: string
+}
+
+const dataaa:ItemChap[]=[{
+    id: "1", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg"
+}]

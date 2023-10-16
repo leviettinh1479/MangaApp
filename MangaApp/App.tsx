@@ -17,7 +17,7 @@ const App = () => {
       //   </Stack.Navigator>
       // </NavigationContainer>
       <ChapterDetailScreen/>
-      // <ItemChapImage/>
+      // <ItemChapImage image={'https://i.pinimg.com/originals/b8/3f/6b/b83f6b7b2d1567bed37d30776182c0c6.jpg'}/>
     )
   
 }
