@@ -3,31 +3,35 @@ const mangaRouter = express.Router();
 const Manga = require("../models/manga");
 const Rating = require("../models/rating");
 // Add manga
-mangaRouter.post("/api/addmanga", async (req, res, next) => {
+mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   try {
-    const { name, image, author, status, genre, chapters } = req.body;
+    const { name, image, author, status, genre, rating, chapters } = req.body;
 
-    const manga = new Manga({
+  
+    const newManga = new Manga({
       name,
       image,
       author,
       status,
       genre,
-      chapters, // Assign the array of chapters
+      rating,
+      chapters
     });
 
-    await manga.save();
-    res.status(201).json({ message: "Truyện tranh đã được thêm" });
+
+    await newManga.save();
+
+    res.status(201).json({ message: 'Truyện đã được thêm thành công!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
-    next(error);
   }
 });
 //Get All
-mangaRouter.get("/api/manga", async (req, res) => {
+mangaRouter.get('/api/manga', async (req, res) => {
   try {
-    const mangas = await Manga.find();
-    res.json(mangas);
+    const allManga = await Manga.find();
+
+    res.json(allManga);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -81,15 +85,16 @@ mangaRouter.get("/api/manga/search", async (req, res) => {
   }
 });
 //Get by id
-mangaRouter.get("/api/manga/:id", async (req, res) => {
-  const mangaId = req.params.id;
+mangaRouter.get('/api/manga/:id', async (req, res) => {
   try {
-    const manga = await Manga.findById(mangaId);
+    const { id } = req.params;
+
+    const manga = await Manga.findById(id);
+
     if (!manga) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy truyện với id đã cho" });
+      return res.status(404).json({ message: 'Không tìm thấy truyện!' });
     }
+
     res.json(manga);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -97,39 +102,32 @@ mangaRouter.get("/api/manga/:id", async (req, res) => {
 });
 
 // Delete manga
-mangaRouter.delete("/api/manga/:id", async (req, res) => {
-  const mangaId = req.params.id;
+mangaRouter.delete('/api/manga/:id', async (req, res) => {
   try {
-    const deletedManga = await Manga.findByIdAndDelete(mangaId);
-    if (!deletedManga) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy truyện với id đã cho" });
-    }
-    res.json({ message: "Truyện tranh đã được xóa" });
+    const { id } = req.params;
+
+    await Manga.findByIdAndDelete(id);
+
+    res.json({ message: 'Truyện đã được xóa thành công!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Update manga
-mangaRouter.put("/api/manga/:id", async (req, res) => {
-  const mangaId = req.params.id;
-  try {
-    const updatedManga = await Manga.findByIdAndUpdate(mangaId, req.body, {
-      new: true,
-    });
 
-    if (!updatedManga) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy truyện với id đã cho" });
-    }
+//Update manga
+mangaRouter.put('/api/manga/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedMangaData = req.body;
+
+    const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, { new: true });
 
     res.json(updatedManga);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 module.exports = mangaRouter;
