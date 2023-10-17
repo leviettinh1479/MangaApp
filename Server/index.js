@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const { engine } = require("express-handlebars");
 const path = require("path");
 // IMPORTS FROM OTHER FILES
@@ -12,6 +13,7 @@ const chapterRouter = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
 const favoriteRouter = require("./routes/favorite");
+const mangaCpanel = require("./cpanel/manga");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -26,6 +28,7 @@ app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 app.use('/assets', express.static('assets'));
 app.set("views", path.join(__dirname, "views"));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -38,12 +41,11 @@ app.use("/api/user", userRoute);
 app.use("/api/favorite", favoriteRouter);
 app.use(genreRouter);
 app.use(reportRouter);
+app.use(mangaCpanel);
 
 
-app.get("/", (req, res) => {
-  return res.render("home");
-});
-//View Engine
+
+
 app.get("/login", (req, res) => {
   return res.render("login");
 });
