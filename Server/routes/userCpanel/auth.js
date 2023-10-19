@@ -19,6 +19,17 @@ const transporter = nodemailer.createTransport({
 });
 
 // http://localhost:3000/login
+router.get('/getAllUser', async (req, res, next) => {
+    try {
+        const users = await userModel.find();
+        res.render('home',{users});
+        console.log("User", {users})
+    } catch (error) {
+        return res.status(400).json({ result: false, message: error.message });
+    }
+});
+
+// http://localhost:3000/login
 router.get('/login', async (req, res, next) => {
     try {
         res.render('login')

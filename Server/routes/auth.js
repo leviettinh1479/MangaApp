@@ -3,6 +3,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
+const auth = require('../middlewares/auth');
 
 const userModel = require('../models/user');
 
@@ -161,8 +162,9 @@ router.get('/forgot-password', async (req, res, next) => {
 });
 
 // http://localhost:3000/api/user/logout
-router.get('/logout', function (req, res) {
+router.get('/logout',[auth.authenApp], function (req, res) {
     req.session.destroy();
+    res.status(200).json({ result: true, message: "Đăng xuất thành công" });
 });
 
 // http://localhost:3000/api/user/vothanhthepct2020@gmail.com/edit-profile
