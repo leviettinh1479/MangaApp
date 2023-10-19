@@ -2,6 +2,7 @@ const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
 const Rating = require("../models/rating");
+const { json } = require("body-parser");
 // Add manga
 mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   try {
@@ -27,11 +28,17 @@ mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   }
 });
 //Get All
-mangaRouter.get('/', async (req, res) => {
+mangaRouter.get('/home', async (req, res) => {
   try {
     const allManga = await Manga.find();
-    console.log(allManga);
-    res.render('home',{allManga});
+    const mangaData = allManga.map(manga => {
+      return {
+        name: manga.name,
+        author: manga.author,
+        image: manga.image
+      };
+    });
+    res.render('home',{mangaData});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
