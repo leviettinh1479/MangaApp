@@ -1,12 +1,14 @@
 import {  StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native';
+
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ItemManga from '../components/item/ItemManga';
 import {data_ItemExample} from '../components/item/Data'
 import { FONT_FAMILY } from '../theme/theme';
+import SearchComponent from '../components/SearchComponent';
 
 type ItemProps = {
   title: string
@@ -23,6 +25,12 @@ const ItemTopics = ({title}:ItemProps) => {
   )
   }
 const ExploreScreen = ({ navigation}:ScreenAProps) => {
+  const [data, setData] = useState(['Món ăn 1', 'Món ăn 2', 'Món ăn 3', 'Món ăn 4']);
+  const [filteredData, setFilteredData] = useState(data);
+
+  const handleSearch = (filteredData: React.SetStateAction<string[]>) => {
+    setFilteredData(filteredData);
+  };
   return (
    
       <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:8}}>
@@ -32,12 +40,16 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
             <View style={{width:86, borderBottomWidth:2, borderBlockColor:'#FF97A3',padding:2}}></View>
           </View>
           {/* Search */}
-          <View style={[{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',marginTop:24,marginHorizontal:5},styles.borderSearch]}>
+          {/* <View style={[{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',marginTop:24,marginHorizontal:5},styles.borderSearch]}>
             <Ionicons name="search" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
             <TextInput style={{fontSize:16, color:'#000000',paddingLeft:10,fontFamily:FONT_FAMILY.quicksand_semibold}}
                 placeholder="Tìm kiếm..."
               />
+          </View> */}
+          <View >
+            <SearchComponent data={data} onpress={()=> navigation.navigate("ListSearchScreen")}/>
           </View>
+              
           <Text style={{marginTop:38,fontSize:22,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
             Topics
           </Text>
