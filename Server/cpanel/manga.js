@@ -1,14 +1,13 @@
 const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
+const Chapter = require("../models/chapter");
 const Rating = require("../models/rating");
 const { json } = require("body-parser");
 // Add manga
 mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   try {
     const { name, image, author, status, genre, rating, chapters } = req.body;
-
-  
     const newManga = new Manga({
       name,
       image,
@@ -33,12 +32,14 @@ mangaRouter.get('/home', async (req, res) => {
     const allManga = await Manga.find();
     const mangaData = allManga.map(manga => {
       return {
+        _id: manga._id,
         name: manga.name,
         author: manga.author,
         image: manga.image
       };
     });
-    res.render('home',{mangaData});
+    console.log(mangaData)
+    res.render('home', { mangaData });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -92,17 +93,35 @@ mangaRouter.get("/api/manga/search", async (req, res) => {
   }
 });
 //Get by id
-mangaRouter.get('/api/manga/:id', async (req, res) => {
+mangaRouter.get('/home/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
-
-    const manga = await Manga.findById(id);
-
-    if (!manga) {
+    const mangaID = await Manga.findById(id);
+    const mangaArray = [];
+    mangaArray.push(mangaID);
+    const mangaData = mangaArray.map(manga => {
+      return {
+        name: manga.name,
+        author: manga.author,
+        image: manga.image,
+        status: manga.status,
+        
+      };
+    });
+    console.log("mangaData",mangaData);
+    const allChapter = await Chapter.find();
+    const chapterData = allChapter.map(chapter => {
+      return {
+        _id: chapter._id,
+        name: chapter.name,
+        title: chapter.title,
+        content: chapter.content
+      };
+    });
+    if (!mangaData) {
       return res.status(404).json({ message: 'Không tìm thấy truyện!' });
     }
-
-    res.json(manga);
+    res.render('detailManga', { mangaData, chapterData });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

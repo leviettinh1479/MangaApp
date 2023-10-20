@@ -58,8 +58,8 @@ app.get("/resetpassword", (req, res) => {
 app.get("/addmanga", (req, res) => {
   return res.render("addmanga");
 });
-app.get("/updatemanga", (req, res) => {
-  return res.render("updatemanga");
+app.get("/detail", (req, res) => {
+  return res.render("detailManga");
 });
 
 // Connections
