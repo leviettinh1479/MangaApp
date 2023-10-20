@@ -68,14 +68,14 @@ const ChapterDetailScreen = () => {
                         />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.viewFlat}>
+                
                     <FlatList
-                    style={{width: '98%', alignSelf: 'center'}}
+                    style={{flex:1,marginBottom:50}}
                     data={dataaa}
                     scrollEnabled={false}
                     keyExtractor={item=>item.id}
                     renderItem={({item}) => <ItemChapImage image={item.image}/>}/>
-                </View>
+                
             </ScrollView>
             <View style={styles.viewBottomBtn}>
                 <TouchableOpacity style={styles.btnBottomBtn}>
@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'relative',
-        marginStart: 5,
-        marginEnd: 5,
-        paddingTop: 5
+        paddingHorizontal:10,
+        paddingTop: 5,
+        backgroundColor:'white',
     },
     viewHead: {
         flexDirection: 'row',
@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         bottom: 40,
         alignSelf: 'center',
+        backgroundColor:'#ffffff'
     }
 })
 
@@ -213,5 +214,8 @@ const dataaa:ItemChap[]=[{
     id: "1", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg",
 },{
     id: "2", image: "https://digiart.academy/upload/images/nghe-thuat-dien-anh-1.jpg",
+},
+{
+    id: "3", image: "https://www.oca.edu.vn/uploads/images/info/doraemon-trong-tieng-trung-la-gi.png",
 },
 ]
