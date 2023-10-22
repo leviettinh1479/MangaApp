@@ -47,6 +47,7 @@ mangaRouter.get("/home/:id/update", async (req, res) => {
     const manga = await Manga.findById(id);
     // Thêm các dữ liệu cần thiết vào đây
     const mangaData = {
+      _id: manga.id,
       name: manga.name,
       author: manga.author,
       image: manga.image,
@@ -127,7 +128,7 @@ mangaRouter.get("/api/manga/:id", async (req, res) => {
 mangaRouter.delete("/home/:id/delete", async (req, res) => {
   try {
     const { id } = req.params;
-
+    
     await Manga.findByIdAndDelete(id);
     console.log(`Deleting manga with id: ${id}`);
 
@@ -138,7 +139,7 @@ mangaRouter.delete("/home/:id/delete", async (req, res) => {
 });
 
 //Update manga
-mangaRouter.put("/home/:id/update", async (req, res) => {
+mangaRouter.post("/home/:id/update", async (req, res) => {
   try {
     const { id } = req.params;
     const { name, author, image, status } = req.body;
@@ -153,6 +154,7 @@ mangaRouter.put("/home/:id/update", async (req, res) => {
     const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, {
       new: true,
     });
+    console.log(updatedManga);
 
     res.render('updatemanga', { updatedManga });
   } catch (error) {
