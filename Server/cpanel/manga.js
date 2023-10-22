@@ -40,6 +40,24 @@ mangaRouter.get("/home", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+//Màn hình update
+mangaRouter.get("/home/:id/update", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const manga = await Manga.findById(id);
+    // Thêm các dữ liệu cần thiết vào đây
+    const mangaData = {
+      name: manga.name,
+      author: manga.author,
+      image: manga.image,
+      status: manga.status
+    };
+    res.render('updatemanga', { mangaData });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Rating manga
 mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
   try {
@@ -141,15 +159,6 @@ mangaRouter.put("/home/:id/update", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-//Màn hình update
-mangaRouter.get("/home/:id/update", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const manga = await Manga.findById(id);
-    res.render('updatemanga', { manga });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+
 
 module.exports = mangaRouter;
