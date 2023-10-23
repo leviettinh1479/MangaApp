@@ -16,7 +16,7 @@ const mangaCpanel = require("./cpanel/manga");
 const chapterCpanel = require("./cpanel/chapter");
 const userRoute = require('./routes/auth');
 const historyRouter = require('./routes/history');
-const userCpanelRoute = require("./routes/userCpanel/auth");
+const userCpanelRoute = require("./cpanel/auth");
 
 // INIT
 const PORT = process.env.PORT || 3000;

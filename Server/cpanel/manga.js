@@ -3,6 +3,8 @@ const mangaRouter = express.Router();
 const Manga = require("../models/manga");
 const Rating = require("../models/rating");
 const { json } = require("body-parser");
+
+const auth = require('../middlewares/auth');
 // Add manga
 mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   try {
@@ -24,7 +26,7 @@ mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   }
 });
 //Get All
-mangaRouter.get("/home", async (req, res) => {
+mangaRouter.get('/home',async (req, res) => {
   try {
     const allManga = await Manga.find();
     const mangaData = allManga.map((manga) => {

@@ -47,7 +47,7 @@ const authenWeb = (req, res, next) => {
                   }
               } else {
                   if (url.includes('login')) {
-                      res.redirect('/');
+                      res.redirect('/home');
                   } else {
                       // kiểm tra role
                       const {role} = decoded;
