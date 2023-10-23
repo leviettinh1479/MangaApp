@@ -1,4 +1,18 @@
-<!--  Body Wrapper -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+  <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
@@ -7,7 +21,7 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+            <img src="/assets/images/logos/dark-logo.svg" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -117,10 +131,11 @@
             <div class="d-flex">
               <div class="unlimited-access-title me-3">
                 <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
+                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank"
+                  class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
               </div>
               <div class="unlimited-access-img">
-                <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                <img src="/assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
               </div>
             </div>
           </div>
@@ -150,11 +165,12 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
+                class="btn btn-primary">Download Free</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -181,11 +197,72 @@
       <!--  Header End -->
       <div class="container-fluid">
         <div class="card">
+          <div class="card-body" style="display: flex; justify-content: space-between;">
+            {{#each mangaData}}
+            <img src="{{this.image}}" style="object-fit: cover; border-radius: 20px; box-shadow: 0 0 8px #111;"
+              width="30%" height="400" alt="Hình ảnh" />
+            <div style="width: 68%;">
+              <h1 style="color: #111;">{{this.name}}</h1>
+              <div style="display: flex;">
+                <div style="width: 30%;">
+                  <p style="font-size: 20px; color: #111; align-items: center; font-weight: bold;">
+                    <i class='bx bxs-user' style="font-size: 20px;"></i> Tác giả
+                  </p>
+                  <p style="font-size: 20px; color: #111; align-items: center; font-weight: bold;">
+                    <i class='bx bx-wifi' style="font-size: 20px;"></i> Tình trạng
+                  </p>
+                  <p style="font-size: 20px; color: #111; align-items: center; font-weight: bold;">
+                    <i class='bx bxs-like' style="font-size: 20px;"></i> Lượt thích
+                  </p>
+                  <p style="font-size: 20px; color: #111; align-items: center; font-weight: bold;">
+                    <i class='bx bxs-happy-heart-eyes' style="font-size: 20px;"></i> Lượt xem
+                  </p>
+                </div>
+                <div style="width: 70%;">
+                  <p style="font-size: 20px; color: #111;">{{this.author}}</p>
+                  <p style="font-size: 20px; color: #111;">Đang cập nhật</p>
+                  <p style="font-size: 20px; color: #111;">236</p>
+                  <p style="font-size: 20px; color: #111;">150,637</p>
+                </div>
+              </div>
+              <div>
+                <h3 style="color: #f18121;">
+                  <i class='bx bxs-info-circle'></i> Giới thiệu
+                </h3>
+                <p style="font-size: 16px; color: #111;">Truyện tranh The Strongest Virus được cập nhật nhanh và đầy đủ
+                  nhất tại TruyenQQ. Bạn đọc đừng quên để lại bình luận và chia sẻ, ủng hộ TruyenQQ ra các chương mới
+                  nhất của truyện The Strongest Virus.</p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
-            <p class="mb-0">This is a sample page </p>
+            <h3 style="color: #f18121;">
+              <i class='bx bxs-info-circle'></i> Danh sách chương
+            </h3>
+            {{#each chapterData}}
+            <div style="border-width: 3px; border-color: #f18121;">
+              <a href="http://localhost:3000/home/chapter/{{this._id}}">
+                <div style="display: flex; justify-content: space-between; border-width: 3px;">
+                  <div style="display: flex;">
+                    <p style="font-size: 16px; color: #111;">Tập {{this.chap}}:</p>
+                    <p style="font-size: 16px; color: #111; margin-left: 5px;">{{this.title}}</p>
+                  </div>
+                  <div>
+                    <p style="font-size: 16px; color: #111;">28/05/2021</p>
+                  </div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+      <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="/assets/js/sidebarmenu.js"></script>
+      <script src="/assets/js/app.min.js"></script>
+      <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>

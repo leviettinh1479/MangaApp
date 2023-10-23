@@ -105,19 +105,21 @@ mangaRouter.get('/home/detail/:id', async (req, res) => {
         author: manga.author,
         image: manga.image,
         status: manga.status,
-        
+
       };
     });
-    console.log("mangaData",mangaData);
-    const allChapter = await Chapter.find();
+    console.log("mangaData", mangaData);
+    const allChapter = await Chapter.find({mangaId: id});
     const chapterData = allChapter.map(chapter => {
       return {
         _id: chapter._id,
         name: chapter.name,
         title: chapter.title,
-        content: chapter.content
+        content: chapter.content,
+        chap: chapter.chap
       };
     });
+    console.log("allChapter", allChapter);
     if (!mangaData) {
       return res.status(404).json({ message: 'Không tìm thấy truyện!' });
     }
