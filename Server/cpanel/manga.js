@@ -1,13 +1,13 @@
 const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
-const Chapter = require("../models/chapter");
 const Rating = require("../models/rating");
 const { json } = require("body-parser");
 // Add manga
 mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   try {
     const { name, image, author, status, genre, rating, chapters } = req.body;
+
     const newManga = new Manga({
       name,
       image,
@@ -15,35 +15,50 @@ mangaRouter.post("/api/manga/addmanga", async (req, res) => {
       status,
       genre,
       rating,
-      chapters
+      chapters,
     });
 
-
     await newManga.save();
-
-    res.status(201).json({ message: 'Truyện đã được thêm thành công!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 //Get All
-mangaRouter.get('/home', async (req, res) => {
+mangaRouter.get("/home", async (req, res) => {
   try {
     const allManga = await Manga.find();
-    const mangaData = allManga.map(manga => {
+    const mangaData = allManga.map((manga) => {
       return {
         _id: manga._id,
         name: manga.name,
         author: manga.author,
-        image: manga.image
+        image: manga.image,
       };
     });
-    console.log(mangaData)
-    res.render('home', { mangaData });
+    res.render("home", { mangaData });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+//Màn hình update
+mangaRouter.get("/home/:id/update", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const manga = await Manga.findById(id);
+    // Thêm các dữ liệu cần thiết vào đây
+    const mangaData = {
+      _id: manga.id,
+      name: manga.name,
+      author: manga.author,
+      image: manga.image,
+      status: manga.status
+    };
+    res.render('updatemanga', { mangaData });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Rating manga
 mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
   try {
@@ -130,28 +145,38 @@ mangaRouter.get('/home/detail/:id', async (req, res) => {
 });
 
 // Delete manga
-mangaRouter.delete('/api/manga/:id', async (req, res) => {
+mangaRouter.delete("/home/:id/delete", async (req, res) => {
   try {
     const { id } = req.params;
-
+    
     await Manga.findByIdAndDelete(id);
+    console.log(`Deleting manga with id: ${id}`);
 
-    res.json({ message: 'Truyện đã được xóa thành công!' });
+    res.json({ status: "success", message: "Truyện đã được xóa thành công!" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-
 //Update manga
-mangaRouter.put('/api/manga/:id', async (req, res) => {
+mangaRouter.post("/home/:id/update", async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedMangaData = req.body;
+    const { name, author, image, status } = req.body;
 
-    const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, { new: true });
+    const updatedMangaData = {
+      name,
+      author,
+      image,
+      status,
+    };
 
-    res.json(updatedManga);
+    const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, {
+      new: true,
+    });
+    console.log(updatedManga);
+
+    res.render('updatemanga', { updatedManga });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
