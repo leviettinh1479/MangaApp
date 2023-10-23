@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 
-const favoriteSchema = mongoose.Schema({
-  manga: {
-    require: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Manga'
-  },
+const historySchema = mongoose.Schema({
   user: {
     require: true,
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  chapter: {
+    require: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Chapter'
+  },
   createdAt: { type: Date, default: Date.now }
 });
 
-const Favorite = mongoose.model('Favorite', favoriteSchema);
+const History = mongoose.model('History', historySchema);
 
-module.exports = Favorite;
+module.exports = History;

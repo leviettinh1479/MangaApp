@@ -40,12 +40,7 @@ const userSchema = mongoose.Schema({
   status: {
     type: Number,
     default: 0,
-  },
-  favorite: [
-    {
-
-    },
-  ],
+  }
 });
 
 const User = mongoose.model("User", userSchema);
