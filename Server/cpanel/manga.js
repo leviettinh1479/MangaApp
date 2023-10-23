@@ -1,6 +1,7 @@
 const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
+const Chapter = require("../models/chapter");
 const Rating = require("../models/rating");
 const { json } = require("body-parser");
 
@@ -165,7 +166,7 @@ mangaRouter.post("/home/:id/update", async (req, res) => {
   try {
     const { id } = req.params;
     const { name, author, image, status } = req.body;
-
+    
     const updatedMangaData = {
       name,
       author,
