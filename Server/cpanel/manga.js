@@ -121,6 +121,7 @@ mangaRouter.get('/home/detail/:id', async (req, res) => {
     mangaArray.push(mangaID);
     const mangaData = mangaArray.map(manga => {
       return {
+        _id: manga._id,
         name: manga.name,
         author: manga.author,
         image: manga.image,
@@ -180,7 +181,7 @@ mangaRouter.post("/home/:id/update", async (req, res) => {
     const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, {
       new: true,
     });
-    console.log(updatedManga);
+    
 
     res.render('updatemanga', { updatedManga });
   } catch (error) {

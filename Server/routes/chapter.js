@@ -49,7 +49,6 @@ chapterRouter.get('/api/chapter/getall', async (req, res) => {
 chapterRouter.delete('/api/chapter/:id', async (req, res) => {
   try {
     const deletedChapter = await Chapter.findByIdAndDelete(req.params.id);
-    // Remove the deleted chapter's ID from the corresponding Manga's chapters array
     await Manga.findByIdAndUpdate(deletedChapter.mangaId, { $pull: { chapters: deletedChapter._id } });
     res.json({ success: true, deletedChapter });
   } catch (error) {
