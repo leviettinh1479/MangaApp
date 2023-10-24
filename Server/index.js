@@ -14,6 +14,7 @@ const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
 const favoriteRouter = require("./routes/favorite");
 const mangaCpanel = require("./cpanel/manga");
+const genreCpanel = require("./cpanel/genre");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -42,6 +43,7 @@ app.use("/api/favorite", favoriteRouter);
 app.use(genreRouter);
 app.use(reportRouter);
 app.use(mangaCpanel);
+app.use(genreCpanel);
 
 
 
