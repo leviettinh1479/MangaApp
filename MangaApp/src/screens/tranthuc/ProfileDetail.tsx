@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, Modal, TextInput, Button } from 'react-native'
 import React, { useState } from 'react';
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 import Icon_2 from 'react-native-vector-icons/FontAwesome6';
@@ -6,12 +6,37 @@ import Icon_3 from 'react-native-vector-icons/MaterialIcons';
 import Icon_4 from 'react-native-vector-icons/FontAwesome';
 import Icon_5 from 'react-native-vector-icons/AntDesign';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import { Alert } from 'react-native';
 
 const ProfileDetail = () => {
     const [avatar, setAvatar] = useState(null);
 
     const handleChooseAvatar = () => {
     };
+
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [name, setName] = useState('John Doe');
+    const [newName, setNewName] = useState('');
+
+    const handleSave = () => {
+        setName(newName);
+        setModalVisible(false);
+    };
+
+    const [isEmailModalVisible, setEmailModalVisible] = useState(false);
+    const [email, setEmail] = useState('john.doe@example.com');
+    const [newEmail, setNewEmail] = useState('');
+
+    const handleEmailSave = () => {
+        if (newEmail.endsWith('@gmail.com')) {
+            setEmail(newEmail);
+        } else {
+            Alert.alert('Email không hợp lệ', 'Vui lòng nhập một email với đuôi @gmail.com');
+            return;
+        }
+        setEmailModalVisible(false);
+    };
+
     return (
         <View style={styles.Container}>
             <View style={styles.View_Container}>
@@ -43,12 +68,12 @@ const ProfileDetail = () => {
                 <Text style={styles.Text_Avatar}>Change profile picture</Text>
             </View>
             <View style={styles.Duong_Line}></View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Text style={styles.Text_YourName}>Your Name</Text>
                 <View style={styles.View_Container1}>
                     <View style={styles.View_Back2}>
                         <View style={styles.View_Text_Profile}>
-                            <Text style={styles.Text_Back}>John Doe</Text>
+                            <Text style={styles.Text_Back}>{name}</Text>
                         </View>
                     </View>
                     <View>
@@ -56,12 +81,35 @@ const ProfileDetail = () => {
                     </View>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacity}>
+            <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.button_text1}>Chỉnh sửa tên</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Nhập tên mới"
+                            onChangeText={(text) => setNewName(text)}
+                            value={newName}
+                        />
+                        {/* <Button title="Lưu" onPress={handleSave} /> */}
+                        {/* <Button title="Hủy" onPress={() => setModalVisible(false)} /> */}
+                        <TouchableOpacity onPress={handleSave} style={styles.button}>
+                            <Text style={styles.button_text}>Lưu</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.button}>
+                            <Text style={styles.button_text}>Hủy</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            <TouchableOpacity onPress={() => setEmailModalVisible(true)}>
                 <Text style={styles.Text_YourName}>Email</Text>
                 <View style={styles.View_Container1}>
                     <View style={styles.View_Back2}>
                         <View style={styles.View_Text_Profile}>
-                            <Text style={styles.Text_Back}>john.doe@example.com</Text>
+                            <Text style={styles.Text_Back}>{email}</Text>
                         </View>
                     </View>
                     <View>
@@ -69,6 +117,26 @@ const ProfileDetail = () => {
                     </View>
                 </View>
             </TouchableOpacity>
+            <Modal animationType="slide" transparent={true} visible={isEmailModalVisible}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.button_text1}>Chỉnh sửa Email</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Nhập Email mới"
+                            onChangeText={(text) => setNewEmail(text)}
+                            value={newEmail}
+                        />
+                        <TouchableOpacity onPress={handleEmailSave} style={styles.button}>
+                            <Text style={styles.button_text}>Lưu</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setEmailModalVisible(false)} style={styles.button}>
+                            <Text style={styles.button_text}>Hủy</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
             <TouchableOpacity style={styles.TouchableOpacity}>
                 <Text style={styles.Text_YourName}>Date of Birth</Text>
                 <View style={styles.View_Container1}>
@@ -82,6 +150,7 @@ const ProfileDetail = () => {
                     </View>
                 </View>
             </TouchableOpacity>
+            
         </View>
     )
 }
@@ -229,7 +298,53 @@ const styles = StyleSheet.create({
         color: '#000000',
         marginBottom: 10,
     },
-    TouchableOpacity:{
+    TouchableOpacity: {
         marginTop: 24,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        width: 350,
+        padding: 20,
+        borderRadius: 10,
+        elevation: 5,
+    },
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        marginTop: 10,
+        paddingLeft: 5,
+        fontSize: 16,
+        fontFamily: FONT_FAMILY.quicksand_regular
+    },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'blue',
+        height: 40,
+        marginTop: 10,
+    },
+    button_text: {
+        color: 'white',
+        backgroundColor: '#FF97A3',
+        width: 150,
+        height: 40,
+        textAlign: 'center',
+        paddingTop: 10,
+        borderRadius: 10,
+        fontSize: 16,
+        fontFamily: FONT_FAMILY.quicksand_regular
+    },
+    button_text1: {
+        fontSize: 16,
+        textAlign: 'center',
+        fontFamily: FONT_FAMILY.quicksand_bold
     }
 })

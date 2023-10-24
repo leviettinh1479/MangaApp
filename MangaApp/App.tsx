@@ -15,8 +15,8 @@ const App = () => {
         //     <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
         //   </Stack.Navigator>
         // </NavigationContainer>
-        <Account/>
-        // <ProfileDetail/>
+        //<Account/>
+        <ProfileDetail/>
     )
 }
 export default App;
