@@ -17,6 +17,7 @@ const chapterCpanel = require("./cpanel/chapter");
 const userRoute = require('./routes/auth');
 const historyRouter = require('./routes/history');
 const userCpanelRoute = require("./cpanel/auth");
+const genreCpanel = require("./cpanel/genre");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -48,6 +49,7 @@ app.use(genreRouter);
 app.use(reportRouter);
 app.use(mangaCpanel);
 app.use(chapterCpanel);
+app.use(genreCpanel);
 
 // http://localhost:3000/
 app.use("/", userCpanelRoute);

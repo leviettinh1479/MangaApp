@@ -208,6 +208,16 @@
                       <option value="Đã hoàn thành">Đã hoàn thành</option>
                     </select>
                   </div>
+                  <div class="mb-3">
+                    <label for="genre" class="form-label">Thể loại</label>
+                    
+                    <select id="genre" name="genre" class="form-select" multiple >
+                      {{#each genreData}}
+                      <option value="{{this._id}}">{{this.name}}</option>
+                       {{/each}}
+                    </select>
+                   
+                  </div>
                   <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>

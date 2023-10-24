@@ -3,6 +3,7 @@ const mangaRouter = express.Router();
 const Manga = require("../models/manga");
 const Chapter = require("../models/chapter");
 const Rating = require("../models/rating");
+const Genre = require("../models/genre");
 const { json } = require("body-parser");
 
 const auth = require('../middlewares/auth');
@@ -61,6 +62,7 @@ mangaRouter.get("/home/:id/update", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+//Get all genres 
 
 //Rating manga
 mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
@@ -165,13 +167,14 @@ mangaRouter.delete("/home/:id/delete", async (req, res) => {
 mangaRouter.post("/home/:id/update", async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, author, image, status } = req.body;
-    
+    const { name, author, image, status ,genre} = req.body;
+
     const updatedMangaData = {
       name,
       author,
       image,
       status,
+      genre,
     };
 
     const updatedManga = await Manga.findByIdAndUpdate(id, updatedMangaData, {

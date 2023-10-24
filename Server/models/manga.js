@@ -19,7 +19,7 @@ const mangaSchema = mongoose.Schema({
     type: String,
     default: "Đang tiến hành",
   },
-  genre: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Genre' }], // Sử dụng ObjectId để tham chiếu đến Genre
+  genre: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Genre' }], 
   rating: [ratingSchema],
   chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapter' }]
 });
