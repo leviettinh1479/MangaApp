@@ -1,9 +1,8 @@
-<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="/assets/css/styles.min.css" />
@@ -128,12 +127,13 @@
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
             <div class="d-flex">
               <div class="unlimited-access-title me-3">
-                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to
+                  pro</h6>
                 <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank"
                   class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
               </div>
               <div class="unlimited-access-img">
-                <img src="/assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                <img src="/assets/images/backgrounds/rocket.png" alt="" class="img-fluid" />
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -200,24 +200,30 @@
               <h5 class="card-title fw-semibold mb-4">Update manga</h5>
               <div class="card">
                 <div class="card-body">
-                  <form action="/home/{{mangaData._id}}/update" method="POST"> 
+                  <form action="/home/{{mangaData._id}}/update" method="POST">
                     <div class="mb-3">
                       <label for="name" class="form-label">Name</label>
-                      <input type="text" id="name" name="name" value="{{mangaData.name}}" class="form-control">
+                      <input type="text" id="name" name="name" value="{{mangaData.name}}" class="form-control" />
                     </div>
                     <div class="mb-3">
                       <label for="author" class="form-label">Author</label>
-                      <input type="text" id="author" name="author" value="{{mangaData.author}}" class="form-control">
+                      <input type="text" id="author" name="author" value="{{mangaData.author}}" class="form-control" />
                     </div>
                     <div class="mb-3">
                       <label for="image" class="form-label">Image link address</label>
-                      <input type="text" id="image" name="image" value="{{mangaData.image}}" class="form-control">
+                      <input type="text" id="image" name="image" value="{{mangaData.image}}" class="form-control" />
                     </div>
                     <div class="mb-3">
                       <label for="status" class="form-label">Status</label>
                       <select id="status" name="status" value="{{mangaData.status}}" class="form-select">
                         <option value="Đang tiến hành">Đang tiến hành</option>
                         <option value="Đã hoàn thành">Đã hoàn thành</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="genre" class="form-label">Thể loại</label>
+                      <select id="genre" name="genre" value="{{mangaData.genre}}" class="form-select" multiple>
+
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
@@ -230,15 +236,44 @@
       </div>
     </div>
   </div>
- <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script
-      src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"
-    ></script>
-    <script src="/assets/js/sidebarmenu.js"></script>
-    <script src="/assets/js/app.min.js"></script>
-    <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="/assets/js/dashboard.js"></script>
+  <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/sidebarmenu.js"></script>
+  <script src="/assets/js/app.min.js"></script>
+  <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var status = "{{mangaData.status}}";
+      // Lấy giá trị của status từ dữ liệu của bạn // Lấy ra các option trong
+      thẻ select var options = document.getElementById('status').options; for
+        (var i = 0; i < options.length; i++) {
+          if (options[i].value === status) {
+            options[i].selected = true; // Nếu value của option trùng với status thì
+      set selected = true break; // Đã tìm thấy và set selected, thoát vòng lặp
+          }
+      }
+    });
+  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    fetch('/api/genre/getall') 
+      .then(response => response.json())
+      .then(data => {
+        const genreSelect = document.getElementById('genre');
+        
+        data.forEach(genre => {
+          const option = document.createElement('option');
+          option.value = genre._id; 
+          option.text = genre.name; 
+          genreSelect.add(option);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  });
+</script>
 </body>
 
 </html>
