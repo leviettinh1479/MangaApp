@@ -2,13 +2,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
 const { engine } = require("express-handlebars");
 const path = require("path");
 // IMPORTS FROM OTHER FILES
 var userRoute = require("./routes/auth");
 const mangaRouter = require("./routes/manga");
-const chapterRouter = require("./routes/chapter");
+const mangaRouter2 = require("./routes/chapter");
 const genreRouter = require("./routes/genre");
 const reportRouter = require("./routes/report");
 const favoriteRouter = require("./routes/favorite");
@@ -21,25 +20,24 @@ const DB =
 
 //HTTP logger
 app.use(morgan("combined"));
-//Engine
+//Templates engine
 app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
-app.use('/assets', express.static('assets'));
 app.set("views", path.join(__dirname, "views"));
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
 
 // Middleware
 app.use(express.json());
 app.use(mangaRouter);
-app.use(chapterRouter);
+app.use(mangaRouter2);
+
+// Middleware
 app.use(express.json());
+// http://localhost:3000/api/user
 app.use("/api/user", userRoute);
+// http://localhost:3000/api/favorite
 app.use("/api/favorite", favoriteRouter);
 app.use(genreRouter);
 app.use(reportRouter);
-
-
 app.get("/", (req, res) => {
   return res.render("home");
 });

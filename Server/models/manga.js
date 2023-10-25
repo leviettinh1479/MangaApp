@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const ratingSchema = require("./rating");
-const Genre = require("./genre"); // Import schema Genre
-
 const mangaSchema = mongoose.Schema({
   name: {
     type: String,
@@ -19,9 +17,14 @@ const mangaSchema = mongoose.Schema({
     type: String,
     default: "Đang tiến hành",
   },
-  genre: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Genre' }], // Sử dụng ObjectId để tham chiếu đến Genre
+  genre: [String],
   rating: [ratingSchema],
-  chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapter' }]
+  chapters: [
+    {
+      type: mongoose.Schema.Types.Mixed,
+      ref: "Chapter",
+    },
+  ],
 });
 
 const Manga = mongoose.model("Manga", mangaSchema);

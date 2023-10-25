@@ -3,13 +3,14 @@ const mongoose = require("mongoose");
 const reportSchema = new mongoose.Schema({
   name: String,
   description: String,
-  chapter: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Chapter",
-  },
+  chapter: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  manga: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Manga",
   },
 });
 

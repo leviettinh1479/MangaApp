@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomNavigations from './src/navigators/BottomNavigations';
 import DetailScreen from './src/screens/DetailScreen';
-
+import Account from './src/screens/tranthuc/Account';
+import ProfileDetail from './src/screens/tranthuc/ProfileDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,15 +16,13 @@ const App = () => {
           <Stack.Screen name="Bottom" component={BottomNavigations} options={{animation:'default'}} />             
         </Stack.Navigator>
       </NavigationContainer>
-      
     )
-  
 }
-export default  App;
+export default App;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    container: {
+        flex: 1,
+    },
 
 })
