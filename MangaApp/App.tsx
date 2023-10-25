@@ -6,6 +6,9 @@ import BottomNavigations from './src/navigators/BottomNavigations';
 import DetailScreen from './src/screens/DetailScreen';
 import Account from './src/screens/tranthuc/Account';
 import ProfileDetail from './src/screens/tranthuc/ProfileDetail';
+import ChapterDetailScreen from './src/screens/ChapterDetailScreen';
+import ItemChapImage from './src/components/item/ItemChapImage';
+
 
 const Stack = createNativeStackNavigator();
 
