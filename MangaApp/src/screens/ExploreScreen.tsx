@@ -9,6 +9,7 @@ import ItemManga from '../components/item/ItemManga';
 import {data_ItemExample} from '../components/item/Data'
 import { FONT_FAMILY } from '../theme/theme';
 import SearchComponent from '../components/SearchComponent';
+import { useNavigation } from '@react-navigation/native';
 
 type ItemProps = {
   title: string
@@ -25,6 +26,7 @@ const ItemTopics = ({title}:ItemProps) => {
   )
   }
 const ExploreScreen = ({ navigation}:ScreenAProps) => {
+  navigation = useNavigation();
   const [data, setData] = useState(['Món ăn 1', 'Món ăn 2', 'Món ăn 3', 'Món ăn 4']);
   const [filteredData, setFilteredData] = useState(data);
 
@@ -72,7 +74,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                       Fiction
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen',{ data: "Fiction" })}>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
                         <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all
@@ -95,7 +97,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                       Culture & Society
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen',{ data: "Culture & Society" })}>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
                         <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all
@@ -118,7 +120,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                     Life style
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen',{ data: "Life style" })}>
                       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
                         <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                           Show all

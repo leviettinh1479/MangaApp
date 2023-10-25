@@ -6,17 +6,20 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {data_ItemExample} from '../components/item/Data'
 import ItemProductList from '../components/item/ItemProductList';
 import { FONT_FAMILY } from '../theme/theme';
-
+import { useRoute } from '@react-navigation/native';
 
 interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
+   
   }
 const ProductListScreen = ({ navigation}:ScreenAProps) => {
+  const route = useRoute();
+  const receivedData = route.params?.data;
   return (
       <SafeAreaView style={{backgroundColor:'white',paddingHorizontal:16,paddingTop:7,flex:1,paddingBottom:10}}>
         <View style={{flexDirection:'row',alignItems:'center'}}>
             <Ionicons name="chevron-back" color={'#000000'}  size={24} style={{paddingTop:2}} onPress={()=> navigation.goBack()}/>
-            <Text style={{fontSize:22 , fontFamily:FONT_FAMILY.quicksand_medium, color:'#000000',marginLeft:5}}>Fiction</Text>
+            <Text style={{fontSize:22 , fontFamily:FONT_FAMILY.quicksand_medium, color:'#000000',marginLeft:5}}>{receivedData}</Text>
         </View>
       {/* fiction */}
         <View style={{flexDirection:'column',justifyContent:'flex-start'}}>

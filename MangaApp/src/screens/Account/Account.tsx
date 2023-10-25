@@ -6,12 +6,16 @@ import Icon_3 from 'react-native-vector-icons/MaterialIcons';
 import Icon_4 from 'react-native-vector-icons/FontAwesome';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-const Account = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const Account = ({ navigation}:ScreenAProps) => {
     return (
         <View style={styles.Container}>
             <View style={styles.View_Container}>
                 <View >
-                    <TouchableOpacity style={styles.View_Back1}>
+                    <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.navigate('HomeScreen')}>
                         <View>
                             <Icon_1 style={{ color: '#000000' }} name="chevron-back" size={24} color="white" />
                         </View>
@@ -43,7 +47,7 @@ const Account = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.Duong_Line}></View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ProfileDetail')}>
                     <View style={styles.View_Container}>
                         <View style={styles.View_Back2}>
                             <View style={styles.View_User}>

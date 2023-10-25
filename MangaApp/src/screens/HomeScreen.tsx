@@ -6,13 +6,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import ItemManga from '../components/item/ItemManga';
 import { FONT_FAMILY } from '../theme/theme';
+import { useNavigation } from '@react-navigation/native';
 
 type ItemProps = {
   image: string
   nameManga: string
 };
-
+interface ScreenAProps {
+  navigation: any; // or use the correct navigation type from @types/react-navigation
+}
 const ItemMangaHot = ({image, nameManga}:ItemProps) => {
+  
 return (
       <TouchableOpacity>
         <View style={{flexDirection:'column', justifyContent:'center',paddingHorizontal:20}}>
@@ -23,7 +27,8 @@ return (
 )
 }
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation}:ScreenAProps)=> {
+  navigation = useNavigation();
   return (
     <SafeAreaView style={{backgroundColor : 'white' , paddingHorizontal:16 , paddingTop:8}}>
      <ScrollView showsVerticalScrollIndicator = {false}> 
@@ -102,7 +107,7 @@ const HomeScreen = () => {
               <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                 For you
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen',{ data: "For you" })}>
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
                   <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                     Show all
@@ -114,7 +119,7 @@ const HomeScreen = () => {
             <FlatList   style={{ flex: 1}}
               data={data_ItemExample}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+              renderItem={({item}) => <ItemManga  onpress={()=> navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
               
@@ -126,7 +131,7 @@ const HomeScreen = () => {
               <Text style={{fontSize:20,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                 Trending
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('ProductListScreen',{ data: "Trending" })}>
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginRight:2}}>
                   <Text style={{marginRight:5,fontSize:12,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold}}>
                     Show all
@@ -138,7 +143,7 @@ const HomeScreen = () => {
             <FlatList   style={{ flex: 1}}
               data={data_ItemExample}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+              renderItem={({item}) => <ItemManga onpress={()=> navigation.navigate("DetailScreen")}  image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
             />

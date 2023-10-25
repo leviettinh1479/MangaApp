@@ -8,7 +8,11 @@ import Icon_5 from 'react-native-vector-icons/AntDesign';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
 import { Alert } from 'react-native';
 
-const ProfileDetail = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const ProfileDetail =({ navigation}:ScreenAProps)=> {
     const [avatar, setAvatar] = useState(null);
 
     const handleChooseAvatar = () => {
@@ -63,7 +67,7 @@ const ProfileDetail = () => {
                 <View >
                     <TouchableOpacity style={styles.View_Back1}>
                         <View>
-                            <Icon_1 name="chevron-back" size={24} color="#000000" />
+                            <Icon_1 name="chevron-back" size={24} color="#000000" onPress={()=> navigation.goBack()}/>
                         </View>
                         <View >
                             <Text style={styles.Text_Back}>Back</Text>

@@ -5,8 +5,18 @@ import Ionicons from 'react-native-vector-icons/MaterialIcons';
 import { FONT_FAMILY } from '../theme/theme';
 import ItemChapImage from '../components/item/ItemChapImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const ChapterDetailScreen = () => {
+import { useFocusEffect } from "@react-navigation/native";
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const ChapterDetailScreen = ({ navigation}:ScreenAProps) => {
+    useFocusEffect(
+        React.useCallback(() => {
+          navigation.setOptions({
+            tabBarVisible: false, // Ẩn thanh điều hướng dưới cùng
+          });
+        }, [])
+      );
 
     const [Chapter, setChapter] = React.useState("");
 
@@ -25,7 +35,8 @@ const ChapterDetailScreen = () => {
                     <Ionicons
                         name="arrow-back-ios"
                         size={20}
-                        color={'black'}
+                        color={'black'} 
+                        onPress={()=> navigation.goBack()}
                     />
                     <Text style={styles.txtNameManga}>Đại Chiến người khổng lồ - Chapter 139</Text>
                 </View>

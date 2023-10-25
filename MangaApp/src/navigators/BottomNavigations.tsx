@@ -12,6 +12,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import ExploreNavigationScreen from './ExploreNavigations';
+import Account from '../screens/Account/Account';
+import AccountNavigationScreen from './AccountNavigations';
+import HomeNavigationScreen from './HomeNavigations';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigations = () => {
@@ -28,7 +31,7 @@ const BottomNavigations = () => {
       <Tab.Screen
         
         name="Trang chủ"
-        component={HomeScreen}
+        component={HomeNavigationScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
@@ -103,7 +106,7 @@ const BottomNavigations = () => {
       />
       <Tab.Screen
         name="Tài khoản"
-        component={UserAccountScreen}
+        component={AccountNavigationScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (

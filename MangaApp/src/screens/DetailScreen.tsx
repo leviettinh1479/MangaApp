@@ -49,7 +49,7 @@ const ItemTopics = ({title}:ItemProps) => {
       </TouchableOpacity>
     )
     }
-const UserAccountScreen = () => {
+const DetailScreen = ({ navigation}:ScreenAProps) => {
   return (
     <SafeAreaView style={{backgroundColor:'white'}}>
       
@@ -57,10 +57,10 @@ const UserAccountScreen = () => {
             <ImageBackground  style={{height:280,flexDirection:'column',justifyContent:'flex-end',alignItems:'center',paddingHorizontal:16}} blurRadius={5}  source={require('../assets/images/testimage.jpg')}>
               <Image  style={{position:'absolute',height:160,width:160}}  resizeMode='contain' source={require('../assets/images/testimage.jpg')}/>
               <View style={{backgroundColor:'#FF97A3',width:'100%',height:56,borderRadius:8,padding:8,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                <View style={{flexDirection:'row',alignItems:'center'}}>
+                <TouchableOpacity  style={{flexDirection:'row',alignItems:'center'}} onPress={() => navigation.navigate('ChapterDetailScreen')}>
                   <Feather name="book" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
                   <Text style={{fontSize:16,fontFamily:FONT_FAMILY.quicksand_bold,marginLeft:10,color:'#000000'}}>Read Nexus</Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{width:1,height:20,backgroundColor:'#000000'}}></View>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                   <SimpleLineIcons name="earphones" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
@@ -68,7 +68,7 @@ const UserAccountScreen = () => {
                 </View>
               </View>
             </ImageBackground>
-            <View  style={{flexDirection:'column',paddingHorizontal:16,marginBottom:20}} >
+            <View  style={{flexDirection:'column',paddingHorizontal:16,marginBottom:10}} >
               <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:24}}>
                 <Text numberOfLines={2} style={{fontSize:22,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
                   Project Management for the Unofficial Proect Manager
@@ -158,7 +158,7 @@ const UserAccountScreen = () => {
   )
 }
 
-export default UserAccountScreen
+export default DetailScreen
 
 const styles = StyleSheet.create({})
 type ItemTopics ={

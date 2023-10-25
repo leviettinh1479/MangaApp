@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomNavigations from './src/navigators/BottomNavigations';
 import DetailScreen from './src/screens/DetailScreen';
-import Account from './src/screens/tranthuc/Account';
-import ProfileDetail from './src/screens/tranthuc/ProfileDetail';
+import Account from './src/screens/Account/Account';
+import ProfileDetail from './src/screens/Account/ProfileDetail';
 import ChapterDetailScreen from './src/screens/ChapterDetailScreen';
 import ItemChapImage from './src/components/item/ItemChapImage';
 
