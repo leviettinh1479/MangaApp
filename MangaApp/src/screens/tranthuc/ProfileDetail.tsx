@@ -37,6 +37,26 @@ const ProfileDetail = () => {
         setEmailModalVisible(false);
     };
 
+    const [isDobModalVisible, setDobModalVisible] = useState(false);
+    const [dob, setDob] = useState('23-12-1972');
+    const [newDay, setNewDay] = useState('');
+    const [newMonth, setNewMonth] = useState('');
+    const [newYear, setNewYear] = useState('');
+
+    const handleDobSave = () => {
+        const isValidDay = parseInt(newDay) >= 1 && parseInt(newDay) <= 31;
+        const isValidMonth = parseInt(newMonth) >= 1 && parseInt(newMonth) <= 12;
+        const isValidYear = parseInt(newYear) >= 1900 && parseInt(newYear) <= new Date().getFullYear();
+
+        if (isValidDay && isValidMonth && isValidYear) {
+            const newDob = `${newDay}-${newMonth}-${newYear}`;
+            setDob(newDob);
+            setDobModalVisible(false);
+        } else {
+            Alert.alert('Ngày, tháng, năm không hợp lệ', 'Vui lòng nhập ngày (1-31), tháng (1-12) và năm hợp lệ (từ 1900 đến năm hiện tại)');
+        }
+    };
+
     return (
         <View style={styles.Container}>
             <View style={styles.View_Container}>
@@ -91,8 +111,6 @@ const ProfileDetail = () => {
                             onChangeText={(text) => setNewName(text)}
                             value={newName}
                         />
-                        {/* <Button title="Lưu" onPress={handleSave} /> */}
-                        {/* <Button title="Hủy" onPress={() => setModalVisible(false)} /> */}
                         <TouchableOpacity onPress={handleSave} style={styles.button}>
                             <Text style={styles.button_text}>Lưu</Text>
                         </TouchableOpacity>
@@ -137,12 +155,12 @@ const ProfileDetail = () => {
                 </View>
             </Modal>
 
-            <TouchableOpacity style={styles.TouchableOpacity}>
+            <TouchableOpacity onPress={() => setDobModalVisible(true)} style={styles.TouchableOpacity}>
                 <Text style={styles.Text_YourName}>Date of Birth</Text>
                 <View style={styles.View_Container1}>
                     <View style={styles.View_Back2}>
                         <View style={styles.View_Text_Profile}>
-                            <Text style={styles.Text_Back}>23 December, 1972</Text>
+                            <Text style={styles.Text_Back}>{dob}</Text>
                         </View>
                     </View>
                     <View>
@@ -150,7 +168,37 @@ const ProfileDetail = () => {
                     </View>
                 </View>
             </TouchableOpacity>
-            
+            <Modal animationType="slide" transparent={true} visible={isDobModalVisible}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.button_text1}>Chỉnh sửa Date of Birth</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Ngày (1-31)"
+                            onChangeText={(text) => setNewDay(text)}
+                            value={newDay}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Tháng (1-12)"
+                            onChangeText={(text) => setNewMonth(text)}
+                            value={newMonth}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Năm (1900-2023)"
+                            onChangeText={(text) => setNewYear(text)}
+                            value={newYear}
+                        />
+                        <TouchableOpacity onPress={handleDobSave} style={styles.button}>
+                            <Text style={styles.button_text}>Lưu</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setDobModalVisible(false)} style={styles.button}>
+                            <Text style={styles.button_text}>Hủy</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     )
 }
