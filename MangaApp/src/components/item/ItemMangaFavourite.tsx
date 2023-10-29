@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native'
 import React from 'react'
+import { ICON_VIEW } from '../../assets/images';
 
+const WIDTH = Dimensions.get('window').width;
 
 interface Item {
     image: string;
     nameManga: string;
     nameAuthor: string;
     view: number;
+    description: string;
     onpress?: () => void
 }
 
@@ -15,27 +18,34 @@ const ItemManga: React.FC<Item> = ({
     nameManga,
     nameAuthor,
     view,
+    description,
     onpress
 }) => {
     return (
         <TouchableOpacity onPress={onpress}>
             <View style={styles.container}>
                 <View style={styles.viewImage}>
-                    <Image style={styles.image} resizeMode='contain' source={{uri: image}} />
+                    <Image style={styles.image} resizeMode='cover' source={{ uri: image }} />
                 </View>
+
                 <View style={styles.viewNameManga}>
                     <Text numberOfLines={1} style={styles.txtNameManga}>{nameManga}</Text>
                 </View>
+
                 <View style={styles.viewNameAuthor}>
                     <Text numberOfLines={1} style={styles.txtNameAuthor}>{nameAuthor}</Text>
                 </View>
+
+                <View style={styles.viewDescribe}>
+                    <Text numberOfLines={1} style={styles.txtDescribe}>{description}</Text>
+                </View>
+
                 <View style={styles.viewView}>
-                    <Image style={styles.imageview} resizeMode='contain' source={require('../../assets/images/ViewImage.png')} />
+                    <Image style={styles.imageview} resizeMode='contain' source={ICON_VIEW} />
                     <Text numberOfLines={1} style={styles.txtView}>{view}</Text>
                 </View>
             </View>
-            
-        </TouchableOpacity>
+        </TouchableOpacity >
     )
 }
 
@@ -44,46 +54,44 @@ export default ItemManga
 
 const styles = StyleSheet.create({
     container: {
-        width: 128,
-        height: 'auto',
-        borderRadius: 10
-        
+        flex: 1,
+        width: WIDTH / 2 - 20,
+        marginVertical: 8,
     },
     viewImage: {
-        
-        shadowColor: "#000000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.17,
-        shadowRadius: 3.05,
-        elevation: 4
-        
     },
     image: {
-        width: 128,
-        height: 184,
+        width: WIDTH / 2 - 20,
+        height: 250,
     },
     viewNameManga: {
         justifyContent: 'center',
         alignContent: 'center',
-        marginHorizontal: 3
+        marginTop: 16
     },
     txtNameManga: {
         color: '#000000',
         fontSize: 16,
-        fontFamily: 'Quicksand-Regular',
+        fontFamily: 'Quicksand-SemiBold',
     },
     viewNameAuthor: {
         justifyContent: 'center',
         alignContent: 'center',
-        marginTop: 2,
-        marginHorizontal: 3
+        marginTop: 4,
     },
     txtNameAuthor: {
         color: '#000000',
         fontSize: 14,
+        fontFamily: 'Quicksand-Regular',
+    },
+    viewDescribe: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: 8
+    },
+    txtDescribe: {
+        color: '#000000',
+        fontSize: 11,
         fontFamily: 'Quicksand-Regular',
     },
     viewView: {
@@ -91,15 +99,14 @@ const styles = StyleSheet.create({
         marginTop: 8,
         alignContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 3
     },
     imageview: {
-        width: 20,
-        height: 20
+        width: 18,
+        height: 18
     },
     txtView: {
         color: '#000000',
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Quicksand-Regular',
         marginLeft: 4
     }

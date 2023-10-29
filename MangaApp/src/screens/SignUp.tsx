@@ -20,7 +20,7 @@ const SignUp = () => {
 
     const bold1 = "Terms of Service";
     const bold2 = "Privacy Policy";
-    const text = "By selecting Create Account below, I agree to\nTerms of Service & Privacy Policy";
+    const text = "By selecting Create Account below, I agree to \nTerms of Service & Privacy Policy";
     const boldTexts = [bold1, bold2];
     const regex = new RegExp(`(${boldTexts.join('|')})`, 'gi');
 
@@ -110,7 +110,13 @@ const SignUp = () => {
                         <Text style={styles.titlemini}>
                             Already have an account?
                         </Text>
-                        <Text style={[styles.titlemini, { fontWeight: 'bold' }]} onPress={goLogin}>
+                        <Text style={[{
+                            letterSpacing: 0.5,
+                            fontSize: 14,
+                            color: COLORS.White,
+                            fontFamily: FONT_FAMILY.quicksand_bold,
+                            alignSelf: 'stretch'
+                        }]} onPress={goLogin}>
                             Login
                         </Text>
                     </View>
@@ -206,6 +212,7 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     styleTextInput: {
+        color: COLORS.Black,
         fontFamily: FONT_FAMILY.quicksand_regular,
         display: 'flex',
         width: '100%',

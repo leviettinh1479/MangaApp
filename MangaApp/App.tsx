@@ -6,6 +6,7 @@ import BottomNavigations from './src/navigators/BottomNavigations';
 import Genre from './src/screens/Genre';
 import SignUp from './src/screens/SignUp';
 import ForgotPassword_1 from './src/screens/ForgotPassword_1';
+import MyLibraryScreen from './src/screens/MyLibraryScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,9 +18,10 @@ const App = () => {
         //         <Stack.Screen name="Bottom" component={BottomNavigations} options={{ animation: 'default' }} />
         //     </Stack.Navigator>
         // </NavigationContainer>
-        <Genre/>
+        // <Genre/>
         // <SignUp/>
-        // <ForgotPassword_1/>
+        // <ForgotPassword_1/>  
+        <MyLibraryScreen />
     )
 
 }

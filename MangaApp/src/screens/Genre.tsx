@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
         left: 13,
     },
     blur: {
-        width: '94%',
+        width: 'auto',
         display: 'flex',
         flex: 1,
         // backgroundColor: COLORS.GRAY_BG,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 'auto',
         paddingHorizontal: 12,
-        paddingVertical: 12,
+        paddingVertical: 10,
         borderRadius: 20,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
         color: COLORS.White,
         fontFamily: FONT_FAMILY.quicksand_regular,
         alignSelf: 'stretch',
-        marginLeft: 8,
+        // marginLeft: 8,
     },
     styleImage: {
         marginStart: 4,

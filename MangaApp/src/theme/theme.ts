@@ -42,6 +42,7 @@ interface Color{
     GRAY_BG: ColorValue;
     DarkGrey: ColorValue;
     Yellow: ColorValue;
+    MainPink: ColorValue;
     White: ColorValue;
     WHITE_TEXT: ColorValue;
     WhiteRGBA75: ColorValue;
@@ -60,7 +61,8 @@ export const COLORS : Color = {
     Grey: "#333333",
     GRAY_BG:'rgba(49, 51, 51, 0.50)',
     DarkGrey: '#0b0b0b',
-    Yellow: "E1CD17",
+    Yellow: "#E1CD17",
+    MainPink: "#FF97A3",
     White: "#FFFFFF",
     WHITE_TEXT:'#EAF4F4',
     WhiteRGBA75: "rgba(255,255,255,0.75)",

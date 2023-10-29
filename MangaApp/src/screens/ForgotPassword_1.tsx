@@ -53,7 +53,7 @@ const ForgotPassword_1 = () => {
                             <TextInput
                                 style={styles.styleTextInput}
                                 placeholder={'Enter new password'}
-                                placeholderTextColor={COLORS.Black}
+                                placeholderTextColor={COLORS.GRAY_4}
                                 onChangeText={(valuePassword) => handleInputChangePassword(valuePassword)}
                                 value={valuePassword}
                                 secureTextEntry={!isIconActive} // khi isIconActive = true hiện thị password, ngược lại hiện thị text
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     styleTextInput: {
+        color: COLORS.Black,
         display: 'flex',
         width: '100%',
         height: 48,
