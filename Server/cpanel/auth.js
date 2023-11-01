@@ -64,11 +64,13 @@ router.post('/login', async (req, res, next) => {
         if (user.role == 0) {
             let check = bcrypt.compareSync(password, user.password);
             if (check) {
-                const token = jwt.sign({ user }, "secret");
+                const token = jwt.sign({ _id: user._id, role: user.role }, "secret");
                 // req.session.token = token;
                 console.log("Token", token);
                 return res.redirect('home');
             }
+            return res.redirect('login');
+        }else {
             return res.redirect('login');
         }
 
