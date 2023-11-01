@@ -7,7 +7,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { FONT_FAMILY } from '../theme/theme'
 import { data_ItemExample } from '../components/item/Data'
-import ItemManga from '../components/item/ItemManga'
+import ItemManga from '../components/item/ItemMangaFavourite'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
@@ -147,7 +147,7 @@ const DetailScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_ItemExample}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
