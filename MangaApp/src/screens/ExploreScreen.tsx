@@ -5,7 +5,7 @@ import { FlatList } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import ItemManga from '../components/item/ItemManga';
+import ItemManga from '../components/item/ItemMangaFavourite';
 import {data_ItemExample} from '../components/item/Data'
 import { FONT_FAMILY } from '../theme/theme';
 import SearchComponent from '../components/SearchComponent';
@@ -86,7 +86,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_ItemExample}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
@@ -109,7 +109,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_ItemExample}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
@@ -132,7 +132,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_ItemExample}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />

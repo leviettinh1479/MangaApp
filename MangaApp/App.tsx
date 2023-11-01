@@ -18,15 +18,11 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
     return (
-        // <NavigationContainer>
-        //     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        //         <Stack.Screen name="Bottom" component={BottomNavigations} options={{ animation: 'default' }} />
-        //     </Stack.Navigator>
-        // </NavigationContainer>
-        // <Genre/>
-        // <SignUp/>
-        // <ForgotPassword_1/>  
-        <MyLibraryScreen />
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Bottom" component={BottomNavigations} options={{ animation: 'default' }} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 
 }

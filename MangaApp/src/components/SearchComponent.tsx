@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { FlatList, View, Text, StyleSheet,ScrollView } from 'react-native';
 import { data_ItemExample } from './item/Data';
-import ItemManga from './item/ItemManga';
+import ItemManga from './item/ItemMangaFavourite';
 import ItemMangaSearch from './item/ItemMangaSearch';
 import ListSearchScreen from '../screens/ListSearchScreen';
 

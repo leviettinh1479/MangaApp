@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
-import ItemManga from '../components/item/ItemManga';
+import ItemManga from '../components/item/ItemMangaFavourite';
 import { FONT_FAMILY } from '../theme/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -119,7 +119,7 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
             <FlatList   style={{ flex: 1}}
               data={data_ItemExample}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga  onpress={()=> navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
               
@@ -143,7 +143,7 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
             <FlatList   style={{ flex: 1}}
               data={data_ItemExample}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga onpress={()=> navigation.navigate("DetailScreen")}  image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
+              renderItem={({item}) => <ItemManga onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
             />
