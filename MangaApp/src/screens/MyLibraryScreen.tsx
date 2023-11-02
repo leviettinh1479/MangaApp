@@ -6,12 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { COLORS, FONT_FAMILY } from '../theme/theme'
 import { data_Inprogress } from '../components/item/DataInProgress'
 import { data_Complete } from '../components/item/DataComplete'
+import { useNavigation } from '@react-navigation/native'
 
-interface ScreenAProps {
-    navigation: any; // or use the correct navigation type from @types/react-navigation
-}
+
 
 const MyLibraryScreen: React.FC = (navigation: any) => {
+    navigation = useNavigation();
     const [activeTab, setActiveTab] = useState('saved') // Mặc định tab 'saved' được chọn
 
     const handleTabPress = (tab: string) => {
