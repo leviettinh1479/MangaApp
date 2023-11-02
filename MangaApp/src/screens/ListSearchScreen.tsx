@@ -8,6 +8,7 @@ import {data_ItemExample} from '../components/item/Data'
 import ItemMangaSearch from '../components/item/ItemMangaSearch';
 import Icon from 'react-native-paper/lib/typescript/components/Icon';
 import { FONT_FAMILY } from '../theme/theme';
+import { data_Complete } from '../components/item/DataComplete';
 
 
 interface ScreenAProps {
@@ -34,7 +35,7 @@ const ListSearchScreen = ({ navigation}:ScreenAProps) => {
          </Text>
       {/* fiction */}
             <FlatList style={[styles.listSearch,{flex:1}]}
-            data={data_ItemExample}
+            data={data_Complete}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) =>  <ItemMangaSearch image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view}  />}
             showsVerticalScrollIndicator = {false}

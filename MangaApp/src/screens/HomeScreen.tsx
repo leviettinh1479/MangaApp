@@ -7,6 +7,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ItemManga from '../components/item/ItemMangaFavourite';
 import { FONT_FAMILY } from '../theme/theme';
 import { useNavigation } from '@react-navigation/native';
+import { data_Complete } from '../components/item/DataComplete';
 
 type ItemProps = {
   image: string
@@ -42,14 +43,15 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
           {/* mangahot */}
           <View style={{flexDirection:'row',justifyContent:'flex-start',marginTop:25}}>
             <FlatList   style={{ flex: 1}}
-              data={data_ItemExample}
+              data={data_Complete}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemMangaHot image={item.image} nameManga={item.nameManga}  />}
+              renderItem={({item}) => <ItemMangaHot image={item.image} nameManga={item.nameAuthor}  />}
               horizontal
+              showsHorizontalScrollIndicator={false}
             />
           </View>
           {/* category */}
-          <View style={{flexDirection:'row', justifyContent:'flex-start',marginTop:32}}>
+          {/* <View style={{flexDirection:'row', justifyContent:'flex-start',marginTop:32}}>
             <ScrollView horizontal showsHorizontalScrollIndicator = {false}>
               
             <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',paddingHorizontal:16,paddingVertical:12}}>
@@ -68,18 +70,9 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
                 </Text>
                   
               </View>
-              <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',
-                paddingHorizontal:16,paddingVertical:12,borderRadius:20,borderWidth:1,
-                borderColor:'#313333',marginLeft:5}}>
-                <Feather name="book-open" color="#000000" size={24}/>
-                <Text style={{fontSize:14,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000',paddingLeft:5}}>
-                  Quick Listen
-                </Text>
-                  
-              </View>
             </ScrollView>
             
-          </View>
+          </View> */}
           {/* boot to */}
           <TouchableOpacity>
             <View style={{backgroundColor:'#2D3047', width:'100%',height:201, marginTop:48,borderRadius:8}}>
@@ -116,10 +109,10 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
                 </View>
               </TouchableOpacity>
             </View>
-            <FlatList   style={{ flex: 1}}
-              data={data_ItemExample}
+            <FlatList   style={{ flex: 1,marginBottom:10}}
+              data={data_Complete}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
+              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
               
@@ -140,10 +133,10 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
                 </View>
               </TouchableOpacity>
             </View>
-            <FlatList   style={{ flex: 1}}
-              data={data_ItemExample}
+            <FlatList   style={{ flex: 1,marginBottom:10}}
+              data={data_Complete}
               keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
+              renderItem={({item}) => <ItemManga onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
             />
@@ -156,7 +149,20 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  btn: {
+    flexDirection: 'row',
+    height: 40,
+    width: 'auto',
+    paddingVertical: 5,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    marginRight: 8,
+},
+})
 type ItemExample ={
   id: string;
   image: string;

@@ -21,6 +21,7 @@ const ItemManga: React.FC<Item> = ({
     description,
     onpress
 }) => {
+  
     return (
         <TouchableOpacity onPress={onpress}>
             <View style={styles.container}>
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: WIDTH / 2 - 20,
         marginVertical: 8,
+        marginRight:5
     },
     viewImage: {
     },

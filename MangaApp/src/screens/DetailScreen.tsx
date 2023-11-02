@@ -9,6 +9,7 @@ import { FONT_FAMILY } from '../theme/theme'
 import { data_ItemExample } from '../components/item/Data'
 import ItemManga from '../components/item/ItemMangaFavourite'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import { useRoute } from '@react-navigation/native';
 
 
 type ItemProps = {
@@ -33,6 +34,7 @@ const ItemTopics = ({title}:ItemProps) => {
     content: String; 
   }
   const ItemChaps = ({id,title,content}:ItemChap) => {
+   
     return (
       <TouchableOpacity >
        <View style={{flexDirection:'row',marginTop:24}}>
@@ -50,6 +52,9 @@ const ItemTopics = ({title}:ItemProps) => {
     )
     }
 const DetailScreen = ({ navigation}:ScreenAProps) => {
+  const route = useRoute();
+  const receivedData = route.params?.item;
+  console.log(">>>>>>>>>>",receivedData);
   return (
     <SafeAreaView style={{backgroundColor:'white'}}>
       
@@ -71,7 +76,7 @@ const DetailScreen = ({ navigation}:ScreenAProps) => {
             <View  style={{flexDirection:'column',paddingHorizontal:16,marginBottom:10}} >
               <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:24}}>
                 <Text numberOfLines={2} style={{fontSize:22,fontFamily:FONT_FAMILY.quicksand_bold,color:'#000000'}}>
-                  Project Management for the Unofficial Proect Manager
+                  {receivedData}
                 </Text>
                 <TouchableOpacity><Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{padding:1,marginTop:5}}/></TouchableOpacity>
               </View>

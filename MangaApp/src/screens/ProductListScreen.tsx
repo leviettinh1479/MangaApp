@@ -7,6 +7,7 @@ import {data_ItemExample} from '../components/item/Data'
 import ItemProductList from '../components/item/ItemProductList';
 import { FONT_FAMILY } from '../theme/theme';
 import { useRoute } from '@react-navigation/native';
+import { data_Complete } from '../components/item/DataComplete';
 
 interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
@@ -24,9 +25,9 @@ const ProductListScreen = ({ navigation}:ScreenAProps) => {
       {/* fiction */}
         <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
               <FlatList
-                data={data_ItemExample}
+                data={data_Complete}
                 keyExtractor={item => item.id}
-                renderItem={({item}) => <ItemProductList image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} descrption={item.descrption}  />}
+                renderItem={({item}) => <ItemProductList image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} descrption={item.description}  />}
                 numColumns={2}
                 contentContainerStyle={{paddingBottom: 10, paddingTop: 8}}
                 showsVerticalScrollIndicator = {false}

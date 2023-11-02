@@ -10,16 +10,18 @@ import {data_ItemExample} from '../components/item/Data'
 import { FONT_FAMILY } from '../theme/theme';
 import SearchComponent from '../components/SearchComponent';
 import { useNavigation } from '@react-navigation/native';
+import { data_Complete } from '../components/item/DataComplete';
 
-type ItemProps = {
-  title: string
+interface ItemProps {
+  title: string;
+  onpress?: () => void
 };
 interface ScreenAProps {
   navigation: any; // or use the correct navigation type from @types/react-navigation
 }
-const ItemTopics = ({title}:ItemProps) => {
+const ItemTopics = ({title,onpress}:ItemProps) => {
   return (
-    <TouchableOpacity  style={{backgroundColor:'#FF97A3', paddingHorizontal:16, paddingVertical:8,alignItems:'center',
+    <TouchableOpacity onPress={onpress}  style={{backgroundColor:'#FF97A3', paddingHorizontal:16, paddingVertical:8,alignItems:'center',
       marginTop:16,justifyContent:'center',marginHorizontal:5,borderRadius:8}}>
       <Text style={{fontSize:14, fontFamily:FONT_FAMILY.quicksand_semibold, color:'#000000'}}>{title}</Text>
     </TouchableOpacity>
@@ -60,13 +62,11 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     <FlatList   style={{ flex: 1}}
                       data={data_ItemTopics}
                       keyExtractor={item => item.id}
-                      renderItem={({item}) => <ItemTopics title={item.title}  />}
+                      renderItem={({item}) => <ItemTopics onpress={() => navigation.navigate('ProductListScreen',{ data: item.title })}  title={item.title}  />}
                       numColumns={3}
                       nestedScrollEnabled={true}
                       scrollEnabled={false}
                     />
-              
-                  
           </View>
           {/* fiction */}
           <View style={{flexDirection:'column',justifyContent:'flex-start'}}>
@@ -84,9 +84,9 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     </TouchableOpacity>
                   </View>
                   <FlatList style={{ flex: 1}}
-                    data={data_ItemExample}
+                    data={data_Complete}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
@@ -107,9 +107,9 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     </TouchableOpacity>
                   </View>
                   <FlatList style={{ flex: 1}}
-                    data={data_ItemExample}
+                    data={data_Complete}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
@@ -130,9 +130,9 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                     </TouchableOpacity>
                   </View>
                   <FlatList style={{ flex: 1}}
-                    data={data_ItemExample}
+                    data={data_Complete}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={''}  />}
+                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />

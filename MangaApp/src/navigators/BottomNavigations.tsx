@@ -15,6 +15,7 @@ import ExploreNavigationScreen from './ExploreNavigations';
 import Account from '../screens/Account/Account';
 import AccountNavigationScreen from './AccountNavigations';
 import HomeNavigationScreen from './HomeNavigations';
+import MyLibraryScreen from '../screens/MyLibraryScreen';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigations = () => {
@@ -81,7 +82,7 @@ const BottomNavigations = () => {
       />
       <Tab.Screen
         name="Yêu thích"
-        component={FavoriteScreen}
+        component={MyLibraryScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (

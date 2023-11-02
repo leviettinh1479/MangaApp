@@ -19,7 +19,7 @@ const ItemMangaSearch: React.FC<Item> = ({
 }) => {
     return (
         <TouchableOpacity onPress={onpress}>
-            <View style={[styles.container,{flexDirection:'row',alignItems:'center'}]}>
+            <View style={[styles.container,{flexDirection:'row'}]}>
                 <View style={styles.viewImage}>
                     <Image style={styles.image} resizeMode='contain' source={{uri: image}} />
                 </View>
@@ -46,7 +46,7 @@ export default ItemMangaSearch
 
 const styles = StyleSheet.create({
     container: {
-        width: 128,
+        width: 'auto',
         height: 'auto',
         borderRadius: 10
     },
