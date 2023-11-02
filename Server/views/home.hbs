@@ -1,12 +1,12 @@
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
   data-sidebar-position="fixed" data-header-position="fixed">
   <!-- Sidebar Start -->
-  <aside class="left-sidebar">
+   <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
         <a href="./index.html" class="text-nowrap logo-img">
-          <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+          <img src="/assets/images/logos/Screenshot 2023-11-02 213605.png" width="180" alt="" style="margin-top: 20;align-items: center;" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i class="ti ti-x fs-8"></i>
@@ -30,30 +30,14 @@
           </li>
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">UI COMPONENTS</span>
+            <span class="hide-menu">Manager</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link" href="http://localhost:3000/getAllUser" aria-expanded="false">
               <span>
                 <i class="ti ti-article"></i>
               </span>
-              <span class="hide-menu">Buttons</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-alert-circle"></i>
-              </span>
-              <span class="hide-menu">Alerts</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-cards"></i>
-              </span>
-              <span class="hide-menu">Card</span>
+              <span class="hide-menu">User Account</span>
             </a>
           </li>
           <li class="sidebar-item">
@@ -64,56 +48,23 @@
               <span class="hide-menu">Add Manga</span>
             </a>
           </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-typography"></i>
-              </span>
-              <span class="hide-menu">Typography</span>
-            </a>
-          </li>
+
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">AUTH</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <a class="sidebar-link" href="http://localhost:3000/logout" aria-expanded="false">
               <span>
                 <i class="ti ti-login"></i>
               </span>
-              <span class="hide-menu">Login</span>
+              <span class="hide-menu">Log out</span>
             </a>
           </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-user-plus"></i>
-              </span>
-              <span class="hide-menu">Register</span>
-            </a>
-          </li>
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">EXTRA</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-mood-happy"></i>
-              </span>
-              <span class="hide-menu">Icons</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-aperture"></i>
-              </span>
-              <span class="hide-menu">Sample Page</span>
-            </a>
-          </li>
+
+
         </ul>
-      
+
       </nav>
 
       <!-- End Sidebar navigation -->
@@ -138,7 +89,7 @@
                 class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
                 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
                   class="ti ti-basket fs-4"></i></a>
-                 
+
             </div>
             <div class="card-body pt-3 p-4">
               <h6 class="fw-semibold fs-4">{{this.name}}</h6>

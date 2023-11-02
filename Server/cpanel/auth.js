@@ -208,6 +208,9 @@ router.post('/send-mail', async (req, res, next) => {
 // http://localhost:3000/api/user/logout
 router.get('/logout',[auth.authenWeb], function (req, res) {
     req.session.destroy();
-    return res.render("login");
+    return res.redirect("/login");
 });
 module.exports = router;
+
+//vothanhthepct2020@gmail.com
+//The123456

@@ -8,7 +8,7 @@ const { json } = require("body-parser");
 
 const auth = require('../middlewares/auth');
 // Add manga
-mangaRouter.post("/api/manga/addmanga", async (req, res) => {
+mangaRouter.post("/api/manga/addmanga",[auth.authenWeb], async (req, res) => {
   try {
     const { name, image, author, status, genre, rating, chapters } = req.body;
 

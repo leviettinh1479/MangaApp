@@ -5,29 +5,29 @@ const Rating = require("../models/rating");
 const auth = require('../middlewares/auth');
 
 // Add manga
-mangaRouter.post("/api/manga/addmanga", [auth.authenApp], async (req, res) => {
-  try {
-    const { name, image, author, status, genre, rating, chapters } = req.body;
+// mangaRouter.post("/api/manga/addmanga", async (req, res) => {
+//   try {
+//     const { name, image, author, status, genre, rating, chapters } = req.body;
 
   
-    const newManga = new Manga({
-      name,
-      image,
-      author,
-      status,
-      genre,
-      rating,
-      chapters
-    });
+//     const newManga = new Manga({
+//       name,
+//       image,
+//       author,
+//       status,
+//       genre,
+//       rating,
+//       chapters
+//     });
 
 
-    await newManga.save();
+//     await newManga.save();
 
-    res.status(201).json({ message: 'Truyện đã được thêm thành công!' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+//     res.status(201).json({ message: 'Truyện đã được thêm thành công!' });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 //Get All
 mangaRouter.get('/api/manga', [auth.authenApp], async (req, res) => {
   try {
