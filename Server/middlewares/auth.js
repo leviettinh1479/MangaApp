@@ -21,47 +21,47 @@ const auth = async (req, res, next) => {
 };
 
 const authenWeb = (req, res, next) => {
-  const { session } = req;
-  const url = req.originalUrl.toLowerCase();
-  if (!session) {
-      if (url.includes('login')) {
-          return next();
-      } else {
-          return res.redirect('/login');
-      }
-  } else {
-      const { token } = session;
-      if (!token) {
-          if (url.includes('login')) {
-              return next();
-          } else {
-              return res.redirect('/login');
-          }
-      } else {
-          jwt.verify(token, 'secret', function (error, decoded) {
-              if (error) {
-                  if (url.includes('login')) {
-                      next();
-                  } else {
-                      res.redirect('/login');
-                  }
-              } else {
-                  if (url.includes('login')) {
-                      res.redirect('/home');
-                  } else {
-                      // kiểm tra role
-                      const {role} = decoded;
-                      console.log("Decoded: >>>>>>>",decoded);
-                      if(role < 100){
-                          req.session.destroy();
-                          return res.redirect('/login');
-                      }
-                      next();
-                  }
-              }
-          })
-      }
-  }
+    const { session } = req;
+    const url = req.originalUrl.toLowerCase();
+    if (!session) {
+        if (url.includes('login')) {
+            return next();
+        } else {
+            return res.redirect('/login');
+        }
+    } else {
+        const { token } = session;
+        if (!token) {
+            if (url.includes('login')) {
+                return next();
+            } else {
+                return res.redirect('/login');
+            }
+        } else {
+            jwt.verify(token, 'secret', function (error, decoded) {
+                if (error) {
+                    if (url.includes('login')) {
+                        next();
+                    } else {
+                        res.redirect('/login');
+                    }
+                } else {
+                    if (url.includes('login')) {
+                        res.redirect('/home');
+                    } else {
+                        // kiểm tra role
+                        const {role} = decoded;
+                        console.log("Decoded: >>>>>>>",decoded);
+                        if(role > 0 ){
+                            req.session.destroy();
+                            return res.redirect('/login');
+                        }
+                        next();
+                    }
+                }
+            })
+        }
+    }
 }
 
 const authenApp = (req, res, next) => {

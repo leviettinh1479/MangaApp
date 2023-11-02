@@ -2,8 +2,10 @@ const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
 const Rating = require("../models/rating");
+const auth = require('../middlewares/auth');
+
 // Add manga
-mangaRouter.post("/api/manga/addmanga", async (req, res) => {
+mangaRouter.post("/api/manga/addmanga", [auth.authenApp], async (req, res) => {
   try {
     const { name, image, author, status, genre, rating, chapters } = req.body;
 
@@ -27,7 +29,7 @@ mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   }
 });
 //Get All
-mangaRouter.get('/api/manga', async (req, res) => {
+mangaRouter.get('/api/manga', [auth.authenApp], async (req, res) => {
   try {
     const allManga = await Manga.find();
 
@@ -37,7 +39,7 @@ mangaRouter.get('/api/manga', async (req, res) => {
   }
 });
 //Rating manga
-mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
+mangaRouter.post("/api/manga/:mangaId/rate", [auth.authenApp], async (req, res) => {
   try {
     const { mangaId } = req.params;
     const { userId, rating } = req.body;
@@ -66,7 +68,7 @@ mangaRouter.post("/api/manga/:mangaId/rate", async (req, res) => {
   }
 });
 //get element by name and author
-mangaRouter.get("/api/manga/search", async (req, res) => {
+mangaRouter.get("/api/manga/search", [auth.authenApp], async (req, res) => {
   try {
     const { keyword } = req.query;
 
@@ -85,7 +87,7 @@ mangaRouter.get("/api/manga/search", async (req, res) => {
   }
 });
 //Get by id
-mangaRouter.get('/api/manga/:id', async (req, res) => {
+mangaRouter.get('/api/manga/:id', [auth.authenApp], async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -102,7 +104,7 @@ mangaRouter.get('/api/manga/:id', async (req, res) => {
 });
 
 // Delete manga
-mangaRouter.delete('/api/manga/:id', async (req, res) => {
+mangaRouter.delete('/api/manga/:id', [auth.authenApp], async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -116,7 +118,7 @@ mangaRouter.delete('/api/manga/:id', async (req, res) => {
 
 
 //Update manga
-mangaRouter.put('/api/manga/:id', async (req, res) => {
+mangaRouter.put('/api/manga/:id', [auth.authenApp], async (req, res) => {
   try {
     const { id } = req.params;
     const updatedMangaData = req.body;

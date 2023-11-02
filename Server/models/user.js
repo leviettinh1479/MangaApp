@@ -37,9 +37,9 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  status: {
+  role: {
     type: Number,
-    default: 0,
+    default: 1,
   }
 });
 

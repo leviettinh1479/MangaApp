@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
 const userModel = require('../models/user');
+const auth = require('../middlewares/auth');
 
 // mail sender details
 const transporter = nodemailer.createTransport({
@@ -18,12 +19,19 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// http://localhost:3000/login
+// http://localhost:3000/getAllUser
 router.get('/getAllUser', async (req, res, next) => {
     try {
-        const users = await userModel.find();
-        res.render('home', { users });
-        console.log("User", { users })
+        const users = await userModel.find({role: 1});
+        const userData = users.map(users => {
+            return {
+              _id: users._id,
+              name: users.name,
+              email: users.email,
+              avatar: users.avatar,
+            };
+          });
+        res.render('tableUser', { userData });
     } catch (error) {
         return res.status(400).json({ result: false, message: error.message });
     }
@@ -54,15 +62,17 @@ router.post('/login', async (req, res, next) => {
     try {
         const { email, password } = req.body;
         let user = await userModel.findOne({ email: email });
-        if (user) {
+        if (user.role == 0) {
             let check = bcrypt.compareSync(password, user.password);
             if (check) {
-                const token = jwt.sign({ user }, "secret");
-                // req.session.token = token;
+                const token = jwt.sign({ _id: user._id, role: user.role }, "secret");
+                req.session.token = token;
                 console.log("Token", token);
-                return res.redirect('home');
+                return res.redirect('/home');
             }
-            return res.redirect('login');
+            return res.redirect('/login');
+        }else {
+            return res.redirect('/login');
         }
 
         // if(user) {
@@ -104,7 +114,7 @@ router.post('/register', async (req, res, next) => {
         if (!user) {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
-            const newUser = { name, email, password: hash, role: 1, verified: true };
+            const newUser = { name, email, password: hash, role: 1};
             // send verification mail to user
             let mailDetails = {
                 from: ' "Verify your email" <vothanhthepct2020@gmail.com>',
@@ -195,4 +205,9 @@ router.post('/send-mail', async (req, res, next) => {
     }
 });
 
+// http://localhost:3000/api/user/logout
+router.get('/logout',[auth.authenWeb], function (req, res) {
+    req.session.destroy();
+    return res.render("login");
+});
 module.exports = router;

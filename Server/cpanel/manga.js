@@ -28,7 +28,7 @@ mangaRouter.post("/api/manga/addmanga", async (req, res) => {
   }
 });
 //Get All
-mangaRouter.get('/home',async (req, res) => {
+mangaRouter.get('/home', [auth.authenWeb], async (req, res) => {
   try {
     const allManga = await Manga.find();
     const mangaData = allManga.map((manga) => {
