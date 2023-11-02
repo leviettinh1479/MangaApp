@@ -37,15 +37,10 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  status: {
+  role: {
     type: Number,
-    default: 0,
-  },
-  favorite: [
-    {
-
-    },
-  ],
+    default: 1,
+  }
 });
 
 const User = mongoose.model("User", userSchema);

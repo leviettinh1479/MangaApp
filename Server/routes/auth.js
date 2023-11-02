@@ -43,7 +43,7 @@ router.post('/register', async (req, res, next) => {
         if (!user) {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
-            const newUser = { name, email, password: hash, role: 1, verified: true };
+            const newUser = { name, email, password: hash, role: 1};
             // await userModel.create(newUser);
             // send verification mail to user
             let mailDetails = {

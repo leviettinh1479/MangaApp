@@ -1,3 +1,14 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
+</head>
+
+<body>
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
   data-sidebar-position="fixed" data-header-position="fixed">
   <!-- Sidebar Start -->
@@ -6,7 +17,7 @@
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
         <a href="./index.html" class="text-nowrap logo-img">
-          <img src="/assets/images/logos/Screenshot 2023-11-02 213605.png" style="margin-top: 20px;" width="180" alt="" />
+        <img src="/assets/images/logos/Screenshot 2023-11-02 213605.png" style="margin-top: 20px;" width="180" alt="" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i class="ti ti-x fs-8"></i>
@@ -81,40 +92,31 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Add manga</h5>
+            <h5 class="card-title fw-semibold mb-4">Update chapter</h5>
             <div class="card">
               <div class="card-body">
-                <form action="/api/manga/addmanga" method="POST">
+                 <form action="/home/{{chapterData._id}}/updatechapter" method="POST">
                   <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" id="name" name="name" class="form-control">
+                    <input type="text" id="name" name="name" value="{{chapterData.name}}" class="form-control">
 
                   </div>
                   <div class="mb-3">
-                    <label for="author" class="form-label">Author</label>
-                    <input type="text" id="author" name="author" class="form-control">
+                    <label for="author" class="form-label">Title</label>
+                    <input type="text" id="title" name="title" value="{{chapterData.title}}" class="form-control">
                   </div>
                   <div class="mb-3">
-                    <label for="image" class="form-label">Image link address</label>
-                    <input type="text" id="image" name="image" class="form-control">
+                    <label for="chap" class="form-label">Chap</label>
+                    <input type="number" id="chap" value="{{chapterData.chap}}" name="chap" class="form-control">
                   </div>
                   <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select id="status" name="status" class="form-select">
-                      <option value="Đang tiến hành">Đang tiến hành</option>
-                      <option value="Đã hoàn thành">Đã hoàn thành</option>
-                    </select>
+                    <label for="image" class="form-label">Image</label>
+                    <input type="text" id="image" name="image" value="{{chapterData.image}}" class="form-control">
                   </div>
                   <div class="mb-3">
-                    <label for="genre" class="form-label">Thể loại</label>
-
-                    <select id="genre" name="genre" class="form-select" multiple>
-                      {{#each genreData}}
-                      <option value="{{this._id}}">{{this.name}}</option>
-                      {{/each}}
-                    </select>
-
-                  </div>
+                    <label for="content" class="form-label">Nội dung:</label><br>
+                    <textarea  id="content" name="content" rows="4" cols="50"  class="form-control">{{chapterData.content}}</textarea>
+                  </div>           
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
@@ -126,3 +128,13 @@
     </div>
   </div>
 </div>
+  <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/sidebarmenu.js"></script>
+  <script src="/assets/js/app.min.js"></script>
+  <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+
+</html>

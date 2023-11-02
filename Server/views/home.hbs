@@ -1,0 +1,173 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+   <aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a href="./index.html" class="text-nowrap logo-img">
+          <img src="/assets/images/logos/Screenshot 2023-11-02 213605.png" width="180" alt="" style="margin-top: 20;align-items: center;" />
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
+        </div>
+      </div>
+      <!-- Sidebar navigation-->
+
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="http://localhost:3000/home" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Home</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Manager</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="http://localhost:3000/getAllUser" aria-expanded="false">
+              <span>
+                <i class="ti ti-article"></i>
+              </span>
+              <span class="hide-menu">User Account</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="http://localhost:3000/addmanga" aria-expanded="false">
+              <span>
+                <i class="ti ti-file-description"></i>
+              </span>
+              <span class="hide-menu">Add Manga</span>
+            </a>
+          </li>
+
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">AUTH</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="http://localhost:3000/logout" aria-expanded="false">
+              <span>
+                <i class="ti ti-login"></i>
+              </span>
+              <span class="hide-menu">Log out</span>
+            </a>
+          </li>
+
+
+        </ul>
+
+      </nav>
+
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+  <!--  Sidebar End -->
+  <!--  Main wrapper -->
+  <div class="body-wrapper">
+
+    <div class="container-fluid">
+      <!--  Row 1 -->
+      <div class="row">
+
+        {{#each mangaData}}
+        <div class="col-sm-6 col-xl-3">
+          <div class="card overflow-hidden rounded-2">
+            <div class="position-relative">
+              <a href="http://localhost:3000/home/detail/{{this._id}}"><img src="{{this.image}}" style="height: 250;"
+                  class="card-img-top rounded-0" alt="..." /></a>
+              <a href="javascript:void(0)"
+                class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
+                  class="ti ti-basket fs-4"></i></a>
+
+            </div>
+            <div class="card-body pt-3 p-4">
+              <h6 class="fw-semibold fs-4">{{this.name}}</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <h6 class="fw-semibold fs-4 mb-0">{{this.author}}
+                </h6>
+                <ul class="list-unstyled d-flex align-items-center mb-0">
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                </ul>
+              </div>
+              <div class="row" style="margin-top: 20;">
+                <div class="col-4">
+                  <button class="btn btn-danger" onclick="confirmDelete('{{this._id}}');">Delete</button>
+                </div>
+                <div class="col-4">
+                  <a href="/home/{{this._id}}/update" class="btn btn-primary">Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  const fetchAPI = async (url, option) => {
+    const res = await fetch(url, option);
+    return res.json();
+  }
+
+  const deleteManga = async (id) => {
+    const url = `/home/${id}/delete`;
+    const option = {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' }
+    }
+    try {
+      const result = await fetchAPI(url, option);
+      console.log('Delete result: ', result);
+      if (result.status === "success") {
+        window.location.reload();
+      } else {
+        swal('Xóa Thất bại!', {
+          icon: 'error',
+        });
+      }
+    } catch (e) {
+      console.log('Delete error: ', e);
+    }
+  }
+
+  const confirmDelete = (id) => {
+    swal({
+      title: "Xác nhận xóa?",
+      text: "Bạn có chắc muốn xóa manga này không?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteManga(id);
+        }
+      });
+  }
+</script>
