@@ -10,7 +10,9 @@ interface Item {
     nameAuthor: string;
     view: number;
     description: string;
-    onpress?: () => void
+    onpress?: () => {
+        
+    }
 }
 
 const ItemManga: React.FC<Item> = ({

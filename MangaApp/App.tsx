@@ -12,6 +12,7 @@ import Genre from './src/screens/Genre';
 import SignUp from './src/screens/SignUp';
 import ForgotPassword_1 from './src/screens/ForgotPassword_1';
 import MyLibraryScreen from './src/screens/MyLibraryScreen';
+import BottomTabNagivation from './src/navigators/BottomTabNagivation';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,8 +20,10 @@ const Stack = createNativeStackNavigator();
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Bottom" component={BottomNavigations} options={{ animation: 'default' }} />
+            <Stack.Navigator initialRouteName='BottomTab' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name='BottomTab' component={BottomTabNagivation}/>
+                <Stack.Screen name='Detail' component={DetailScreen}/>
+                <Stack.Screen name='DetailChap' component={ChapterDetailScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

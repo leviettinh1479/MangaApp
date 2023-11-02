@@ -62,7 +62,7 @@ const DetailScreen = ({ navigation}:ScreenAProps) => {
             <ImageBackground  style={{height:280,flexDirection:'column',justifyContent:'flex-end',alignItems:'center',paddingHorizontal:16}} blurRadius={5}  source={require('../assets/images/testimage.jpg')}>
               <Image  style={{position:'absolute',height:160,width:160}}  resizeMode='contain' source={require('../assets/images/testimage.jpg')}/>
               <View style={{backgroundColor:'#FF97A3',width:'100%',height:56,borderRadius:8,padding:8,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                <TouchableOpacity  style={{flexDirection:'row',alignItems:'center'}} onPress={() => navigation.navigate('ChapterDetailScreen')}>
+                <TouchableOpacity  style={{flexDirection:'row',alignItems:'center'}} onPress={() => navigation.navigate('DetailChap')}>
                   <Feather name="book" color="#000000" size={18} style={{backgroundColor: 'transparent',}}/>
                   <Text style={{fontSize:16,fontFamily:FONT_FAMILY.quicksand_bold,marginLeft:10,color:'#000000'}}>Read Nexus</Text>
                 </TouchableOpacity>

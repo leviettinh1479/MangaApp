@@ -6,7 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { COLORS, FONT_FAMILY } from '../theme/theme'
 import { data_Inprogress } from '../components/item/DataInProgress'
 import { data_Complete } from '../components/item/DataComplete'
-const MyLibraryScreen: React.FC = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+}
+
+const MyLibraryScreen: React.FC = (navigation: any) => {
     const [activeTab, setActiveTab] = useState('saved') // Mặc định tab 'saved' được chọn
 
     const handleTabPress = (tab: string) => {
@@ -41,6 +46,7 @@ const MyLibraryScreen: React.FC = () => {
                         columnWrapperStyle={styles.row}
                         renderItem={({ item }) => (
                             <ItemManga
+                                onpress={() => navigation.navigate("Detail")}
                                 image={item.image}
                                 nameManga={item.nameManga}
                                 nameAuthor={item.nameAuthor}

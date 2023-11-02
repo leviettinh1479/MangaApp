@@ -28,7 +28,7 @@ const ListSearchScreen = ({ navigation}:ScreenAProps) => {
                   elevation={4}
                   onIconPress={handleBlur}
                   icon={"chevron-left"}
-                  style={[{ backgroundColor: '#ffffff', marginTop: 24, marginHorizontal: 5}, styles.borderSearch]} value={''}  />
+                  style={[{ backgroundColor: '#ffffff', marginTop: 24, marginHorizontal: 5}, styles.borderSearch]} value={""}  />
          </View>
          <Text style={{fontSize:18,color:'#000000',fontFamily:FONT_FAMILY.quicksand_bold,marginTop:32}}>
             Search results
