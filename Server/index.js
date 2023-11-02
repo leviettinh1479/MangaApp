@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { engine } = require("express-handlebars");
 const path = require("path");
+const session = require('express-session');
 // IMPORTS FROM OTHER FILES
 const mangaRouter = require("./routes/manga");
 const chapterRouter = require("./routes/chapter");
@@ -24,6 +25,13 @@ const app = express();
 const DB =
   "mongodb+srv://leviettinh1001:123@mangaapp.pwj7c3n.mongodb.net/?retryWrites=true&w=majority";
 
+//session
+app.use(session({
+  secret: 'iloveyou',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 //HTTP logger
 app.use(morgan("combined"));
 //Engine
@@ -32,7 +40,7 @@ app.set("view engine", "hbs");
 app.use('/assets', express.static('assets'));
 app.set("views", path.join(__dirname, "views"));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Middleware

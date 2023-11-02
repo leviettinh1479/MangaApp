@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
 const userModel = require('../models/user');
+const auth = require('../middlewares/auth');
 
 // mail sender details
 const transporter = nodemailer.createTransport({
@@ -65,13 +66,13 @@ router.post('/login', async (req, res, next) => {
             let check = bcrypt.compareSync(password, user.password);
             if (check) {
                 const token = jwt.sign({ _id: user._id, role: user.role }, "secret");
-                // req.session.token = token;
+                req.session.token = token;
                 console.log("Token", token);
-                return res.redirect('home');
+                return res.redirect('/home');
             }
-            return res.redirect('login');
+            return res.redirect('/login');
         }else {
-            return res.redirect('login');
+            return res.redirect('/login');
         }
 
         // if(user) {
@@ -204,4 +205,9 @@ router.post('/send-mail', async (req, res, next) => {
     }
 });
 
+// http://localhost:3000/api/user/logout
+router.get('/logout',[auth.authenWeb], function (req, res) {
+    req.session.destroy();
+    return res.render("login");
+});
 module.exports = router;
