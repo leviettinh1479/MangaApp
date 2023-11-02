@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground, Pressable, StatusBar, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import { COLORS, FONT_FAMILY } from '../theme/theme'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 const LoginEmail = () => {
@@ -11,9 +12,12 @@ const LoginEmail = () => {
                     <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
                 </View>
                 <View style={styles.View_Container}>
-                    <View style={styles.View_Input}>
+                    <KeyboardAwareScrollView>
+                        <View style={styles.View_Input}>
                         <TextInput placeholder='Email' placeholderTextColor='black' style={styles.Text_Input_Email}></TextInput>
                     </View>
+                    </KeyboardAwareScrollView>
+                    
                     <TouchableOpacity style={styles.View_Tieptuc}>
                         <Text style={styles.Text_Tieptuc}>Tiếp tục</Text>
                     </TouchableOpacity>
