@@ -28,7 +28,7 @@ router.get('/getAllUser', async (req, res, next) => {
               _id: users._id,
               name: users.name,
               email: users.email,
-              avatar: users.avatar,
+              image: users.image,
             };
           });
         res.render('tableUser', { userData });
