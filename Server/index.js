@@ -13,7 +13,6 @@ const reportRouter = require("./routes/report");
 const userRoute = require('./routes/auth');
 const favoriteRouter = require('./routes/favorite');
 const historyRouter = require('./routes/history');
-const userCpanelRoute = require("./routes/userCpanel/auth");
 
 // INIT
 const PORT = process.env.PORT || 3000;
@@ -42,8 +41,7 @@ app.use("/api/favorite", favoriteRouter);
 app.use("/api/history", historyRouter);
 app.use(genreRouter);
 app.use(reportRouter);
-// http://localhost:3000/
-app.use("/", userCpanelRoute);
+
 //View Engine
 
 // app.get("/login", (req, res) => {
