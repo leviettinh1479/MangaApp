@@ -3,9 +3,26 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const auth = require('../middlewares/auth');
+const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require("firebase/storage");
+const multer = require("multer");
 
+const auth = require('../middlewares/auth');
 const userModel = require('../models/user');
+const appFirebase = require('../configs/FirebaseConfig');
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage();
+
+// Setting up multer as a middleware to grab photo uploads
+const upload = multer({ storage: multer.memoryStorage() });
+
+const giveCurrentDateTime = () => {
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + ' ' + time;
+    return dateTime;
+}
 
 // mail sender details
 const transporter = nodemailer.createTransport({
@@ -168,19 +185,39 @@ router.get('/logout',[auth.authenApp], function (req, res) {
 });
 
 // http://localhost:3000/api/user/vothanhthepct2020@gmail.com/edit-profile
-router.post('/:email/edit-profile', async (req, res, next) => {
+router.post('/:email/edit-profile', upload.single("image"), async (req, res, next) => {
     try {
         const { email } = req.params;
-        const { name, address } = req.body;
+        const { name, address, image } = req.body;
+        const dateTime = giveCurrentDateTime();
+
+        const storageRef = ref(storage, `users/${req.file.originalname + "       " + dateTime}`);
+
+        // Create file metadata including the content type
+        const metadata = {
+            contentType: req.file.mimetype,
+        };
+
+        // Upload the file in the bucket storage
+        const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+
+        // Grab the public url
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        console.log('File successfully uploaded.');
+
+
+        console.log( name, address, downloadURL);
         const user = await userModel.findOne({ email: email });
-        console.log("User: " + user);
+        // console.log("User: " + user);
         if (user) {
-            const image = 'https://cdn.pixabay.com/photo/2014/04/12/14/59/portrait-322470_1280.jpg';
+            // const image = 'https://cdn.pixabay.com/photo/2014/04/12/14/59/portrait-322470_1280.jpg';
+            const image = downloadURL;
             user.name = name ? name : user.name;
             user.address = address ? address : user.address;
             user.image = image ? image : user.image;
             await user.save();
-            return res.status(200).json({ result: true, message: "Cập nhật người dùng thành công" });
+            return res.status(200).json({ result: true, message: "Cập nhật người dùng thành công", user: user});
         }
         return res.status(400).json({ result: false, message: "Không user này" });
     } catch (error) {
