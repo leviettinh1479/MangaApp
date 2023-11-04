@@ -5,16 +5,28 @@ const Chapter = require("../models/chapter");
 const Rating = require("../models/rating");
 const Genre = require("../models/genre");
 const { json } = require("body-parser");
-
+const multer = require('multer');
+const path = require('path');
 const auth = require('../middlewares/auth');
-// Add manga
-mangaRouter.post("/api/manga/addmanga",[auth.authenWeb], async (req, res) => {
-  try {
-    const { name, image, author, status, genre, rating, chapters } = req.body;
+const appFirebase = require('../configs/FirebaseConfig');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Thư mục để lưu trữ tệp tải lên
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
 
+const upload = multer({ storage: storage });
+// Add manga
+mangaRouter.post("/api/manga/addmanga", upload.single('image'), async (req, res) => {
+  try {
+    const { name, author, status, genre, rating, chapters } = req.body;
+    const image = req.file.filename; 
     const newManga = new Manga({
       name,
-      image,
+      image ,
       author,
       status,
       genre,
