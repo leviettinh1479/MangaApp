@@ -22,11 +22,20 @@ const upload = multer({ storage: storage });
 // Add manga
 mangaRouter.post("/api/manga/addmanga", upload.single('image'), async (req, res) => {
   try {
-    const { name, author, status, genre, rating, chapters } = req.body;
-    const image = req.file.filename; 
+    const { name, author, status, genre, rating, chapters, imageLink } = req.body;
+    let image = "";
+
+    if (req.file) {
+      image = req.file.filename;
+    } else if (imageLink) {
+      image = imageLink;
+    } else {
+      return res.status(400).json({ message: "Vui lòng chọn ảnh." });
+    }
+
     const newManga = new Manga({
       name,
-      image ,
+      image,
       author,
       status,
       genre,
@@ -35,6 +44,7 @@ mangaRouter.post("/api/manga/addmanga", upload.single('image'), async (req, res)
     });
 
     await newManga.save();
+    res.json({ message: "Manga đã được thêm thành công." });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
