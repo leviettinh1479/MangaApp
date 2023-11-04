@@ -109,7 +109,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_Complete}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
+                    renderItem={({item}) => <ItemManga onpress={() => navigation.navigate('Detail')} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />
@@ -132,7 +132,7 @@ const ExploreScreen = ({ navigation}:ScreenAProps) => {
                   <FlatList style={{ flex: 1}}
                     data={data_Complete}
                     keyExtractor={item => item.id}
-                    renderItem={({item}) => <ItemManga image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
+                    renderItem={({item}) => <ItemManga onpress={() => navigation.navigate('Detail')} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                   />

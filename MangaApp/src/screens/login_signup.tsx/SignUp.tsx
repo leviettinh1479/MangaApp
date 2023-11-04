@@ -1,9 +1,13 @@
 import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../assets/images'
-import { COLORS, FONT_FAMILY, FONT_SIZE } from '../theme/theme'
+import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../../assets/images';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-const SignUp = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const SignUp =  ({ navigation}:ScreenAProps) => {
     const [valueName, setValueName] = useState("");
     const [valueEmail, setValueEmail] = useState("");
     const [valuePassword, setValuePassword] = useState("");
@@ -45,9 +49,11 @@ const SignUp = () => {
         console.log('Name:', valueName);
         console.log('Email:', valueEmail);
         console.log('Password:', valuePassword);
+        navigation.navigate('VerifyCode')
     }
     const goLogin = () => {
         console.log('goLogin')
+        navigation.navigate('LoginEmail')
     }
     return (
         <ImageBackground source={BG_GENRE} style={styles.container}>
@@ -226,6 +232,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: COLORS.WHITE_TEXT,
-        backgroundColor: COLORS.WHITE_TEXT,
+        backgroundColor: COLORS.White,
     },
 })

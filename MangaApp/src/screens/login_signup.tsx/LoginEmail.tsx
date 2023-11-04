@@ -11,14 +11,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import React from 'react';
-import {COLORS, FONT_FAMILY} from '../theme/theme';
+import {COLORS, FONT_FAMILY} from '../../theme/theme';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const LoginEmail = () => {
   return (
     <View style={styles.Container}>
       <Image
-        source={require('../assets/images/Backgound_1.jpg')}
+        source={require('../../assets/images/Backgound_1.jpg')}
         style={{
           display: 'flex',
           position: 'absolute',
@@ -56,7 +56,7 @@ const LoginEmail = () => {
           <TouchableOpacity style={styles.View_DangNhap1}>
             <Image
               style={styles.Image_DangNhap}
-              source={require('../assets/images/Logo_Facebook.png')}
+              source={require('../../assets/images/Logo_Facebook.png')}
             />
             <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
           </TouchableOpacity>
@@ -65,7 +65,7 @@ const LoginEmail = () => {
           <TouchableOpacity style={styles.View_DangNhap1}>
             <Image
               style={styles.Image_DangNhap}
-              source={require('../assets/images/Logo_Google.png')}
+              source={require('../../assets/images/Logo_Google.png')}
             />
             <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
           </TouchableOpacity>

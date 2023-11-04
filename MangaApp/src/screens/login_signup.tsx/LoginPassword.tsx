@@ -2,9 +2,12 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackgr
 import React, { useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Feather';
 import Icon_2 from 'react-native-vector-icons/Ionicons';
-import { COLORS, FONT_FAMILY } from '../theme/theme';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-const LoginPassword = () => {
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const LoginPassword = ({ navigation}:ScreenAProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
 
@@ -12,7 +15,7 @@ const LoginPassword = () => {
         setShowPassword(!showPassword);
     };
     return (
-        <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
+        <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.Container1}>
                 <View style={styles.View_DangNhap}>
                     <Text style={styles.Text_DangNhap}>Log in</Text>
@@ -20,7 +23,7 @@ const LoginPassword = () => {
                 <View style={styles.View_Container}>
                     <View style={styles.View_ThongTin}>
                         <View>
-                            <Image style={styles.Image_avt} source={require('../assets/images/Ellipse.png')} />
+                            <Image style={styles.Image_avt} source={require('../../assets/images/Ellipse.png')} />
                         </View>
                         <View>
                             <View>
@@ -44,7 +47,7 @@ const LoginPassword = () => {
                         <Text style={styles.TextTiepTuc}>Continue</Text>
                     </TouchableOpacity>
                     <View style={styles.ViewForgot}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword_1')}>
                             <Text style={styles.Text_Forgot}>Forgot password?</Text>
                         </TouchableOpacity>
                     </View>

@@ -1,10 +1,12 @@
 import { Dimensions, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { BG_GENRE, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../assets/images'
-import { COLORS, FONT_FAMILY } from '../theme/theme'
+import { BG_GENRE, ICON_CHECK, ICON_EYE, ICON_EYECANCEL } from '../../assets/images';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-
-const ForgotPassword_1 = () => {
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const ForgotPassword_1 = ({ navigation}:ScreenAProps) => {
     const [valuePassword, setValuePassword] = useState("");
     const [valuePasswordNew, setValuePasswordNew] = useState("");
 
@@ -26,6 +28,7 @@ const ForgotPassword_1 = () => {
     const goSetPassword = () => {
         console.log('Password:', valuePassword);
         console.log('PasswordNew:', valuePasswordNew);
+        navigation.navigate('ForgotPassword2')
     }
     return (
         <ImageBackground source={BG_GENRE} style={styles.container}>
@@ -183,7 +186,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: COLORS.WHITE_TEXT,
-        backgroundColor: COLORS.WHITE_TEXT,
+        backgroundColor: COLORS.White,
         fontFamily: FONT_FAMILY.quicksand_medium,
     },
     container3: {

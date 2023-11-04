@@ -1,39 +1,43 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, StatusBar } from 'react-native'
 import React from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
-import { COLORS, FONT_FAMILY } from '../theme/theme';
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
 
-const VerifyCode = () => {
+
+interface ScreenAProps {
+    navigation: any; // or use the correct navigation type from @types/react-navigation
+  }
+const VerifyCode = ({ navigation}:ScreenAProps) => {
   return (
-    <ImageBackground source={require('../assets/images/Backgound_1.jpg')} style={styles.Container}>
-            <View style={styles.View_Back}>
-                <TouchableOpacity style={styles.View_Back1}>
-                    <View>
-                        <Icon_1 name="chevron-back" size={24} color="white" />
-                    </View>
-                    <View >
-                        <Text style={styles.Text_Back}>Back to Log in</Text>
-                    </View>
-                </TouchableOpacity>
+    <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
+    <View style={styles.View_Back}>
+        <TouchableOpacity style={styles.View_Back1} onPress={() => navigation.navigate('LoginEmail')}>
+            <View>
+                <Icon_1 name="chevron-back" size={24} color="white" />
             </View>
-            <View style={styles.View_VerifyCode}>
-                <Text style={styles.Text_VerifyCode}>Verify Code</Text>
+            <View >
+                <Text style={styles.Text_Back}>Back to Log in</Text>
             </View>
-            <View style={styles.View_MXT}>
-                <Text style={styles.Text_MXT}>An authentication code has been sent to your email.</Text>
-                <TextInput placeholder='Enter Code' placeholderTextColor='black' style={styles.TextInput_MXT}></TextInput>
-                <TouchableOpacity style={styles.View_Verify}>
-                    <Text style={styles.Text_Verify}>Verify</Text>
-                </TouchableOpacity>
-                <View style={styles.View_SendTo}>
-                    <Text style={styles.Text_SendTo}>Don’t receive a code? </Text>
-                    <TouchableOpacity style={styles.View_Back1}>
-                        <Text style={styles.Text_Resend}>Resend</Text>
-                        <Icon_1 style={styles.Icon_Resend} name="reload" size={14} color="white" />
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </ImageBackground>
+        </TouchableOpacity>
+    </View>
+    <View style={styles.View_VerifyCode}>
+        <Text style={styles.Text_VerifyCode}>Verify Code</Text>
+    </View>
+    <View style={styles.View_MXT}>
+        <Text style={styles.Text_MXT}>An authentication code has been sent to your email.</Text>
+        <TextInput placeholder='Enter Code' placeholderTextColor='black' style={styles.TextInput_MXT}></TextInput>
+        <TouchableOpacity style={styles.View_Verify}>
+            <Text style={styles.Text_Verify}>Verify</Text>
+        </TouchableOpacity>
+        <View style={styles.View_SendTo}>
+            <Text style={styles.Text_SendTo}>Don’t receive a code? </Text>
+            <TouchableOpacity style={styles.View_Back1}>
+                <Text style={styles.Text_Resend}>Resend</Text>
+                <Icon_1 style={styles.Icon_Resend} name="reload" size={14} color="white" />
+            </TouchableOpacity>
+        </View>
+    </View>
+</ImageBackground>
   )
 }
 
