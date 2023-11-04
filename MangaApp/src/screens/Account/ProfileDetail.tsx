@@ -112,6 +112,7 @@ const ProfileDetail =({ navigation}:ScreenAProps)=> {
                         <TextInput
                             style={styles.input}
                             placeholder="Nhập tên mới"
+                            placeholderTextColor='black'
                             onChangeText={(text) => setNewName(text)}
                             value={newName}
                         />
@@ -146,6 +147,7 @@ const ProfileDetail =({ navigation}:ScreenAProps)=> {
                         <TextInput
                             style={styles.input}
                             placeholder="Nhập Email mới"
+                            placeholderTextColor='black'
                             onChangeText={(text) => setNewEmail(text)}
                             value={newEmail}
                         />
@@ -179,18 +181,21 @@ const ProfileDetail =({ navigation}:ScreenAProps)=> {
                         <TextInput
                             style={styles.input}
                             placeholder="Ngày (1-31)"
+                            placeholderTextColor='black'
                             onChangeText={(text) => setNewDay(text)}
                             value={newDay}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Tháng (1-12)"
+                            placeholderTextColor='black'
                             onChangeText={(text) => setNewMonth(text)}
                             value={newMonth}
                         />
                         <TextInput
                             style={styles.input}
                             placeholder="Năm (1900-2023)"
+                            placeholderTextColor='black'
                             onChangeText={(text) => setNewYear(text)}
                             value={newYear}
                         />
@@ -374,6 +379,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         paddingLeft: 5,
         fontSize: 16,
+        color: 'black',
         fontFamily: FONT_FAMILY.quicksand_regular
     },
     button: {
