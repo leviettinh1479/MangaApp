@@ -61,6 +61,15 @@ app.use(genreCpanel);
 
 // http://localhost:3000/
 app.use("/", userCpanelRoute);
+
+//View Engine
+
+// app.get("/login", (req, res) => {
+//   return res.render("login");
+// });
+// app.get("/register", (req, res) => {
+//   return res.render("register");
+// });
 app.get("/resetpassword", (req, res) => {
   return res.render("resetpassword");
 });
