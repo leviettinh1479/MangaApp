@@ -9,33 +9,42 @@ const multer = require('multer');
 const path = require('path');
 const auth = require('../middlewares/auth');
 const appFirebase = require('../configs/FirebaseConfig');
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Thư mục để lưu trữ tệp tải lên
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
+const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require("firebase/storage");
+const storage = getStorage();
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: multer.memoryStorage() });
+const giveCurrentDateTime = () => {
+  const today = new Date();
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + ' ' + time;
+  return dateTime;
+}
+
 // Add manga
-mangaRouter.post("/api/manga/addmanga", upload.single('image'), async (req, res) => {
+mangaRouter.post("/api/manga/addmanga",[auth.authenWeb], upload.single('image'), async (req, res) => {
   try {
-    const { name, author, status, genre, rating, chapters, imageLink } = req.body;
-    let image = "";
+    const { name, author, status, genre, rating, chapters, imageUrl } = req.body;
+    const dateTime = giveCurrentDateTime();
+
+    let downloadURL;
 
     if (req.file) {
-      image = req.file.filename;
-    } else if (imageLink) {
-      image = imageLink;
+      const storageRef = ref(storage, `mangas/${req.file.originalname + "       " + dateTime}`);
+      const metadata = {
+        contentType: req.file.mimetype,
+      };
+      const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+      downloadURL = await getDownloadURL(snapshot.ref);
+    } else if (imageUrl) {
+      downloadURL = imageUrl;
     } else {
-      return res.status(400).json({ message: "Vui lòng chọn ảnh." });
+      return res.status(400).json({ message: "Hãy cung cấp ảnh hoặc đường link ảnh." });
     }
 
     const newManga = new Manga({
       name,
-      image,
+      image: downloadURL,
       author,
       status,
       genre,
@@ -187,15 +196,30 @@ mangaRouter.delete("/home/:id/delete", async (req, res) => {
 });
 
 //Update manga
-mangaRouter.post("/home/:id/update", async (req, res) => {
+mangaRouter.post("/home/:id/update",upload.single('image'), async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, author, image, status ,genre} = req.body;
+    const { name, author, imageUrl, status ,genre} = req.body;
+    const dateTime = giveCurrentDateTime();
 
+    let downloadURL;
+
+    if (req.file) {
+      const storageRef = ref(storage, `mangas/${req.file.originalname + "       " + dateTime}`);
+      const metadata = {
+        contentType: req.file.mimetype,
+      };
+      const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+      downloadURL = await getDownloadURL(snapshot.ref);
+    } else if (imageUrl) {
+      downloadURL = imageUrl;
+    } else {
+      return res.status(400).json({ message: "Hãy cung cấp ảnh hoặc đường link ảnh." });
+    }
     const updatedMangaData = {
       name,
       author,
-      image,
+      image: downloadURL,
       status,
       genre,
     };

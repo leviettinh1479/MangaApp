@@ -97,12 +97,11 @@
                   </div>
                   <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
-                    <input type="text" id="imageLink" name="imageLink" class="form-control"
-                      placeholder="Enter image URL">
-                    <input style="margin-top: 10;" type="file" id="image" name="image" class="form-control" accept="image/*">
+                    <input onchange="displayImg()" style="margin-top: 10;" type="text" id="imageUrl" name="imageUrl" class="form-control" placeholder="Enter image URL">
+                    <input onchange="displayImg()" style="margin-top: 10;" type="file" id="image" name="image" class="form-control" accept="image/*" multiple>              
                   </div>
-                  <div id="preview"></div>
-                  <div id="preview"></div>
+                  <image src="{{this.image}}" id="listImage-display"  style="width: 100;height: 100;"></image>
+                  <input type="hidden" id="imgUrl" value="image">
                   <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select id="status" name="status" class="form-select">
@@ -131,24 +130,25 @@
     </div>
   </div>
 </div>
+
 <script>
-  function chooseImage() {
-    document.getElementById('imageLink').style.display = 'none';
-    document.getElementById('imageFile').style.display = 'block';
-    document.getElementById('imageFile').addEventListener('change', function () {
-      var file = this.files[0];
-      var reader = new FileReader();
+const displayImg = () => {
+  var imageUrlInput = document.getElementById('imageUrl');
+  var fileInput = document.getElementById('image');
+  var imageDisplay = document.getElementById('listImage-display');
+  var imgUrlInput = document.getElementById('imgUrl');
 
-      reader.onload = function (e) {
-        var imgElement = document.createElement('img');
-        imgElement.src = e.target.result;
-        imgElement.width = 100;
-        document.getElementById('preview').innerHTML = '';
-        document.getElementById('preview').appendChild(imgElement);
-      }
-
-      reader.readAsDataURL(file);
-    });
+  if (imageUrlInput.value) {
+    imageDisplay.src = imageUrlInput.value;
+    imgUrlInput.value = imageUrlInput.value;
+  } else if (fileInput.files && fileInput.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      imageDisplay.src = e.target.result;
+      imgUrlInput.value = e.target.result;
+    }
+    reader.readAsDataURL(fileInput.files[0]);
   }
+}
 
-</script>
+</script> 
