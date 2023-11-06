@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const AxiosIntance = (contentType = 'application/json') => {
     const axiosInstance = axios.create({
         baseURL: 'http://192.168.2.18:3000/'
@@ -11,7 +12,7 @@ const AxiosIntance = (contentType = 'application/json') => {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': contentType
-            }
+            } as AxiosRequestHeaders; // Explicitly type headers
             return config;
         },
         err => Promise.reject(err)
