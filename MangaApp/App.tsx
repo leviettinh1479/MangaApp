@@ -12,6 +12,7 @@ import Genre from './src/screens/Genre';
 import SignUp from './src/screens/SignUp';
 import ForgotPassword_1 from './src/screens/ForgotPassword_1';
 import MyLibraryScreen from './src/screens/MyLibraryScreen';
+import LoginEmail from './src/screens/LoginEmail';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,8 +20,9 @@ const Stack = createNativeStackNavigator();
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName='Bottom' screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Bottom" component={BottomNavigations} options={{ animation: 'default' }} />
+                <Stack.Screen name="Genre" component={LoginEmail} options={{ animation: 'default' }} />
             </Stack.Navigator>
         </NavigationContainer>
     )
