@@ -104,10 +104,17 @@
                       <label for="author" class="form-label">Author</label>
                       <input type="text" id="author" name="author" value="{{mangaData.author}}" class="form-control" />
                     </div>
-                    <div class="mb-3">
+                    {{!-- <div class="mb-3">
                       <label for="image" class="form-label">Image link address</label>
                       <input type="text" id="image" name="image" value="{{mangaData.image}}" class="form-control" />
-                    </div>
+                    </div> --}}
+                    <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input onchange="displayImg()" style="margin-top: 10;" value="{{mangaData.image}}" type="text" id="imageUrl" name="imageUrl" class="form-control" placeholder="Enter image URL">
+                    <input onchange="displayImg()" style="margin-top: 10;"  type="file" id="image" name="image" class="form-control" accept="image/*" multiple>              
+                  </div>
+                  <image src="{{this.image}}" id="listImage-display"  style="width: 100;height: 100;"></image>
+                  <input type="hidden" id="imgUrl" value="image">
                     <div class="mb-3">
                       <label for="status" class="form-label">Status</label>
                       <select id="status" name="status" value="{{mangaData.status}}" class="form-select">
@@ -169,6 +176,27 @@
       .catch(error => console.error('Error:', error));
   });
 </script>
+<script>
+const displayImg = () => {
+  var imageUrlInput = document.getElementById('imageUrl');
+  var fileInput = document.getElementById('image');
+  var imageDisplay = document.getElementById('listImage-display');
+  var imgUrlInput = document.getElementById('imgUrl');
+
+  if (imageUrlInput.value) {
+    imageDisplay.src = imageUrlInput.value;
+    imgUrlInput.value = imageUrlInput.value;
+  } else if (fileInput.files && fileInput.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      imageDisplay.src = e.target.result;
+      imgUrlInput.value = e.target.result;
+    }
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+}
+
+</script> 
 </body>
 
 </html>
