@@ -2,9 +2,10 @@ const express = require("express");
 const chapterRouter = express.Router();
 const Manga = require("../models/manga");
 const Chapter = require("../models/chapter");
+const { findById } = require("../models/genre");
 
 // Add chapter
-chapterRouter.post('/api/chapter/addchapter', async (req, res) => {
+chapterRouter.post("/api/chapter/addchapter", async (req, res) => {
   try {
     const { name, title, chap, image, content, mangaId } = req.body;
 
@@ -12,7 +13,9 @@ chapterRouter.post('/api/chapter/addchapter', async (req, res) => {
     const existingChapter = await Chapter.findOne({ chap, mangaId });
 
     if (existingChapter) {
-      return res.status(400).json({ success: false, message: 'Chapter đã tồn tại' });
+      return res
+        .status(400)
+        .json({ success: false, message: "Chapter đã tồn tại" });
     }
 
     const newChapter = new Chapter({
@@ -21,13 +24,15 @@ chapterRouter.post('/api/chapter/addchapter', async (req, res) => {
       chap,
       image,
       content,
-      mangaId
+      mangaId,
     });
 
     await newChapter.save();
 
     // Add the new chapter's ID to the corresponding Manga's chapters array
-    await Manga.findByIdAndUpdate(mangaId, { $push: { chapters: newChapter._id } });
+    await Manga.findByIdAndUpdate(mangaId, {
+      $push: { chapters: newChapter._id },
+    });
 
     res.status(201).json({ success: true, chapter: newChapter });
   } catch (error) {
@@ -36,7 +41,7 @@ chapterRouter.post('/api/chapter/addchapter', async (req, res) => {
 });
 
 // Get all chapters
-chapterRouter.get('/api/chapter/getall', async (req, res) => {
+chapterRouter.get("/api/chapter/getall", async (req, res) => {
   try {
     const chapters = await Chapter.find();
     res.json({ success: true, chapters });
@@ -45,11 +50,32 @@ chapterRouter.get('/api/chapter/getall', async (req, res) => {
   }
 });
 
+// Get all chapters from manga
+chapterRouter.get("/api/chapter/getall/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const manga = await Manga.findById(id);
+
+    if (!manga) {
+      return res.status(404).json({ message: "Không tìm thấy truyện!" });
+    }
+
+    const chapters = await Chapter.find();
+
+    res.json({ success: true, chapters });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // Delete chapter by ID
-chapterRouter.delete('/api/chapter/:id', async (req, res) => {
+chapterRouter.delete("/api/chapter/:id", async (req, res) => {
   try {
     const deletedChapter = await Chapter.findByIdAndDelete(req.params.id);
-    await Manga.findByIdAndUpdate(deletedChapter.mangaId, { $pull: { chapters: deletedChapter._id } });
+    await Manga.findByIdAndUpdate(deletedChapter.mangaId, {
+      $pull: { chapters: deletedChapter._id },
+    });
     res.json({ success: true, deletedChapter });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -57,7 +83,7 @@ chapterRouter.delete('/api/chapter/:id', async (req, res) => {
 });
 
 // Get chapter by ID
-chapterRouter.get('/api/chapter/:id', async (req, res) => {
+chapterRouter.get("/api/chapter/:id", async (req, res) => {
   try {
     const chapter = await Chapter.findById(req.params.id);
     res.json({ success: true, chapter });
@@ -66,10 +92,8 @@ chapterRouter.get('/api/chapter/:id', async (req, res) => {
   }
 });
 
-
-
 // Update chapter by ID
-chapterRouter.put('/api/chapter/:id', async (req, res) => {
+chapterRouter.put("/api/chapter/:id", async (req, res) => {
   try {
     const updatedChapter = await Chapter.findByIdAndUpdate(
       req.params.id,

@@ -62,7 +62,7 @@ mangaRouter.post("/api/manga/:mangaId/rate", [auth.authenApp], async (req, res) 
 
     await existingManga.save();
 
-    res.json({ message: "Đã đánh giá manga" });
+    res.json({ message: "Đã đánh giá manga" ,existingManga });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
