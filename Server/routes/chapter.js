@@ -61,7 +61,7 @@ chapterRouter.get("/api/chapter/getall/:id", async (req, res) => {
       return res.status(404).json({ message: "Không tìm thấy truyện!" });
     }
 
-    const chapters = await Chapter.find();
+    const chapters = await Chapter.find({ mangaId: id });
 
     res.json({ success: true, chapters });
   } catch (error) {
