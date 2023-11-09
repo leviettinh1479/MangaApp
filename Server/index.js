@@ -79,6 +79,9 @@ app.get("/addmanga", (req, res) => {
 app.get("/detail", (req, res) => {
   return res.render("detailManga");
 });
+app.get("/progress", (req, res) => {
+  return res.render("progress");
+});
 
 
 // Connections
