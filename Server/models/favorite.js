@@ -6,6 +6,11 @@ const favoriteSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Manga'
   },
+  user: {
+    require: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   createdAt: { type: Date, default: Date.now }
 });
 
