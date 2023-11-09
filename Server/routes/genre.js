@@ -36,4 +36,14 @@ genreRouter.get("/api/genre/getall", async (req, res) => {
   }
 });
 
+// Get chapter by ID
+genreRouter.get('/api/genre/:id', async (req, res) => {
+  try {
+    const genre = await Genre.findById(req.params.id);
+    res.json({ success: true, genre });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = genreRouter;
