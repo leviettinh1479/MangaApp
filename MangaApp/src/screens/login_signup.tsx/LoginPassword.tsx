@@ -3,17 +3,42 @@ import React, { useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Feather';
 import Icon_2 from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import AxiosIntance from '../../components/utils/AxiosIntance';
 
-interface ScreenAProps {
-    navigation: any; // or use the correct navigation type from @types/react-navigation
-  }
-const LoginPassword = ({ navigation}:ScreenAProps) => {
+// interface ScreenAProps {
+//     navigation: any; // or use the correct navigation type from @types/react-navigation
+//     email: any;
+//   }
+const LoginPassword = (props)   => {
+    const {email} = props.route.params;
+    const {name} = props.route.params;
+    const {image} = props.route.params;
+    const {navigation} = props;
     const [showPassword, setShowPassword] = useState(false);
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState("");
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+    const checkLogin = async () => {
+        try {
+            const response = await AxiosIntance().post("api/user/login", {email: email, password: password});
+            console.log(response);
+
+            if (response) {
+                console.log(response);
+                navigation.navigate('BottomTab');
+            } else {
+                console.log("Đăng nhập không thành công");
+            }
+        } catch (error) {
+            console.log("Lỗi rồi: ", error);
+        }
+    }
+
+
+
     return (
         <ImageBackground source={require('../../assets/images/Backgound_1.jpg')} style={styles.Container}>
             <View style={styles.Container1}>
@@ -23,17 +48,17 @@ const LoginPassword = ({ navigation}:ScreenAProps) => {
                 <View style={styles.View_Container}>
                     <View style={styles.View_ThongTin}>
                         <View>
-                            <Image style={styles.Image_avt} source={require('../../assets/images/Ellipse.png')} />
+                            <Image style={styles.Image_avt} source={{ uri: image }} />
                         </View>
                         <View>
                             <View>
-                                <Text style={styles.Text_Name}>John Doe</Text>
-                                <Text style={styles.Text_Email}>john.doe@example.com</Text>
+                                <Text style={styles.Text_Name}>{name}</Text>
+                                <Text style={styles.Text_Email} >{email}</Text>
                             </View>
                         </View>
-                        <View>
+                        {/* <View>
                             <Icon_2 name="checkmark-circle-outline" size={24} color="white" />
-                        </View>
+                        </View> */}
                     </View>
                     {/* <Text style={styles.Text_Detail}>Forgot your password? Don’t worry, enter your email to reset your current password.</Text> */}
                     <View style={styles.View_Password}>
@@ -43,7 +68,7 @@ const LoginPassword = ({ navigation}:ScreenAProps) => {
                             <Icon_1 name={showPassword ? 'eye' : 'eye-off'} size={22} color={COLORS.GRAY_BG} />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.View_TiepTuc}>
+                    <TouchableOpacity style={styles.View_TiepTuc} onPress={checkLogin}>
                         <Text style={styles.TextTiepTuc}>Continue</Text>
                     </TouchableOpacity>
                     <View style={styles.ViewForgot}>
@@ -141,16 +166,20 @@ const styles = StyleSheet.create({
     Image_avt: {
         width: 70,
         height: 70,
+        borderRadius: 45,
     },
     Text_Name: {
         fontSize: 16,
         color: COLORS.White,
         fontFamily: FONT_FAMILY.quicksand_bold,
+        paddingLeft: 15
     },
     Text_Email: {
         fontSize: 14,
         fontFamily: FONT_FAMILY.quicksand_medium,
         color: 'white',
+        paddingLeft: 15
+
     },
     Container1: {
         justifyContent: 'center',

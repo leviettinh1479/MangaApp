@@ -10,11 +10,56 @@ import {
   StatusBar,
   KeyboardAvoidingView,
 } from 'react-native';
-import React from 'react';
-import {COLORS, FONT_FAMILY} from '../../theme/theme';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import React, { useState } from 'react'
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AxiosIntance from '../../components/utils/AxiosIntance';
+import { Alert } from 'react-native';
 
-const LoginEmail = () => {
+
+interface ScreenAProps {
+  navigation: any; // or use the correct navigation type from @types/react-navigation
+}
+
+const LoginEmail = ({ navigation}:ScreenAProps) => {
+  const Register = () => {
+    console.log('Register ne: ')
+    navigation.navigate('Register')
+  }
+  const [email, setEmail] = useState("");
+  // const CheckEmail = () => {
+    
+  // };
+
+  const CheckEmail = async () => {
+    
+    // Kiểm tra xem email có được nhập hay không
+    if (email.trim() === '') {
+      Alert.alert('Vui lòng nhập địa chỉ email.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Địa chỉ email không hợp lệ.');
+      return;
+    }
+    else {
+      const response = await AxiosIntance().get("api/user/get-all-user");
+        console.log(response);
+        for (let index = 0; index < response.users.length; index++) {
+          if(response.users[index].email == email){
+            navigation.navigate('LoginPassword', { email: email, name: response.users[index].name, image: response.users[index].image, navigation: navigation });
+            console.log("email trùng: ");
+            return;
+          }
+          
+        }
+    }
+    // navigation.navigate('LoginPassword', { email });
+    // Thực hiện các hành động khác nếu email đã được nhập
+    // Ví dụ: chuyển hướng sang màn hình tiếp theo, gửi yêu cầu đăng nhập, vv.
+  };
+
   return (
     <View style={styles.Container}>
       <Image
@@ -35,12 +80,14 @@ const LoginEmail = () => {
             <TextInput
               placeholder="Email"
               placeholderTextColor="black"
+              onChangeText={(text) => setEmail(text)}
+              value={email}
               style={styles.Text_Input_Email}></TextInput>
           </View>
         </KeyboardAwareScrollView>
 
-        <TouchableOpacity style={styles.View_Tieptuc}>
-          <Text style={styles.Text_Tieptuc}>Tiếp tục</Text>
+        <TouchableOpacity style={styles.View_Tieptuc} onPress={CheckEmail}>
+          <Text style={styles.Text_Tieptuc} >Tiếp tục</Text>
         </TouchableOpacity>
         <View style={styles.View_QuenPass}>
           <TouchableOpacity>
@@ -73,7 +120,7 @@ const LoginEmail = () => {
         <View style={styles.View_DangKy}>
           <Text style={styles.Text_DangKy}>Chưa có tài khoản? </Text>
           <TouchableOpacity>
-            <Text style={styles.Text_DangKy1}>Đăng kí</Text>
+            <Text style={styles.Text_DangKy1} onPress={Register}>Đăng kí</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -25,6 +25,7 @@ const StackLogin =()=> {
         <Stack.Navigator initialRouteName='LoginEmail' screenOptions={{headerShown: false}}>
             <Stack.Screen name='LoginEmail' component={LoginEmail}/>
             <Stack.Screen name='LoginPassword' component={LoginPassword}/>
+            <Stack.Screen name='Register' component={SignUp}/>
         </Stack.Navigator>
     )
 }
@@ -32,8 +33,8 @@ const StackLogin =()=> {
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='BottomTab' screenOptions={{ headerShown: false }}>
-                {/* <Stack.Screen name='StackLogin' component={StackLogin}/> */}
+            <Stack.Navigator initialRouteName='StackLogin' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name='StackLogin' component={StackLogin}/>
                 <Stack.Screen name='LoginNavigation' component={LoginNavigations}/>
                 <Stack.Screen name='BottomTab' component={BottomTabNagivation}/>
                 <Stack.Screen name='Detail' component={DetailScreen}/>

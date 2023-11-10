@@ -1,7 +1,10 @@
-import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { BG_GENRE, ICON_EYE, ICON_EYECANCEL } from '../../assets/images';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import AxiosIntance from '../../components/utils/AxiosIntance';
+import { enableScreens } from 'react-native-screens';
+import { Alert } from 'react-native';
 
 
 interface ScreenAProps {
@@ -12,6 +15,9 @@ const SignUp =  ({ navigation}:ScreenAProps) => {
     const [valueEmail, setValueEmail] = useState("");
     const [valuePassword, setValuePassword] = useState("");
 
+    const [errorName, setErrorName] = useState('');
+    const [errorEmail, setErrorEmail] = useState('');
+    const [errorPassword, setErrorPassword] = useState('');
     const handleInputChangeName = (text: string) => {
         setValueName(text);
     }
@@ -21,6 +27,46 @@ const SignUp =  ({ navigation}:ScreenAProps) => {
     const handleInputChangePassword = (textPass: string) => {
         setValuePassword(textPass);
     }
+
+    const goCreate = async () => {
+        // Kiểm tra lỗi và hiển thị thông báo
+        if (valueName.trim() === '') {
+            Alert.alert('Vui lòng nhập tên.');
+            return;
+        }
+        if (valueEmail.trim() === '') {
+            Alert.alert('Vui lòng nhập địa chỉ email.');
+            return;
+          }
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(valueEmail)) {
+            Alert.alert('Địa chỉ email không hợp lệ.');
+            return;
+          }
+        if (valuePassword.trim() === '') {
+            Alert.alert('Vui lòng nhập mật khẩu.');
+            return;
+        } else if (valuePassword.length < 6) {
+            Alert.alert('Mật khẩu phải có ít nhất 6 ký tự');
+            return;
+        }
+
+        // Nếu không có lỗi, tiến hành xử lý đăng ký hoặc submit
+        else {
+            try {
+                const response = await AxiosIntance().post("api/user/register", 
+                {name: valueName, email: valueEmail, password: valuePassword});
+                console.log(response);
+                if (response) {
+                    navigation.navigate('LoginEmail');
+                } else {
+                    console.log("Đăng nhập không thành công");
+                }
+            } catch (error) {
+                console.log("Lỗi rồi: ", error);
+            }
+        }
+    };
 
     const bold1 = "Terms of Service";
     const bold2 = "Privacy Policy";
@@ -45,14 +91,22 @@ const SignUp =  ({ navigation}:ScreenAProps) => {
     const handleIconPress = () => {
         setIsIconActive(!isIconActive);
     };
-    const goCreate = () => {
-        console.log('Name:', valueName);
-        console.log('Email:', valueEmail);
-        console.log('Password:', valuePassword);
-        navigation.navigate('VerifyCode')
-    }
+    // const goCreate = async () => {
+    //     try {
+    //         const response = await AxiosIntance().post("api/user/register", 
+    //         {name: valueName, email: valueEmail, password: valuePassword});
+    //         console.log(response);
+    //         if (response) {
+    //             navigation.navigate('LoginEmail');
+    //         } else {
+    //             console.log("Đăng nhập không thành công");
+    //         }
+    //     } catch (error) {
+    //         console.log("Lỗi rồi: ", error);
+    //     }
+    // }
     const goLogin = () => {
-        console.log('goLogin')
+        console.log('goLogin ne: ')
         navigation.navigate('LoginEmail')
     }
     return (
