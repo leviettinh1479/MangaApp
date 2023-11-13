@@ -133,23 +133,25 @@ mangaRouter.put('/api/manga/:id', [auth.authenApp], async (req, res) => {
 });
 
 // Get genres by manga ID
-
-mangaRouter.get("/api/manga/getall/genre/:id", async (req, res) => {
+mangaRouter.get("/api/manga/getgenres/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const manga = await Manga.findById(id);
+    const manga = await Manga.findById(id).populate('genre', 'name'); 
 
     if (!manga) {
       return res.status(404).json({ message: "Không tìm thấy truyện!" });
     }
 
-    const genres = await Genre.find({ mangaId: id });
+    // Trích xuất chỉ các tên thể loại từ mảng genre
+    const genres = manga.genre.map(genre => genre.name);
 
     res.json({ success: true, genres });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+
+
 
 module.exports = mangaRouter;
