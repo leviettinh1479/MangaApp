@@ -13,7 +13,7 @@ interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
   }
 const Account = ({ navigation}:ScreenAProps) => {
-    const {infoUser,setinfoUser} = useContext(AppContext)
+    const {infoUser,setinfoUser,setisLogin} = useContext(AppContext)
     const logout = async () => {
         // Xóa token lưu trữ
         await AsyncStorage.removeItem('token');

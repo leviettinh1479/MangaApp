@@ -1,5 +1,5 @@
 import { Text, StyleSheet, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DetailScreen from './src/screens/DetailScreen';
@@ -14,8 +14,7 @@ import LoginEmail from './src/screens/login_signup.tsx/LoginEmail';
 import LoginPassword from './src/screens/login_signup.tsx/LoginPassword';
 import SignUp from './src/screens/login_signup.tsx/SignUp';
 import LoginNavigations from './src/navigators/LoginNavigations';
-import { AppContextProvider } from './src/screens/login_signup.tsx/AppContext';
-import AppNavigator from './src/navigators/BottomTabNagivation';
+import { AppContext, AppContextProvider } from './src/screens/login_signup.tsx/AppContext';
 
 
 
@@ -31,6 +30,16 @@ const StackLogin =()=> {
         </Stack.Navigator>
     )
 }
+const AppNavigator = () => {
+    const {isLogin} = useContext(AppContext);
+  return (
+    <>
+        {
+            isLogin == false ? <StackLogin/> : <BottomTabNagivation/>
+        }
+    </>
+  );
+  }
 
 const App = () => {
     return (
@@ -57,3 +66,4 @@ const styles = StyleSheet.create({
     },
 
 })
+

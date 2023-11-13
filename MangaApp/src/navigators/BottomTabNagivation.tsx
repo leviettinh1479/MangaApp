@@ -163,18 +163,9 @@ const BottomTabNagivation = () => {
     </Tab.Navigator>
   )
 }
-const AppNavigator = () => {
-  const {isLogin} = useContext(AppContext);
-return (
-  <>
-      {
-          isLogin == false ? <LoginNavigations/> : <BottomTabNagivation/>
-      }
-  </>
-);
-}
 
-export default AppNavigator
+
+export default BottomTabNagivation
 
 const styles = StyleSheet.create({
     activeline: {
