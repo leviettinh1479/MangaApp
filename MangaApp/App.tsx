@@ -14,6 +14,8 @@ import LoginEmail from './src/screens/login_signup.tsx/LoginEmail';
 import LoginPassword from './src/screens/login_signup.tsx/LoginPassword';
 import SignUp from './src/screens/login_signup.tsx/SignUp';
 import LoginNavigations from './src/navigators/LoginNavigations';
+import { AppContextProvider } from './src/screens/login_signup.tsx/AppContext';
+import AppNavigator from './src/navigators/BottomTabNagivation';
 
 
 
@@ -32,15 +34,18 @@ const StackLogin =()=> {
 
 const App = () => {
     return (
+        <AppContextProvider>
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='StackLogin' screenOptions={{ headerShown: false }}>
+            {/* <Stack.Navigator initialRouteName='StackLogin' screenOptions={{ headerShown: false }}>
                 <Stack.Screen name='StackLogin' component={StackLogin}/>
                 <Stack.Screen name='LoginNavigation' component={LoginNavigations}/>
                 <Stack.Screen name='BottomTab' component={BottomTabNagivation}/>
                 <Stack.Screen name='Detail' component={DetailScreen}/>
                 <Stack.Screen name='DetailChap' component={ChapterDetailScreen}/>
-            </Stack.Navigator>
+            </Stack.Navigator> */}
+            <AppNavigator/>
         </NavigationContainer>
+        </AppContextProvider>
     )
 
 }

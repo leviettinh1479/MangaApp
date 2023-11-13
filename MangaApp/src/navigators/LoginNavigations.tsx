@@ -15,7 +15,7 @@ const LoginNavigatorStack = createNativeStackNavigator();
 
 const LoginNavigations = () => {
     return (
-      <LoginNavigatorStack.Navigator initialRouteName='Genre' screenOptions={{ headerShown: false }}>
+      <LoginNavigatorStack.Navigator initialRouteName='LoginEmail' screenOptions={{ headerShown: false }}>
               <LoginNavigatorStack.Screen component={Genre} name="Genre" />
               <LoginNavigatorStack.Screen component={SignUp} name="SignUp" />
               <LoginNavigatorStack.Screen component={VerifyCode} name="VerifyCode" />

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
@@ -14,6 +14,8 @@ import { COLORS, SPACING } from '../theme/theme';
 import MyLibraryScreen from '../screens/MyLibraryScreen';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { AppContext } from '../screens/login_signup.tsx/AppContext';
+import LoginNavigations from './LoginNavigations';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -161,8 +163,18 @@ const BottomTabNagivation = () => {
     </Tab.Navigator>
   )
 }
+const AppNavigator = () => {
+  const {isLogin} = useContext(AppContext);
+return (
+  <>
+      {
+          isLogin == false ? <LoginNavigations/> : <BottomTabNagivation/>
+      }
+  </>
+);
+}
 
-export default BottomTabNagivation
+export default AppNavigator
 
 const styles = StyleSheet.create({
     activeline: {

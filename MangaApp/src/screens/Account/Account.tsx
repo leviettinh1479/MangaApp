@@ -1,16 +1,30 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 import Icon_2 from 'react-native-vector-icons/FontAwesome6';
 import Icon_3 from 'react-native-vector-icons/MaterialIcons';
 import Icon_4 from 'react-native-vector-icons/FontAwesome';
 import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import { AppContext } from '../login_signup.tsx/AppContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
   }
 const Account = ({ navigation}:ScreenAProps) => {
+    const {infoUser,setinfoUser} = useContext(AppContext)
+    const logout = async () => {
+        // Xóa token lưu trữ
+        await AsyncStorage.removeItem('token');
+    
+        // Đặt trạng thái người dùng về mặc định
+        setisLogin(false);
+        setinfoUser({});
+    
+        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
+        // Sử dụng navigation.navigate hoặc một phương thức điều hướng khác
+      };
     return (
         <View style={styles.Container}>
             <View style={styles.View_Container}>
@@ -31,13 +45,20 @@ const Account = ({ navigation}:ScreenAProps) => {
             </View>
             <View style={styles.View_Header}>
                 <View style={styles.View_ThongTin}>
-                    <View>
+                    {
+                        infoUser.image == "" ? 
+                        <View>
                         <Image style={styles.Image_avt} source={require('../../assets/images/Ellipse.png')} />
                     </View>
+                    :
+                    <View>
+                        <Image style={styles.Image_avt} source={{uri: infoUser.image}} />
+                    </View>
+                    }
                     <View>
                         <View>
-                            <Text style={styles.Text_Name}>John Doe</Text>
-                            <Text style={styles.Text_Email}>john.doe@example.com</Text>
+                            <Text style={styles.Text_Name}>{infoUser.name}</Text>
+                            <Text style={styles.Text_Email}>{infoUser.email}</Text>
                         </View>
                     </View>
                     <TouchableOpacity>
@@ -108,7 +129,7 @@ const Account = ({ navigation}:ScreenAProps) => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={logout}>
                     <View style={styles.View_Container}>
                         <View style={styles.View_Back2}>
                             <View style={styles.View_User}>
@@ -218,3 +239,4 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     }
 })
+
