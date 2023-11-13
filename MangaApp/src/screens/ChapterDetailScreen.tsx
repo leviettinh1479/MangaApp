@@ -22,14 +22,21 @@ const ChapterDetailScreen = ({ navigation }: ScreenAProps) => {
         { key: '2', value: 'Chap 2' },
         { key: '3', value: 'Chap 3' },
         { key: '4', value: 'Chap 4' },
-        { key: '5', value: 'Chap 5' }
+        { key: '5', value: 'Chap 5' },
+        { key: '6', value: 'Chap 5' },
+        { key: '7', value: 'Chap 5' },
+        { key: '8', value: 'Chap 5' },
     ]
 
     const route = useRoute();
     const dataChapId = route.params?._id;
-    const chap = route.params?.chapter;
+    const chap1 = route.params?.chapter;
     console.log(">>>>>>>>>>", dataChapId);
-    console.log("chapaaaaaaaap", chap);
+    console.log("chapaaaaaaaap", chap1);console.log('chap>>>>>', chap1.chap)
+    const dataa1 = [
+        { key: chap1._id, value: chap1.chap },
+        
+    ]
 
     const [GetChapDetailId, setGetChapDetailId] = useState([])
     const [chapImage, setchapImage] = useState([])
@@ -153,7 +160,7 @@ const ChapterDetailScreen = ({ navigation }: ScreenAProps) => {
                     <SelectList
                         dropdownStyles={styles.listChap}
                         setSelected={(chap: any) => setChapter(chap)}
-                        data={chap}
+                        data={dataa}
                         search={false}
                         boxStyles={{ width: 100, height: 35, justifyContent: 'center', alignItems: 'center' }}
                         inputStyles={{ height: 25, justifyContent: 'center', alignItems: 'center' }}

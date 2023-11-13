@@ -25,7 +25,7 @@ const ItemTopics = ({ title }: ItemProps) => {
   return (
     <TouchableOpacity style={{
       backgroundColor: '#FF97A3', paddingHorizontal: 16, paddingVertical: 8, alignItems: 'center',
-      marginTop: 16, justifyContent: 'center', marginHorizontal: 5, borderRadius: 8
+      marginTop: 16, justifyContent: 'center', marginHorizontal: 5, borderRadius: 8, overflow:'hidden'
     }}>
       <Text style={{ fontSize: 14, fontFamily: FONT_FAMILY.quicksand_medium, color: '#000000' }}>{title}</Text>
     </TouchableOpacity>
@@ -69,7 +69,7 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
 
   const [GetMangaId, setGetMangaId] = useState([])
   const [GetChapterId, setGetChapterId] = useState([])
-  const [GetGenreId, setGetGenreId] = useState([])
+
   const [GetGenre, setGetGenre] = useState([])
   useEffect(() => {
     const getMangaID = async () => {
@@ -77,8 +77,7 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
         const respone = await AxiosIntance().get("/api/manga/" + dataId);
         if (respone) {
           setGetMangaId(respone.manga);
-          console.log("genre>>>>>0", GetMangaId.genre)
-          setGetGenreId(GetMangaId.genre)
+          console.log("idmanga", dataId)
         } else {
           ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
         }
@@ -90,11 +89,10 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
         } else {
           ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
         }
-        const respone2 = await AxiosIntance().get("/api/genre/getall");
-        // console.log('ádasdasd', respone1)
+        const respone2 = await AxiosIntance().get("/api/manga/getgenres/"+dataId);
         if (respone2) {
-          setGetGenre(respone2);
-          console.log("chaoterID", respone2)
+          setGetGenre(respone2.genres);
+          console.log("genres", respone2)
         } else {
           ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
         }
@@ -125,9 +123,9 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
           </View>
         ) : (
           <ImageBackground style={{ height: 280, flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingHorizontal: 16, position: 'relative' }} blurRadius={5} source={require('../assets/images/testimage.jpg')}>
-            <Image style={{ position: 'absolute', height: 160, width: 160 }} resizeMode='cover' source={{ uri: GetMangaId.image }} />
+            <Image style={{ position: 'absolute', height: 250, width: 160 }} resizeMode='cover' source={{ uri: GetMangaId.image }} />
             <View style={{ backgroundColor: '#FF97A3', width: '100%', height: 56, borderRadius: 8, padding: 8, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-              <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => navigation.navigate('DetailChap')}>
+              <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => navigation.navigate('DetailChap', { _id: GetChapterId[0]._id, chapter: GetMangaId.chapters[0] })}>
                 <Feather name="book" color="#000000" size={18} style={{ backgroundColor: 'transparent', }} />
                 <Text style={{ fontSize: 16, fontFamily: FONT_FAMILY.quicksand_bold, marginLeft: 10, color: '#000000' }}>Read Nexus</Text>
               </TouchableOpacity>
@@ -171,8 +169,8 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
           </Text>
           <FlatList style={{ flex: 1, marginTop: 16 }}
             data={GetGenre}
-            keyExtractor={item => item._id}
-            renderItem={({ item }) => <ItemTopics title={item.name} />}
+            keyExtractor={(item, index)=> index.toString()}
+            renderItem={({ item }) => <ItemTopics title={item} />}
             numColumns={2}
             nestedScrollEnabled={true}
             scrollEnabled={false}
@@ -183,15 +181,15 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
           <FlatList style={{ flex: 1 }}
             data={GetChapterId}
             keyExtractor={item => item._id}
-            renderItem={({ item }) => <ItemChaps onpress={() => navigation.navigate('DetailChap', { _id: item._id, chapter: GetMangaId.chapters })} title={item.chap} id={item._id} content={item.content} />}
+            renderItem={({ item }) => <ItemChaps onpress={() => navigation.navigate('DetailChap', { _id: item._id, chapter: GetChapterId })} title={item.chap} id={item._id} content={item.content} />}
             numColumns={1}
             nestedScrollEnabled={true}
             scrollEnabled={false}
-            initialNumToRender={2}
+            initialNumToRender={5}
           />
-          <Text style={{ fontSize: 18, color: '#000000', fontFamily: FONT_FAMILY.quicksand_bold, marginTop: 24, marginLeft: 39 }}>
+          {/* <Text style={{ fontSize: 18, color: '#000000', fontFamily: FONT_FAMILY.quicksand_bold, marginTop: 24, marginLeft: 39 }}>
             Final Sumary
-          </Text>
+          </Text> */}
           <View style={{ flexDirection: 'row', height: 101, padding: 12, backgroundColor: '#FF97A3', borderRadius: 12, marginTop: 29 }}>
             <Image style={{ height: 56, width: 56, borderRadius: 50 }} resizeMode='contain' source={require('../assets/images/manga.png')} />
             <View style={{ flexDirection: 'column', marginLeft: 12 }}>
