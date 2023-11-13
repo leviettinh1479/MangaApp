@@ -1,6 +1,7 @@
 const express = require("express");
 const mangaRouter = express.Router();
 const Manga = require("../models/manga");
+const Genre = require("../models/genre");
 const Rating = require("../models/rating");
 const auth = require('../middlewares/auth');
 
@@ -131,5 +132,24 @@ mangaRouter.put('/api/manga/:id', [auth.authenApp], async (req, res) => {
   }
 });
 
+// Get genres by manga ID
+
+mangaRouter.get("/api/manga/getall/genre/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const manga = await Manga.findById(id);
+
+    if (!manga) {
+      return res.status(404).json({ message: "Không tìm thấy truyện!" });
+    }
+
+    const genres = await Genre.find({ mangaId: id });
+
+    res.json({ success: true, genres });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 module.exports = mangaRouter;
