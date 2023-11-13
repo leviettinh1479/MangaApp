@@ -83,27 +83,36 @@
     <!--  Main wrapper -->
     <div class="body-wrapper">
         <!--  Header Start -->
-   
+
         <!--  Header End -->
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    {{#each userData}}
-                    <table class="table table-striped">
+                    {{#each reportData}}
+                    <table class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Avartar</th>
+                                <th scope="col" style="width: 10px;">#</th>
+                                <th scope="col" style="width: 300px;">Error</th>
+                                <th scope="col" style="width: 300px;">Description</th>
+                                <th scope="col" style="width: 100px;">User ID</th>
+                                <th scope="col" style="width: 100px;">Chapter ID</th>
+                                <th scope="col" style="width: 100px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="justify-content: center;">
-                                <th scope="row">{{@index}}</th>
-                                <td>{{this.name}}</td>
-                                <td>{{this.email}}</td>
-                                <td><img width="50" height="50" style="border-radius: 25px;" src="{{this.image}}" /></td>
+                                <th scope="row" style="width: 10px;">{{@index}}</th>
+                                <td style="width: 300px;">{{this.name}}</td>
+                                <td style="width: 300px;">{{this.description}}</td>
+                                <td style="width: 100px;">{{this.userID}}</td>
+                                <td style="width: 100px;">{{this.chapterID}}</td>
+                                <td style="width: 100px;">
+                                    <a onclick="confirmDelete('{{this._id}}');" title="Delete Report"
+                                        class="btn btn-danger p-3">
+                                       <i class="ti ti-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -112,3 +121,48 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+  const fetchAPI = async (url, option) => {
+    const res = await fetch(url, option);
+    return res.json();
+  }
+
+  const deleteHotelById = async (id) => {
+    const url = `/delete-report/${id}`;
+    const option = {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    }
+    try {
+      const result = await fetchAPI(url, option);
+      console.log('Delete result: ', result);
+      if (result.status) {
+        window.location.reload();
+
+      } else {
+        swal('Xóa Thất bại!', {
+          icon: 'error',
+        });
+      }
+    } catch (e) {
+      console.log('Delete error: ', e);
+    }
+  }
+
+  const confirmDelete = (id) => {
+    swal({
+      title: "Xác nhận xóa?",
+      text: "Bạn có chắc muốn xóa report này không?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteHotelById(id);
+        }
+      });
+  }
+</script>
