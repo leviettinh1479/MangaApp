@@ -2,6 +2,7 @@
 const express = require("express");
 const genreRouter = express.Router();
 const Genre = require("../models/genre");
+const Manga = require("../models/manga");
 
 // Route để thêm thể loại
 genreRouter.post("/api/genre/add", async (req, res) => {
@@ -45,5 +46,8 @@ genreRouter.get('/api/genre/:id', async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+
+
+
 
 module.exports = genreRouter;

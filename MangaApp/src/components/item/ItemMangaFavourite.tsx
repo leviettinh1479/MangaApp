@@ -45,7 +45,7 @@ const ItemManga: React.FC<Item> = ({
 
                 <View style={styles.viewView}>
                     <Image style={styles.imageview} resizeMode='contain' source={ICON_VIEW} />
-                    <Text numberOfLines={1} style={styles.txtView}>{view}</Text>
+                    <Text numberOfLines={1} style={styles.txtView}>{view} 10000</Text>
                 </View>
             </View>
         </TouchableOpacity >

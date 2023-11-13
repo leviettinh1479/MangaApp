@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -8,6 +8,8 @@ import ItemManga from '../components/item/ItemMangaFavourite';
 import { FONT_FAMILY } from '../theme/theme';
 import { useNavigation } from '@react-navigation/native';
 import { data_Complete } from '../components/item/DataComplete';
+import { ToastAndroid } from 'react-native';
+import AxiosIntance from '../components/utils/AxiosIntance';
 
 type ItemProps = {
   image: string
@@ -30,6 +32,31 @@ return (
 
 const HomeScreen = ({ navigation}:ScreenAProps)=> {
   navigation = useNavigation();
+
+  const [GetManga, setGetManga] = useState([])
+
+
+  useEffect(() => {
+    try {
+        const getAllManga = async () => {
+            const respone = await AxiosIntance().get("/api/manga");
+            if (respone) {
+              setGetManga(respone.allManga);
+              console.log("GetManga", GetManga)
+            } else {
+                ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
+            }
+        }
+        getAllManga();
+
+        return () => { }
+    } catch (error) {
+        console.log('errrrrrrror', error)
+    }
+
+}, []);
+
+
   return (
     <SafeAreaView style={{backgroundColor : 'white' , paddingHorizontal:16 , paddingTop:8}}>
      <ScrollView showsVerticalScrollIndicator = {false}> 
@@ -110,9 +137,9 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
               </TouchableOpacity>
             </View>
             <FlatList   style={{ flex: 1,marginBottom:10}}
-              data={data_Complete}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("Detail")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
+              data={GetManga}
+              keyExtractor={item => item._id}
+              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("Detail")} image={item.image} nameManga={item.name} nameAuthor={item.author}  description={item.status}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
               
@@ -134,9 +161,9 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
               </TouchableOpacity>
             </View>
             <FlatList   style={{ flex: 1,marginBottom:10}}
-              data={data_Complete}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => <ItemManga onpress={() => navigation.navigate("Detail")} image={item.image} nameManga={item.nameManga} nameAuthor={item.nameAuthor} view={item.view} description={item.description}  />}
+              data={GetManga}
+              keyExtractor={item => item._id}
+              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("Detail", {_id: item._id})} image={item.image} nameManga={item.name} nameAuthor={item.author}  description={item.status}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
             />
@@ -170,22 +197,22 @@ type ItemExample ={
   nameAuthor: string;
   view: number;
 }
-const data_ItemExample: ItemExample[] = [{
-  id: "1",
-  image: "https://cdn-icons-png.flaticon.com/128/740/740922.png",
-  nameManga: "Red Apple",
-  nameAuthor: "abc 15",
-  view: 3975
-}, {
-  id: "2",
-  image: "https://cdn-icons-png.flaticon.com/128/2909/2909808.png",
-  nameManga: "Apple Pie",
-  nameAuthor: "Name Less",
-  view: 500
-}, {
-  id: "3",
-  image: "https://cdn-icons-png.flaticon.com/128/2079/2079291.png",
-  nameManga: "Apple Pen",
-  nameAuthor: "Skibidi",
-  view: 823
-}]
+// const data_ItemExample: ItemExample[] = [{
+//   id: "1",
+//   image: "https://cdn-icons-png.flaticon.com/128/740/740922.png",
+//   nameManga: "Red Apple",
+//   nameAuthor: "abc 15",
+//   view: 3975
+// }, {
+//   id: "2",
+//   image: "https://cdn-icons-png.flaticon.com/128/2909/2909808.png",
+//   nameManga: "Apple Pie",
+//   nameAuthor: "Name Less",
+//   view: 500
+// }, {
+//   id: "3",
+//   image: "https://cdn-icons-png.flaticon.com/128/2079/2079291.png",
+//   nameManga: "Apple Pen",
+//   nameAuthor: "Skibidi",
+//   view: 823
+// }]

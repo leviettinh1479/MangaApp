@@ -7,12 +7,15 @@ interface ItemChap {
 
 const ItemChapImage: React.FC<ItemChap> = ({ image }) => {
     return (
+        <View>
             <Image
                 style={styles.image}
                 resizeMode="stretch"
                 source={{uri: image}}
             />
         
+        </View>
+            
     );
 };
 
@@ -22,5 +25,6 @@ const styles = StyleSheet.create({
     image: {
         width:400,
         height:500,
+        marginTop: 10
     },
 });
