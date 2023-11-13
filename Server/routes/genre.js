@@ -2,7 +2,7 @@
 const express = require("express");
 const genreRouter = express.Router();
 const Genre = require("../models/genre");
-const Manga = require("../models/manga");
+const Manga = require('../models/manga');
 
 // Route để thêm thể loại
 genreRouter.post("/api/genre/add", async (req, res) => {
