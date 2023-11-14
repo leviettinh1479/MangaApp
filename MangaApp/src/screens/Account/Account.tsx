@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import Icon_1 from 'react-native-vector-icons/Ionicons';
 import Icon_2 from 'react-native-vector-icons/FontAwesome6';
 import Icon_3 from 'react-native-vector-icons/MaterialIcons';
@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ScreenAProps {
     navigation: any; // or use the correct navigation type from @types/react-navigation
-  }
+  } 
 const Account = ({ navigation}:ScreenAProps) => {
     const {infoUser,setinfoUser,setisLogin} = useContext(AppContext)
     const logout = async () => {
