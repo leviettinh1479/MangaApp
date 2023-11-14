@@ -184,11 +184,10 @@ router.get('/logout',[auth.authenApp], function (req, res) {
     res.status(200).json({ result: true, message: "Đăng xuất thành công" });
 });
 
-// http://localhost:3000/api/user/vothanhthepct2020@gmail.com/edit-profile
-router.post('/:email/edit-profile', upload.single("image"), async (req, res, next) => {
+// http://localhost:3000/api/user/upload
+router.post('/upload', upload.single("image"), async (req, res, next) => {
     try {
-        const { email } = req.params;
-        const { name, address, image } = req.body;
+        const { image } = req.body;
         const dateTime = giveCurrentDateTime();
 
         const storageRef = ref(storage, `users/${req.file.originalname + "       " + dateTime}`);
@@ -205,14 +204,20 @@ router.post('/:email/edit-profile', upload.single("image"), async (req, res, nex
         const downloadURL = await getDownloadURL(snapshot.ref);
 
         console.log('File successfully uploaded.');
+        return res.status(200).json({ result: true, path: downloadURL });
+    } catch (error) {
+        return res.status(400).json({ result: false, message: error.message });
+    }
+});
 
-
-        console.log( name, address, downloadURL);
+// http://localhost:3000/api/user/vothanhthepct2020@gmail.com/edit-profile
+router.post('/:email/edit-profile', async (req, res, next) => {
+    try {
+        const { email } = req.params;
+        const { name, address, image } = req.body;
         const user = await userModel.findOne({ email: email });
-        // console.log("User: " + user);
         if (user) {
             // const image = 'https://cdn.pixabay.com/photo/2014/04/12/14/59/portrait-322470_1280.jpg';
-            const image = downloadURL;
             user.name = name ? name : user.name;
             user.address = address ? address : user.address;
             user.image = image ? image : user.image;
