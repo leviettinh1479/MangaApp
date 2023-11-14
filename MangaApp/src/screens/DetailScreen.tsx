@@ -31,6 +31,22 @@ const ItemTopics = ({ title }: ItemProps) => {
     </TouchableOpacity>
   )
 }
+/// api favorite
+export const addToFavorites = async (mangaId: string,userId : string) => {
+  return await AxiosIntance().post(`/api/favorite/add-favorite`, { mangaId ,userId});
+};
+
+export const removeFromFavorites = async (mangaId: string) => {
+  return await AxiosIntance().post(`/api/favorite/${mangaId}/delete-favorite`);
+};
+
+interface FavoriteItemProps {
+  mangaId: string;
+  userId:string;
+}
+interface ScreenAProps{
+  navigation: any;
+}
 // item chap
 interface ItemChap {
   id?: String;
@@ -40,12 +56,13 @@ interface ItemChap {
 
   }
 }
+
 const ItemChaps: React.FC<ItemChap> = ({
   title,
   content,
   onpress
 }) => {
-
+  
   return (
     <TouchableOpacity onPress={onpress}>
       <View style={{ flexDirection: 'row', marginTop: 24 }}>
@@ -61,7 +78,12 @@ const ItemChaps: React.FC<ItemChap> = ({
     </TouchableOpacity>
   )
 }
-const DetailScreen = ({ navigation }: ScreenAProps) => {
+type CombinedProps = FavoriteItemProps & ScreenAProps;
+const DetailScreen: React.FC<CombinedProps> = ({
+  navigation,
+  userId,
+  mangaId,
+}) => {
   const route = useRoute();
   const dataId = route.params?._id;
 
@@ -112,6 +134,21 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
   }, []);
 
 
+/// favorite
+  const [isFavorite, setIsFavorite] = useState(false);
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      // Xóa khỏi danh sách yêu thích
+      removeFromFavorites(mangaId)
+        .then(() => setIsFavorite(false))
+        .catch((error) => console.error('Error removing from favorites:', error));
+    } else {
+      // Thêm vào danh sách yêu thích
+      addToFavorites(mangaId,userId)
+        .then(() => setIsFavorite(true))
+        .catch((error) => console.error('Error adding to favorites:', error));
+    }
+  };
 
   return (
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
@@ -142,7 +179,11 @@ const DetailScreen = ({ navigation }: ScreenAProps) => {
             <Text numberOfLines={2} style={{ fontSize: 22, fontFamily: FONT_FAMILY.quicksand_bold, color: '#000000' }}>
               {GetMangaId.name}
             </Text>
-            <TouchableOpacity><Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} /></TouchableOpacity>
+            <TouchableOpacity onPress={handleToggleFavorite}>
+              {isFavorite ? <Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />
+               : 
+               <Ionicons name="bookmark" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />}
+              </TouchableOpacity>
           </View>
           <Text numberOfLines={1} style={{ fontSize: 16, fontFamily: FONT_FAMILY.quicksand_bold, color: '#000000', marginTop: 12 }}>
             {GetMangaId.author}
