@@ -1,0 +1,248 @@
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  ImageBackground,
+  Pressable,
+  StatusBar,
+  KeyboardAvoidingView,
+} from 'react-native';
+import React, { useState } from 'react'
+import { COLORS, FONT_FAMILY } from '../../theme/theme';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AxiosIntance from '../../components/utils/AxiosIntance';
+import { Alert } from 'react-native';
+
+
+interface ScreenAProps {
+  navigation: any; // or use the correct navigation type from @types/react-navigation
+}
+
+const LoginEmail = ({ navigation}:ScreenAProps) => {
+  const Register = () => {
+    console.log('Register ne: ')
+    navigation.navigate('Register')
+  }
+  const [email, setEmail] = useState("");
+  // const CheckEmail = () => {
+    
+  // };
+
+  const CheckEmail = async () => {
+    
+    // Kiểm tra xem email có được nhập hay không
+    if (email.trim() === '') {
+      Alert.alert('Vui lòng nhập địa chỉ email.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Địa chỉ email không hợp lệ.');
+      return;
+    }
+    else {
+      const response = await AxiosIntance().get("api/user/get-all-user");
+        console.log(response);
+        for (let index = 0; index < response.users.length; index++) {
+          if(response.users[index].email == email){
+            navigation.navigate('LoginPassword', { email: email, name: response.users[index].name, image: response.users[index].image, navigation: navigation });
+            console.log("email trùng: ");
+            return;
+          }
+          
+        }
+    }
+    // navigation.navigate('LoginPassword', { email });
+    // Thực hiện các hành động khác nếu email đã được nhập
+    // Ví dụ: chuyển hướng sang màn hình tiếp theo, gửi yêu cầu đăng nhập, vv.
+  };
+
+  return (
+    <View style={styles.Container}>
+      <Image
+        source={require('../../assets/images/Backgound_1.jpg')}
+        style={{
+          display: 'flex',
+          position: 'absolute',
+          objectFit: 'fill',
+          width: '100%',
+        }}
+      />
+      <View style={styles.DangNhap}>
+        <Text style={styles.Text_DangNhap}>Đăng nhập</Text>
+      </View>
+      <View style={styles.View_Container}>
+        <KeyboardAwareScrollView>
+          <View style={styles.View_Input}>
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor="black"
+              onChangeText={(text) => setEmail(text)}
+              value={email}
+              style={styles.Text_Input_Email}></TextInput>
+          </View>
+        </KeyboardAwareScrollView>
+
+        <TouchableOpacity style={styles.View_Tieptuc} onPress={CheckEmail}>
+          <Text style={styles.Text_Tieptuc} >Tiếp tục</Text>
+        </TouchableOpacity>
+        <View style={styles.View_QuenPass}>
+          <TouchableOpacity>
+            <Text style={styles.Text_QuenPass}>Quên mật khẩu</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.View_Vien}>
+          <View style={styles.line} />
+          <Text style={styles.text}>Hoặc</Text>
+          <View style={styles.line} />
+        </View>
+        <View style={styles.View_DangNhap}>
+          <TouchableOpacity style={styles.View_DangNhap1}>
+            <Image
+              style={styles.Image_DangNhap}
+              source={require('../../assets/images/Logo_Facebook.png')}
+            />
+            <Text style={styles.Text_DangNhap1}>Đăng nhập với Facebook</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.View_DangNhap}>
+          <TouchableOpacity style={styles.View_DangNhap1}>
+            <Image
+              style={styles.Image_DangNhap}
+              source={require('../../assets/images/Logo_Google.png')}
+            />
+            <Text style={styles.Text_DangNhap1}>Đăng nhập với Google</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.View_DangKy}>
+          <Text style={styles.Text_DangKy}>Chưa có tài khoản? </Text>
+          <TouchableOpacity>
+            <Text style={styles.Text_DangKy1} onPress={Register}>Đăng kí</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default LoginEmail;
+
+const styles = StyleSheet.create({
+  Container: {
+    flex: 1,
+    backgroundColor: '#FF97A3',
+  },
+  DangNhap: {
+    paddingTop: 150,
+    paddingLeft: 30,
+  },
+  Text_DangNhap: {
+    fontSize: 32,
+    fontFamily: 'Quicksand-Bold',
+    color: 'white',
+  },
+  View_Container: {
+    backgroundColor: COLORS.GRAY_BG,
+    borderRadius: 20,
+    padding: 20,
+    margin: 20,
+  },
+  Text_Input_Email: {
+    fontFamily: FONT_FAMILY.quicksand_regular,
+    color: COLORS.Black,
+    fontSize: 16,
+    paddingLeft: 10,
+  },
+  View_Tieptuc: {
+    borderRadius: 10,
+    color: 'black',
+    fontSize: 14,
+    marginTop: 16,
+  },
+  Text_Tieptuc: {
+    backgroundColor: '#FF97A3',
+    borderRadius: 10,
+    color: 'black',
+    fontSize: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    textAlign: 'center',
+    fontFamily: 'Quicksand-Bold',
+  },
+  View_DangNhap: {
+    borderRadius: 10,
+    color: 'black',
+    fontSize: 14,
+    marginTop: 16,
+    backgroundColor: 'white',
+  },
+  View_DangNhap1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  Image_DangNhap: {
+    marginLeft: 16,
+  },
+  Text_DangNhap1: {
+    flex: 1,
+    textAlign: 'center',
+    borderRadius: 10,
+    color: 'black',
+    fontSize: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontFamily: FONT_FAMILY.quicksand_bold,
+  },
+  View_QuenPass: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 16,
+  },
+  View_Input: {
+    flexDirection: 'row',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    fontSize: 14,
+    marginTop: 16,
+    padding: 3,
+    justifyContent: 'space-between',
+  },
+  Text_QuenPass: {
+    fontFamily: FONT_FAMILY.quicksand_bold,
+    fontSize: 14,
+    color: 'white',
+  },
+  View_Vien: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'white',
+  },
+  text: {
+    fontFamily: FONT_FAMILY.quicksand_medium,
+    marginHorizontal: 10,
+    fontSize: 14,
+    padding: 18,
+    color: 'white',
+  },
+  View_DangKy: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 16,
+  },
+  Text_DangKy: {
+    fontFamily: FONT_FAMILY.quicksand_regular,
+    color: 'white',
+  },
+  Text_DangKy1: {
+    color: 'white',
+    fontFamily: FONT_FAMILY.quicksand_bold,
+  },
+});

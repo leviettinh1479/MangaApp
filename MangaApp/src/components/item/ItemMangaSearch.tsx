@@ -10,7 +10,7 @@ interface Item {
     onpress?: () => void
 }
 
-const ItemManga: React.FC<Item> = ({
+const ItemMangaSearch: React.FC<Item> = ({
     image,
     nameManga,
     nameAuthor,
@@ -19,19 +19,21 @@ const ItemManga: React.FC<Item> = ({
 }) => {
     return (
         <TouchableOpacity onPress={onpress}>
-            <View style={styles.container}>
+            <View style={[styles.container,{flexDirection:'row'}]}>
                 <View style={styles.viewImage}>
                     <Image style={styles.image} resizeMode='contain' source={{uri: image}} />
                 </View>
-                <View style={styles.viewNameManga}>
-                    <Text numberOfLines={1} style={styles.txtNameManga}>{nameManga}</Text>
-                </View>
-                <View style={styles.viewNameAuthor}>
-                    <Text numberOfLines={1} style={styles.txtNameAuthor}>{nameAuthor}</Text>
-                </View>
-                <View style={styles.viewView}>
-                    <Image style={styles.imageview} resizeMode='contain' source={require('../../assets/images/ViewImage.png')} />
-                    <Text numberOfLines={1} style={styles.txtView}>{view}</Text>
+                <View style={{flexDirection:'column',marginLeft:10}}>
+                    <View style={styles.viewNameManga}>
+                        <Text numberOfLines={1} style={styles.txtNameManga}>{nameManga}</Text>
+                    </View>
+                    <View style={styles.viewNameAuthor}>
+                        <Text numberOfLines={1} style={styles.txtNameAuthor}>{nameAuthor}</Text>
+                    </View>
+                    <View style={styles.viewView}>
+                        <Image style={styles.imageview} resizeMode='contain' source={require('../../assets/images/ViewImage.png')} />
+                        <Text numberOfLines={1} style={styles.txtView}>{view}</Text>
+                    </View>
                 </View>
             </View>
             
@@ -40,17 +42,15 @@ const ItemManga: React.FC<Item> = ({
 }
 
 
-export default ItemManga
+export default ItemMangaSearch
 
 const styles = StyleSheet.create({
     container: {
-        width: 128,
+        width: 'auto',
         height: 'auto',
         borderRadius: 10
-        
     },
     viewImage: {
-        
         shadowColor: "#000000",
         shadowOffset: {
             width: 0,

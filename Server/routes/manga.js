@@ -30,11 +30,12 @@ const auth = require('../middlewares/auth');
 //   }
 // });
 //Get All
-mangaRouter.get('/api/manga', [auth.authenApp], async (req, res) => {
+//[auth.authenApp],
+mangaRouter.get('/api/manga',  async (req, res) => {
   try {
     const allManga = await Manga.find();
 
-    res.json(allManga);
+    res.status(200).json({ message: "Đã lấy manga" ,allManga});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -88,7 +89,8 @@ mangaRouter.get("/api/manga/search", [auth.authenApp], async (req, res) => {
   }
 });
 //Get by id
-mangaRouter.get('/api/manga/:id', [auth.authenApp], async (req, res) => {
+// [auth.authenApp],
+mangaRouter.get('/api/manga/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -98,7 +100,7 @@ mangaRouter.get('/api/manga/:id', [auth.authenApp], async (req, res) => {
       return res.status(404).json({ message: 'Không tìm thấy truyện!' });
     }
 
-    res.json(manga);
+    res.status(200).json({ message: "Đã lấy manga" ,manga});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
