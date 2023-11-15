@@ -23,7 +23,7 @@ const MyLibraryScreen: React.FC = (navigation: any) => {
     // Fetch favorites when the component mounts
     dispatch(fetchFavorites(infoUser._id));
   }, [dispatch]);
-  console.log("favorites.userId",favorites)
+  
 
     navigation = useNavigation();
     const [activeTab, setActiveTab] = useState('saved') // Mặc định tab 'saved' được chọn
@@ -84,11 +84,11 @@ const MyLibraryScreen: React.FC = (navigation: any) => {
                         renderItem={({ item }) => (
                             <ItemManga
                                 onpress={() => navigation.navigate("DetailScreen",{ _id: item._id })}
-                                image={item.image}
-                                nameManga={item.name}
-                                nameAuthor={item.author}
-                                description={item.status}
-                                view={item.view}
+                                image={item.manga.image}
+                                nameManga={item.manga.name}
+                                nameAuthor={item.manga.author}
+                                description={item.manga.status}
+                                view={item.manga.view}
                             />
                         )}
                         showsVerticalScrollIndicator={false}
@@ -131,9 +131,9 @@ const MyLibraryScreen: React.FC = (navigation: any) => {
                         renderItem={({ item }) => (
                             <ItemManga
                                 image={item.image}
-                                nameManga={item.nameManga}
-                                nameAuthor={item.nameAuthor}
-                                description={item.description}
+                                nameManga={item.name}
+                                nameAuthor={item.author}
+                                description={item.status}
                                 view={item.view}
                             />
                         )}
