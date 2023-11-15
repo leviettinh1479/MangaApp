@@ -48,13 +48,7 @@ const App = () => {
         <Provider store={store}>
         <AppContextProvider>
         <NavigationContainer>
-            {/* <Stack.Navigator initialRouteName='StackLogin' screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='StackLogin' component={StackLogin}/>
-                <Stack.Screen name='LoginNavigation' component={LoginNavigations}/>
-                <Stack.Screen name='BottomTab' component={BottomTabNagivation}/>
-                <Stack.Screen name='Detail' component={DetailScreen}/>
-                <Stack.Screen name='DetailChap' component={ChapterDetailScreen}/>
-            </Stack.Navigator> */}
+    
             <AppNavigator/>
         </NavigationContainer>
         </AppContextProvider>

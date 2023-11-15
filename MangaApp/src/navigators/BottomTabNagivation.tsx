@@ -26,6 +26,7 @@ const StackHome = () =>{
         <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{headerShown: false}}>
             <Stack.Screen name='HomeScreen' component={HomeScreen}/>
             <Stack.Screen name='DetailScreen' component={DetailScreen}/>
+            <Stack.Screen name='DetailChap' component={ChapterDetailScreen}/>
             {/* <Stack.Screen name='StackMangaDetail' component={StackMangaDetail}/> */}
         </Stack.Navigator>
     )

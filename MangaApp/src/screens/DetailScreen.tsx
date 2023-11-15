@@ -150,7 +150,7 @@ const DetailScreen: React.FC<ScreenAProps> = ({
   const {infoUser} = useContext(AppContext)
   const dispatch = useDispatch();
   const favorites = useSelector((state: any) => state.favorites);
-  console.log("favorites.userId",favorites[0].manga._id);
+  // console.log("favorites.userId",favorites[0].manga._id);
   const handleToggleFavorite = () => {
     if (favorites.includes(favorites[0]._id)) {
       // Xóa khỏi danh sách yêu thích
@@ -194,7 +194,7 @@ const DetailScreen: React.FC<ScreenAProps> = ({
               {GetMangaId.name}
             </Text>
             <TouchableOpacity onPress={handleToggleFavorite}>
-              {favorites.includes(favorites[0].manga._id) == dataId ? <Ionicons name="bookmark" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />
+              {favorites.includes(favorites)  ? <Ionicons name="bookmark" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />
                : 
                <Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />}
               </TouchableOpacity>
