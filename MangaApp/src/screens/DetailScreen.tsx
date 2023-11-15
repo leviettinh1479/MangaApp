@@ -1,5 +1,5 @@
 import { FlatList, Image, ImageBackground, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
@@ -12,7 +12,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { useRoute } from '@react-navigation/native';
 import AxiosIntance from '../components/utils/AxiosIntance'
 import { ActivityIndicator } from 'react-native';
-
+import { AppContext } from './login_signup.tsx/AppContext'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites } from '../components/utils/redux/action';
 
 type ItemProps = {
   title: string
@@ -31,14 +33,7 @@ const ItemTopics = ({ title }: ItemProps) => {
     </TouchableOpacity>
   )
 }
-/// api favorite
-export const addToFavorites = async (mangaId: string,userId : string) => {
-  return await AxiosIntance().post(`/api/favorite/add-favorite`, { mangaId ,userId});
-};
 
-export const removeFromFavorites = async (mangaId: string) => {
-  return await AxiosIntance().post(`/api/favorite/${mangaId}/delete-favorite`);
-};
 
 interface FavoriteItemProps {
   mangaId: string;
@@ -79,16 +74,17 @@ const ItemChaps: React.FC<ItemChap> = ({
   )
 }
 type CombinedProps = FavoriteItemProps & ScreenAProps;
-const DetailScreen: React.FC<CombinedProps> = ({
+const DetailScreen: React.FC<ScreenAProps> = ({
   navigation,
-  userId,
-  mangaId,
 }) => {
+  
+
+
+
+// chi tiết manga
   const route = useRoute();
   const dataId = route.params?._id;
-
   const [loading, setLoading] = useState(true);
-
   const [GetMangaId, setGetMangaId] = useState([])
   const [GetChapterId, setGetChapterId] = useState([])
 
@@ -136,17 +132,34 @@ const DetailScreen: React.FC<CombinedProps> = ({
 
 /// favorite
   const [isFavorite, setIsFavorite] = useState(false);
+  // const handleToggleFavorite = () => {
+  //   if (isFavorite) {
+  //     // Xóa khỏi danh sách yêu thích
+  //     removeFromFavorites(dataId)
+  //       .then(() => setIsFavorite(false))
+  //       .catch((error) => console.error('Error removing from favorites:', error));
+  //   } else {
+  //     // Thêm vào danh sách yêu thích
+  //     console.log(":>>>>>>favorite")
+  //     addToFavorites(dataId,infoUser._id)
+  //       .then(() => setIsFavorite(true))
+  //       .catch((error) => console.error('Error adding to favorites:', error));
+  //   }
+  // };
+  // favorite api
+  const {infoUser} = useContext(AppContext)
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: any) => state.favorites);
   const handleToggleFavorite = () => {
-    if (isFavorite) {
+    if (favorites.includes(favorites._id)) {
       // Xóa khỏi danh sách yêu thích
-      removeFromFavorites(mangaId)
-        .then(() => setIsFavorite(false))
-        .catch((error) => console.error('Error removing from favorites:', error));
+      dispatch(removeFromFavorites(favorites._id));
+      console.log(">>>>>Reomovefavrite")
     } else {
       // Thêm vào danh sách yêu thích
-      addToFavorites(mangaId,userId)
-        .then(() => setIsFavorite(true))
-        .catch((error) => console.error('Error adding to favorites:', error));
+      dispatch(addToFavorites(dataId,infoUser._id));
+      console.log(">>>>>Addfavrite")
+
     }
   };
 
@@ -180,9 +193,9 @@ const DetailScreen: React.FC<CombinedProps> = ({
               {GetMangaId.name}
             </Text>
             <TouchableOpacity onPress={handleToggleFavorite}>
-              {isFavorite ? <Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />
+              {favorites.includes(infoUser._id) ? <Ionicons name="bookmark" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />
                : 
-               <Ionicons name="bookmark" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />}
+               <Ionicons name="bookmark-outline" color="#FF97A3" size={20} style={{ padding: 1, marginTop: 5 }} />}
               </TouchableOpacity>
           </View>
           <Text numberOfLines={1} style={{ fontSize: 16, fontFamily: FONT_FAMILY.quicksand_bold, color: '#000000', marginTop: 12 }}>

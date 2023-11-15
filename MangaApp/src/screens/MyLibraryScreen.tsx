@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View, ScrollView, Image, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import { Pressable, StyleSheet, Text, View, ScrollView, Image, FlatList, ToastAndroid } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import ItemManga from '../components/item/ItemMangaFavourite'
 import { data_ItemExample } from '../components/item/DataFavourite'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -7,10 +7,24 @@ import { COLORS, FONT_FAMILY } from '../theme/theme'
 import { data_Inprogress } from '../components/item/DataInProgress'
 import { data_Complete } from '../components/item/DataComplete'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromFavorites,fetchFavorites } from '../components/utils/redux/action';
+import { AppContext } from './login_signup.tsx/AppContext'
 
 
 
 const MyLibraryScreen: React.FC = (navigation: any) => {
+   // api favorite
+   const {infoUser} = useContext(AppContext)
+   const dispatch = useDispatch();
+   const favorites = useSelector((state: any) => state.favorites);
+   
+   useEffect(() => {
+    // Fetch favorites when the component mounts
+    dispatch(fetchFavorites(infoUser._id));
+  }, [dispatch]);
+  console.log("favorites.userId",favorites)
+
     navigation = useNavigation();
     const [activeTab, setActiveTab] = useState('saved') // Mặc định tab 'saved' được chọn
 
@@ -33,24 +47,47 @@ const MyLibraryScreen: React.FC = (navigation: any) => {
         )
     }
 
+
+    //const {infoUser} = useContext(AppContext)
+//     const [favorite, setFavrite] = useState({})
+//   useEffect(() => {
+//     try {
+//         const getAllManga = async () => {
+//             const respone = await AxiosIntance().get(`/api/favorite/get-all-favorite/${infoUser._id}`);
+//             if (respone.results == true) {
+//                 setFavrite(respone.favorites);
+//               console.log("respone.favorites>>>", respone.favorites)
+//             } else {
+//                 ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
+//             }
+//         }
+//         getAllManga();
+
+//         return () => { }
+//     } catch (error) {
+//         console.log('errrrrrrror', error)
+//     }
+
+// }, []);
+
     const renderFlatList = () => {
         switch (activeTab) {
             case 'saved':
                 return (
                     <FlatList
                         style={styles.list}
-                        data={data_ItemExample}
+                        data={favorites}
                         keyExtractor={(item) => item.id}
                         refreshing={true}
                         numColumns={2}
                         columnWrapperStyle={styles.row}
                         renderItem={({ item }) => (
                             <ItemManga
-                                onpress={() => navigation.navigate("Detail")}
+                                onpress={() => navigation.navigate("DetailScreen",{ _id: item._id })}
                                 image={item.image}
-                                nameManga={item.nameManga}
-                                nameAuthor={item.nameAuthor}
-                                description={item.description}
+                                nameManga={item.name}
+                                nameAuthor={item.author}
+                                description={item.status}
                                 view={item.view}
                             />
                         )}
@@ -170,3 +207,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 })
+
+function useFavoriteContext(): { favorites: any } {
+    throw new Error('Function not implemented.')
+}

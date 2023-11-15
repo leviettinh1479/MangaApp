@@ -15,6 +15,8 @@ import LoginPassword from './src/screens/login_signup.tsx/LoginPassword';
 import SignUp from './src/screens/login_signup.tsx/SignUp';
 import LoginNavigations from './src/navigators/LoginNavigations';
 import { AppContext, AppContextProvider } from './src/screens/login_signup.tsx/AppContext';
+import { Provider } from 'react-redux';
+import store from './src/components/utils/redux/store';
 
 
 
@@ -43,6 +45,7 @@ const AppNavigator = () => {
 
 const App = () => {
     return (
+        <Provider store={store}>
         <AppContextProvider>
         <NavigationContainer>
             {/* <Stack.Navigator initialRouteName='StackLogin' screenOptions={{ headerShown: false }}>
@@ -55,6 +58,7 @@ const App = () => {
             <AppNavigator/>
         </NavigationContainer>
         </AppContextProvider>
+        </Provider>
     )
 
 }
