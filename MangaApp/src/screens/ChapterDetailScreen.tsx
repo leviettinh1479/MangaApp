@@ -15,139 +15,173 @@ interface ScreenAProps {
 const ChapterDetailScreen = ({ navigation }: ScreenAProps) => {
     const [loading, setLoading] = useState(true);
 
-    const [Chapter, setChapter] = React.useState("");
-
-    const dataa = [
-        { key: '1', value: 'Chap 1' },
-        { key: '2', value: 'Chap 2' },
-        { key: '3', value: 'Chap 3' },
-        { key: '4', value: 'Chap 4' },
-        { key: '5', value: 'Chap 5' },
-        { key: '6', value: 'Chap 5' },
-        { key: '7', value: 'Chap 5' },
-        { key: '8', value: 'Chap 5' },
-    ]
-
     const route = useRoute();
     const dataChapId = route.params?._id;
-    const chap1 = route.params?.chapter;
+    const dataId = route.params?.dataid;
     console.log(">>>>>>>>>>", dataChapId);
-    console.log("chapaaaaaaaap", chap1);console.log('chap>>>>>', chap1.chap)
-    const dataa1 = [
-        { key: chap1._id, value: chap1.chap },
-        
-    ]
+    console.log(">Itemms", dataId);
+
 
     const [GetChapDetailId, setGetChapDetailId] = useState([])
     const [chapImage, setchapImage] = useState([])
+    const [GetChapterId, setGetChapterId] = useState([])
+    const [Chapter, setChapter] = React.useState("");
+    const [Data, setData] = React.useState([]);
 
     useEffect(() => {
         const getAllManga = async () => {
-          try {
-            const respone = await AxiosIntance().get("/api/chapter/" + dataChapId);
-            if (respone) {
-              setGetChapDetailId(respone.chapter);
-              setchapImage(respone.chapter.image);
-            } else {
-              ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT);
-            }
-          } catch (error) {
-            console.log('errrrrrrror', error);
-          } finally {
-            setLoading(false); // Kết thúc khi dữ liệu đã được tải hoặc xảy ra lỗi
-          }
-        };
-    
-        getAllManga();
-    
-        return () => {};
-      }, []);
+            try {
+                const respone = await AxiosIntance().get("/api/chapter/" + dataChapId);
+                if (respone) {
+                    setGetChapDetailId(respone.chapter);
+                    setchapImage(respone.chapter.image);
 
+                } else {
+                    ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT);
+                }
+                const respone1 = await AxiosIntance().get("/api/chapter/getall/" + dataId);
+                if (respone1) {
+                    setGetChapterId(respone1.chapters);
+                    console.log("chaoterID", GetChapterId)
+
+                    let newArray = respone1.chapters.map((item: { _id: any; chap: any; }) => {
+                        return { key: item._id, value: 'Chap ' + item.chap }
+                    })
+                    setData(newArray)
+                } else {
+                    ToastAndroid.show("Lấy dữ liệu không ok", ToastAndroid.SHORT)
+                }
+            } catch (error) {
+                console.log('errrrrrrror', error);
+            } finally {
+                setLoading(false); // Kết thúc khi dữ liệu đã được tải hoặc xảy ra lỗi
+            }
+        };
+
+        getAllManga();
+
+        return () => { };
+    }, [GetChapDetailId]);
+
+    useEffect(() => {
+        if (GetChapterId.length > 0 && GetChapDetailId._id) {
+          const currentIndex = GetChapterId.findIndex(chap => chap._id === GetChapDetailId._id);
+          setCurrentChapIndex(currentIndex);
+        }
+      }, [GetChapDetailId, GetChapterId, currentChapIndex]);
+
+    const [currentChapIndex, setCurrentChapIndex] = useState(GetChapterId.findIndex(chap => chap._id == GetChapDetailId._id));
+    const currentChapter = GetChapterId.length > 0 ? GetChapterId[currentChapIndex] : null;
+    // console.log('current chap', currentChapter)
+
+
+
+    const moveToNextChapter = () => {
+        const nextChapterIndex = currentChapIndex + 1;
+        if (nextChapterIndex < GetChapterId.length) {
+            setLoading(true)
+            setCurrentChapIndex(nextChapterIndex);
+            navigation.navigate('DetailChap', { _id: GetChapterId[nextChapterIndex]._id });
+        } else {
+            console.log("Bạn đã đọc hết truyện.")
+        }
+    };
+
+    const prevToNextChapter = () => {
+        const nextChapterIndex = currentChapIndex - 1;
+        if (nextChapterIndex < GetChapterId.length) {
+            setLoading(true)
+            setCurrentChapIndex(nextChapterIndex);
+            navigation.navigate('DetailChap', { _id: GetChapterId[nextChapterIndex]._id });
+        } else {
+            console.log("Bạn đã đọc hết truyện.")
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             {loading ? (
-      // Hiển thị loading component trong khi dữ liệu đang tải
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    ) :(
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.viewHead}>
-                    <Ionicons
-                        name="arrow-back-ios"
-                        size={20}
-                        color={'black'}
-                        onPress={() => navigation.goBack()}
-                    />
-                    <Text style={styles.txtNameManga}>{GetChapDetailId.title} - {GetChapDetailId.chap}</Text>
-                    <View />
+                // Hiển thị loading component trong khi dữ liệu đang tải
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#0000ff" />
                 </View>
-                <View style={styles.viewUpDay}>
-                    <Text style={styles.txtUpDay}>{GetChapDetailId.createdAt}</Text>
-                </View>
-                <View style={styles.viewErr}>
-                    <TouchableOpacity style={styles.btnErr}>
-                        <Ionicons
-                            style={{ marginStart: 4, marginEnd: 4 }}
-                            name="error-outline"
-                            size={24}
-                            color={'white'}
-                        />
-                        <Text style={styles.txtErr}>Báo lỗi chương</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.viewControll}>
-                    <TouchableOpacity style={styles.btnControll}>
+            ) : (
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.viewHead}>
                         <Ionicons
                             name="arrow-back-ios"
                             size={20}
-                            color={'white'}
+                            color={'black'}
+                            onPress={() => navigation.goBack()}
                         />
-                        <Text style={styles.txtControll}>Chương trước</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnControll}>
-                        <Text style={styles.txtControll}>Chương sau</Text>
-                        <Ionicons
-                            name="arrow-forward-ios"
-                            size={20}
-                            color={'white'}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnControllMenu}>
-                        <Ionicons
-                            name="menu"
-                            size={35}
-                            color={'#FF97A3'}
-                        />
-                    </TouchableOpacity>
-                </View>
-
-                <FlatList
-                    style={{ flex: 1, marginBottom: 50 }}
-                    data={chapImage}
-                    scrollEnabled={false}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <View style={{overflow: 'hidden',}}>
-                            {item && (
-                                <Image
-                                style={styles.image}
-                                resizeMode="stretch"
-                                source={{ uri: item }}
-                                onError={(error) => console.error('image load err', error)}
+                        <Text style={styles.txtNameManga}>{GetChapDetailId.title} - {GetChapDetailId.chap}</Text>
+                        <View />
+                    </View>
+                    <View style={styles.viewUpDay}>
+                        <Text style={styles.txtUpDay}>{GetChapDetailId.createdAt}</Text>
+                    </View>
+                    <View style={styles.viewErr}>
+                        <TouchableOpacity style={styles.btnErr}>
+                            <Ionicons
+                                style={{ marginStart: 4, marginEnd: 4 }}
+                                name="error-outline"
+                                size={24}
+                                color={'white'}
                             />
-                            )}
-                        </View>
-                    )}
-                    ListEmptyComponent={() => (
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                          <Text>Không có hình ảnh để hiển thị</Text>
-                        </View>
-                      )} />
+                            <Text style={styles.txtErr}>Báo lỗi chương</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.viewControll}>
+                        <TouchableOpacity style={styles.btnControll} onPress={prevToNextChapter}>
+                            <Ionicons
+                                name="arrow-back-ios"
+                                size={20}
+                                color={'white'}
+                            />
+                            <Text style={styles.txtControll}>Chương trước</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.btnControll} onPress={moveToNextChapter}>
+                            <Text style={styles.txtControll}>Chương sau</Text>
+                            <Ionicons
+                                name="arrow-forward-ios"
+                                size={20}
+                                color={'white'}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.btnControllMenu}>
+                            <Ionicons
+                                name="menu"
+                                size={35}
+                                color={'#FF97A3'}
+                            />
+                        </TouchableOpacity>
+                    </View>
 
-            </ScrollView>
-    )}
+                    <FlatList
+                        style={{ flex: 1, marginBottom: 50 }}
+                        data={chapImage}
+                        scrollEnabled={false}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <View style={{ overflow: 'hidden', }}>
+                                {item && (
+                                    <Image
+                                        style={styles.image}
+                                        resizeMode="stretch"
+                                        source={{ uri: item }}
+                                        onError={(error) => console.error('image load err', error)}
+                                    />
+                                )}
+                            </View>
+                        )}
+                        ListEmptyComponent={() => (
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text>Không có hình ảnh để hiển thị</Text>
+                            </View>
+                        )} />
+
+                </ScrollView>
+            )}
             <View style={styles.viewBottomBtn}>
                 <TouchableOpacity style={styles.btnBottomBtn}>
                     <Ionicons
@@ -159,9 +193,10 @@ const ChapterDetailScreen = ({ navigation }: ScreenAProps) => {
                 <View style={{ width: 'auto', backgroundColor: 'white', borderRadius: 10 }}>
                     <SelectList
                         dropdownStyles={styles.listChap}
-                        setSelected={(chap: any) => setChapter(chap)}
-                        data={dataa}
+                        setSelected={setChapter}
+                        data={Data}
                         search={false}
+                        onSelect={() => (Chapter)}
                         boxStyles={{ width: 100, height: 35, justifyContent: 'center', alignItems: 'center' }}
                         inputStyles={{ height: 25, justifyContent: 'center', alignItems: 'center' }}
                         fontFamily={FONT_FAMILY.quicksand_regular}
@@ -283,5 +318,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-      },
+    },
 })

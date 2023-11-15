@@ -236,7 +236,7 @@ const DetailScreen: React.FC<ScreenAProps> = ({
           <FlatList style={{ flex: 1 }}
             data={GetChapterId}
             keyExtractor={item => item._id}
-            renderItem={({ item }) => <ItemChaps onpress={() => navigation.navigate('DetailChap', { _id: item._id, chapter: GetChapterId })} title={item.chap} id={item._id} content={item.content} />}
+            renderItem={({ item }) => <ItemChaps onpress={() => navigation.navigate('DetailChap', { _id: item._id, dataid: dataId })} title={item.chap} id={item._id} content={item.content} />}
             numColumns={1}
             nestedScrollEnabled={true}
             scrollEnabled={false}

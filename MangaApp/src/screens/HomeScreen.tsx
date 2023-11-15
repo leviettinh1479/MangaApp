@@ -139,7 +139,7 @@ const HomeScreen = ({ navigation}:ScreenAProps)=> {
             <FlatList   style={{ flex: 1,marginBottom:10}}
               data={GetManga}
               keyExtractor={item => item._id}
-              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("DetailScreen")} image={item.image} nameManga={item.name} nameAuthor={item.author} description={item.status} view={0}  />}
+              renderItem={({item}) => <ItemManga  onpress={() => navigation.navigate("Detail", {_id: item._id})} image={item.image} nameManga={item.name} nameAuthor={item.author}  description={item.status}  />}
               horizontal
               showsHorizontalScrollIndicator = {false}
               
