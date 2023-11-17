@@ -16,13 +16,15 @@ import { AppContext } from './login_signup.tsx/AppContext'
 const MyLibraryScreen: React.FC = (navigation: any) => {
    // api favorite
    const {infoUser} = useContext(AppContext)
-   const dispatch = useDispatch();
    const favorites = useSelector((state: any) => state.favorites);
    
    useEffect(() => {
-    // Fetch favorites when the component mounts
-    dispatch(fetchFavorites(infoUser._id));
-  }, [dispatch]);
+    if (favorites) {
+      console.log('Profile user: ' + JSON.stringify(favorites));
+    } else {
+      setIsLoading (true)
+    }
+  }, [favorites]);
   
 
     navigation = useNavigation();
